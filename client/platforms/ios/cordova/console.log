@@ -14,3 +14,106 @@
 2015-05-09 14:34:55.125 FacebookExample[9355:162426] Unlimited access to network resources
 2015-05-09 14:34:55.628 FacebookExample[9355:162426] Resetting plugins due to page load.
 2015-05-09 14:34:56.163 FacebookExample[9355:162426] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/E9857F37-5935-4093-8611-FAE292F367CD/FacebookExample.app/www/index.html
+2015-05-09 14:57:25.065 FacebookExample[9668:170162] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 14:57:25.066 FacebookExample[9668:170162] Multi-tasking -> Device: YES, App: YES
+2015-05-09 14:57:25.081 FacebookExample[9668:170162] Unlimited access to network resources
+2015-05-09 14:57:25.589 FacebookExample[9668:170162] Resetting plugins due to page load.
+2015-05-09 14:57:26.550 FacebookExample[9668:170162] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/887EC934-A494-4267-A6B5-EA526DAD9AC1/FacebookExample.app/www/index.html#/login
+2015-05-09 14:57:29.478 FacebookExample[9668:170162] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 14:57:29.484 FacebookExample[9668:170162] THREAD WARNING: ['InAppBrowser'] took '1186.241699' ms. Plugin should use a background thread.
+2015-05-09 14:57:42.909 FacebookExample[9668:170162] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:05:32.044 FacebookExample[9845:172802] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:05:32.045 FacebookExample[9845:172802] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:05:32.059 FacebookExample[9845:172802] Unlimited access to network resources
+2015-05-09 15:05:32.604 FacebookExample[9845:172802] Resetting plugins due to page load.
+2015-05-09 15:05:33.119 FacebookExample[9845:172802] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/B6D18AC5-B904-480F-9029-14EB8FFD626D/FacebookExample.app/www/index.html#/login
+2015-05-09 15:05:35.346 FacebookExample[9845:172802] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:05:35.351 FacebookExample[9845:172802] THREAD WARNING: ['InAppBrowser'] took '154.538818' ms. Plugin should use a background thread.
+2015-05-09 15:05:52.790 FacebookExample[9845:172802] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:08:46.596 FacebookExample[9984:174124] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:08:46.597 FacebookExample[9984:174124] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:08:46.609 FacebookExample[9984:174124] Unlimited access to network resources
+2015-05-09 15:08:47.125 FacebookExample[9984:174124] Resetting plugins due to page load.
+2015-05-09 15:08:47.440 FacebookExample[9984:174124] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/A2043018-9C68-496C-A530-55ACFB28F089/FacebookExample.app/www/index.html#/login
+2015-05-09 15:10:04.467 FacebookExample[10114:174865] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:10:04.468 FacebookExample[10114:174865] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:10:04.483 FacebookExample[10114:174865] Unlimited access to network resources
+2015-05-09 15:10:04.634 FacebookExample[10114:174865] Resetting plugins due to page load.
+2015-05-09 15:10:04.889 FacebookExample[10114:174865] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/8D950087-633D-408C-BD44-D743B20776DF/FacebookExample.app/www/index.html#/login
+2015-05-09 15:11:11.787 FacebookExample[10296:176233] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:11:11.802 FacebookExample[10296:176233] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:11:11.831 FacebookExample[10296:176233] Unlimited access to network resources
+2015-05-09 15:11:12.529 FacebookExample[10296:176233] Resetting plugins due to page load.
+2015-05-09 15:11:13.094 FacebookExample[10296:176233] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/ACAFA879-FE09-4701-BC56-C999A20D2F03/FacebookExample.app/www/index.html#/login
+2015-05-09 15:15:06.944 FacebookExample[10469:178395] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:15:06.955 FacebookExample[10469:178395] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:15:06.971 FacebookExample[10469:178395] Unlimited access to network resources
+2015-05-09 15:15:07.474 FacebookExample[10469:178395] Resetting plugins due to page load.
+2015-05-09 15:15:07.919 FacebookExample[10469:178395] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/B53174A0-67A2-411A-AA35-C3F16F2B58C1/FacebookExample.app/www/index.html#/login
+2015-05-09 15:15:14.481 FacebookExample[10469:178395] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:15:14.488 FacebookExample[10469:178395] THREAD WARNING: ['InAppBrowser'] took '141.696777' ms. Plugin should use a background thread.
+2015-05-09 15:17:01.549 FacebookExample[10613:179430] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:17:01.567 FacebookExample[10613:179430] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:17:01.583 FacebookExample[10613:179430] Unlimited access to network resources
+2015-05-09 15:17:02.055 FacebookExample[10613:179430] Resetting plugins due to page load.
+2015-05-09 15:17:02.516 FacebookExample[10613:179430] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/1AC0F9E6-9727-436F-A7B5-0C67CBE0CE39/FacebookExample.app/www/index.html#/login
+2015-05-09 15:17:05.983 FacebookExample[10613:179430] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:17:05.991 FacebookExample[10613:179430] THREAD WARNING: ['InAppBrowser'] took '125.104248' ms. Plugin should use a background thread.
+2015-05-09 15:17:40.261 FacebookExample[10613:179430] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:17:47.840 FacebookExample[10613:179430] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:17:47.843 FacebookExample[10613:179430] THREAD WARNING: ['InAppBrowser'] took '58.040039' ms. Plugin should use a background thread.
+2015-05-09 15:18:03.929 FacebookExample[10613:179430] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:24:31.375 FacebookExample[10775:181473] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:24:31.392 FacebookExample[10775:181473] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:24:31.404 FacebookExample[10775:181473] Unlimited access to network resources
+2015-05-09 15:24:31.904 FacebookExample[10775:181473] Resetting plugins due to page load.
+2015-05-09 15:24:32.411 FacebookExample[10775:181473] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/7D3C3C3E-711F-4140-9972-BF720115C277/FacebookExample.app/www/index.html#/login
+2015-05-09 15:24:58.025 FacebookExample[10903:182084] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:24:58.026 FacebookExample[10903:182084] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:24:58.053 FacebookExample[10903:182084] Unlimited access to network resources
+2015-05-09 15:24:58.306 FacebookExample[10903:182084] Resetting plugins due to page load.
+2015-05-09 15:24:58.612 FacebookExample[10903:182084] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/EADA7299-CC49-4DDC-96EF-A3D2048F30B6/FacebookExample.app/www/index.html#/login
+2015-05-09 15:25:39.287 FacebookExample[11036:182748] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:25:39.288 FacebookExample[11036:182748] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:25:39.303 FacebookExample[11036:182748] Unlimited access to network resources
+2015-05-09 15:25:39.443 FacebookExample[11036:182748] Resetting plugins due to page load.
+2015-05-09 15:25:39.635 FacebookExample[11036:182748] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/61C5C7CD-FEA0-4450-9C08-89929D7C8AB8/FacebookExample.app/www/index.html#/login
+2015-05-09 15:26:03.209 FacebookExample[11169:183368] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:26:03.225 FacebookExample[11169:183368] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:26:03.241 FacebookExample[11169:183368] Unlimited access to network resources
+2015-05-09 15:26:03.634 FacebookExample[11169:183368] Resetting plugins due to page load.
+2015-05-09 15:26:03.920 FacebookExample[11169:183368] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/E7CF0D32-1086-4FE6-A301-F99F0D879DF3/FacebookExample.app/www/index.html#/login
+2015-05-09 15:26:34.255 FacebookExample[11302:184045] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:26:34.265 FacebookExample[11302:184045] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:26:34.277 FacebookExample[11302:184045] Unlimited access to network resources
+2015-05-09 15:26:34.686 FacebookExample[11302:184045] Resetting plugins due to page load.
+2015-05-09 15:26:34.962 FacebookExample[11302:184045] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/F2F3C100-394C-4677-B754-86D3B80F7CCC/FacebookExample.app/www/index.html#/login
+2015-05-09 15:33:33.620 FacebookExample[11460:185938] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:33:33.621 FacebookExample[11460:185938] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:33:33.632 FacebookExample[11460:185938] Unlimited access to network resources
+2015-05-09 15:33:34.061 FacebookExample[11460:185938] Resetting plugins due to page load.
+2015-05-09 15:33:34.427 FacebookExample[11460:185938] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/D5BE210A-CA60-4FB4-9E74-FF954AF5BC40/FacebookExample.app/www/index.html#/login
+2015-05-09 15:36:14.284 FacebookExample[11609:187497] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:36:14.302 FacebookExample[11609:187497] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:36:14.314 FacebookExample[11609:187497] Unlimited access to network resources
+2015-05-09 15:36:15.132 FacebookExample[11609:187497] Resetting plugins due to page load.
+2015-05-09 15:36:15.639 FacebookExample[11609:187497] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/C1239778-F892-4766-A073-016F144A839D/FacebookExample.app/www/index.html#/login
+2015-05-09 15:36:30.028 FacebookExample[11609:187497] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:36:30.034 FacebookExample[11609:187497] THREAD WARNING: ['InAppBrowser'] took '153.404297' ms. Plugin should use a background thread.
+2015-05-09 15:36:42.736 FacebookExample[11609:187497] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:37:21.723 FacebookExample[11742:188311] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:37:21.724 FacebookExample[11742:188311] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:37:21.743 FacebookExample[11742:188311] Unlimited access to network resources
+2015-05-09 15:37:21.898 FacebookExample[11742:188311] Resetting plugins due to page load.
+2015-05-09 15:37:22.385 FacebookExample[11742:188311] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/F0377227-96F0-4A6D-87B8-7FA38CBA84A2/FacebookExample.app/www/index.html#/login
+2015-05-09 15:37:29.365 FacebookExample[11742:188311] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:37:29.370 FacebookExample[11742:188311] THREAD WARNING: ['InAppBrowser'] took '96.784180' ms. Plugin should use a background thread.
+2015-05-09 15:37:40.562 FacebookExample[11742:188311] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 15:38:21.381 FacebookExample[11876:189129] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 15:38:21.396 FacebookExample[11876:189129] Multi-tasking -> Device: YES, App: YES
+2015-05-09 15:38:21.410 FacebookExample[11876:189129] Unlimited access to network resources
+2015-05-09 15:38:21.843 FacebookExample[11876:189129] Resetting plugins due to page load.
+2015-05-09 15:38:22.147 FacebookExample[11876:189129] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/F9AA95AD-7B17-44E1-A55B-8CE87097696D/FacebookExample.app/www/index.html#/login
+2015-05-09 15:38:23.241 FacebookExample[11876:189129] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-05-09 15:38:23.247 FacebookExample[11876:189129] THREAD WARNING: ['InAppBrowser'] took '80.182861' ms. Plugin should use a background thread.
+2015-05-09 15:38:37.357 FacebookExample[11876:189129] webView:didFailLoadWithError - -1004: Could not connect to the server.

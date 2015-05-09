@@ -7,8 +7,7 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
+
         if(window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -20,21 +19,45 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
+
+        .state('tab', {
+            url:'/tab',
+            abstract: true,
+            templateUrl: 'templates/tabs.html'
+        })
+        .state('tab.profile', {
+            url: '/profile',
+            views: {
+                "tab-profile": {
+                templateUrl: 'templates/tab-profile.html',
+                controller: 'ProfileCtrl'
+                }
+            }
+        })
+        .state('tab.explore', {
+            url: '/explore',
+            views: {
+                "tab-explore": {
+                templateUrl: 'templates/tab-explore.html',
+                controller: 'FeedCtrl'
+                }
+            }
+        })
+        .state('tab.upload', {
+            url: '/upload',
+            views: {
+                "tab-upload": {
+                templateUrl: 'templates/tab-upload.html',
+                controller: 'UploadCtrl'
+                    
+                }
+            }
+        })
         .state('login', {
             url: '/login',
             templateUrl: 'templates/login.html',
-            controller: 'LoginController'
+            controller: 'LoginCtrl'
         })
-        .state('profile', {
-            url: '/profile',
-            templateUrl: 'templates/profile.html',
-            controller: 'ProfileController'
-        })
-        .state('feed', {
-            url: '/feed',
-            templateUrl: 'templates/feed.html',
-            controller: 'FeedController'
-        });
     $urlRouterProvider.otherwise('/login');
 });
 

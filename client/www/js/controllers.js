@@ -1,11 +1,11 @@
 angular.module("phoenix.controllers", ["phoenix.services"])
 
-.controller("LoginController", function($scope, $cordovaOauth, $localStorage, $location) {
+.controller("LoginCtrl", function($scope, $cordovaOauth, $localStorage, $location) {
 
     $scope.login = function() {
         $cordovaOauth.facebook("1095011603846978", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
             $localStorage.accessToken = result.access_token;
-            $location.path("/profile");
+            $location.path("/explore");
         }, function(error) {
             alert("There was a problem signing in!  See the console for logs");
             console.log(error);
@@ -14,7 +14,7 @@ angular.module("phoenix.controllers", ["phoenix.services"])
 
 })
 
-.controller("ProfileController", function($scope, $http, $localStorage, $location) {
+.controller("ProfileCtrl", function($scope, $http, $localStorage, $location) {
 
     $scope.init = function() {
         if($localStorage.hasOwnProperty("accessToken") === true) {
@@ -32,7 +32,7 @@ angular.module("phoenix.controllers", ["phoenix.services"])
 
 })
 
-.controller("FeedController", function($scope, $http, $localStorage, $location) {
+.controller("FeedCtrl", function($scope, $http, $localStorage, $location) {
 
     $scope.init = function() {
         if($localStorage.hasOwnProperty("accessToken") === true) {
@@ -51,4 +51,8 @@ angular.module("phoenix.controllers", ["phoenix.services"])
         }
     };
 
-});
+})
+
+.controller("UploadCtrl", function() {
+
+})
