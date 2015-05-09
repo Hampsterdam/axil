@@ -10,7 +10,5 @@ router.get('/logout', controller.logout);
 router.get('/userinfo', controller.getUserInfo);
 router.get('/facebook', controller.loginWithFacebook);
 router.get('/facebook/callback', controller.loginWithFacebookRedirect);
-router.get('/google', controller.loginWithGoogle);
-router.get('/google/callback', controller.loginWithGoogleRedirect);
 
 module.exports = router;
