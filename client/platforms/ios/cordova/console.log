@@ -6,3 +6,11 @@
 2015-05-09 14:23:22.738 FacebookExample[9095:158477] Setting the WebView's frame to {{0, 0}, {375, 623}}
 2015-05-09 14:23:22.774 FacebookExample[9095:158477] THREAD WARNING: ['InAppBrowser'] took '390.274170' ms. Plugin should use a background thread.
 2015-05-09 14:23:44.991 FacebookExample[9095:158477] webView:didFailLoadWithError - -1004: Could not connect to the server.
+2015-05-09 14:26:29.836 FacebookExample[9095:159544] Communications error: <OS_xpc_error: <error: 0x2d365f4> { count = 1, contents =
+	"XPCErrorDescription" => <string: 0x2d3683c> { length = 22, contents = "Connection interrupted" }
+}>
+2015-05-09 14:34:55.096 FacebookExample[9355:162426] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-09 14:34:55.111 FacebookExample[9355:162426] Multi-tasking -> Device: YES, App: YES
+2015-05-09 14:34:55.125 FacebookExample[9355:162426] Unlimited access to network resources
+2015-05-09 14:34:55.628 FacebookExample[9355:162426] Resetting plugins due to page load.
+2015-05-09 14:34:56.163 FacebookExample[9355:162426] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/E9857F37-5935-4093-8611-FAE292F367CD/FacebookExample.app/www/index.html
