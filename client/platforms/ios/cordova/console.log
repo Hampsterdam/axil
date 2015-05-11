@@ -140,3 +140,26 @@
 2015-05-11 18:46:42.614 client[97398:1367286] Resetting plugins due to page load.
 2015-05-11 18:46:42.888 client[97398:1367286] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/CEB90183-BC64-4AB9-8714-6B3CF235C198/client.app/www/index.html#/tab/login
 2015-05-11 18:46:47.085 client[97398:1367286] locationManager::didFailWithError (null)
+2015-05-11 18:49:02.836 client[97873:1369050] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/FF20E8D7-09F8-402A-B45E-C29040046E8E/Library/Cookies/Cookies.binarycookies
+2015-05-11 18:49:03.011 client[97873:1369050] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 18:49:03.011 client[97873:1369050] Multi-tasking -> Device: YES, App: YES
+2015-05-11 18:49:03.014 client[97873:1369050] Unlimited access to network resources
+2015-05-11 18:49:03.197 client[97873:1369050] Resetting plugins due to page load.
+2015-05-11 18:49:03.460 client[97873:1369050] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/81DB4D89-ACAF-4C26-BA3D-446F44722329/client.app/www/index.html#/tab/login
+2015-05-11 18:49:06.643 client[97873:1369050] locationManager::didFailWithError (null)
+2015-05-11 18:57:54.498 client[99047:1378096] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/AFE11BDB-BA1D-4029-A70F-829403F95A25/Library/Cookies/Cookies.binarycookies
+2015-05-11 18:57:54.662 client[99047:1378096] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 18:57:54.662 client[99047:1378096] Multi-tasking -> Device: YES, App: YES
+2015-05-11 18:57:54.664 client[99047:1378096] Unlimited access to network resources
+2015-05-11 18:57:54.864 client[99047:1378096] Resetting plugins due to page load.
+2015-05-11 18:57:55.171 client[99047:1378096] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/C62BF088-29F6-40F0-9B89-A03AF6D4B397/client.app/www/index.html#/tab/login
+2015-05-11 18:57:58.191 client[99047:1378096] THREAD WARNING: ['Geolocation'] took '12.567871' ms. Plugin should use a background thread.
+2015-05-11 18:57:58.271 client[99047:1378096] locationManager::didFailWithError (null)
+2015-05-11 18:58:30.989 client[99325:1379002] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/D4A87E0E-4E55-4E87-BC02-89DF8677199C/Library/Cookies/Cookies.binarycookies
+2015-05-11 18:58:31.151 client[99325:1379002] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 18:58:31.152 client[99325:1379002] Multi-tasking -> Device: YES, App: YES
+2015-05-11 18:58:31.154 client[99325:1379002] Unlimited access to network resources
+2015-05-11 18:58:31.328 client[99325:1379002] Resetting plugins due to page load.
+2015-05-11 18:58:31.587 client[99325:1379002] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/1A335026-B204-44CD-A467-17F8344A5DF9/client.app/www/index.html#/tab/login
+2015-05-11 18:58:34.336 client[99325:1379002] THREAD WARNING: ['Geolocation'] took '17.508789' ms. Plugin should use a background thread.
+2015-05-11 18:58:34.387 client[99325:1379002] locationManager::didFailWithError (null)

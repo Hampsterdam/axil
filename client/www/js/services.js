@@ -213,9 +213,9 @@ angular.module('starter.services', [])
                    description: '1718 14th St NW, Washington, DC',
                    // one can customize markers by adding simplestyle properties
                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                   'marker-size': 'large',
-                   'marker-color': '#BE9A6B',
-                   'marker-symbol': 'cafe'
+                   'marker-size': 'medium',
+                   'marker-color': '#e60000',
+                   'marker-symbol': 'star'
                }
            }).addTo(map); 
         })
