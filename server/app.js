@@ -63,7 +63,7 @@ app.use(cookieParser());
 
 
 // Start server on port 9000
-server.listen(9000, function () {
+server.listen(process.env.PORT || 9000, function () {
   console.log('Express server listening on PORT 9000');
 });
 
