@@ -13,8 +13,8 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Camera" icon-off="ion-camera" icon-on="ion-camera" href="#/tab/chats">
-    <ion-nav-view ng-click="addImage()" name="tab-chats"></ion-nav-view>
+  <ion-tab title="Camera" icon-off="ion-camera" icon-on="ion-camera" href="#/tab/chats" ng-controller="AddMediaCtrl" ng-click="addImage()">
+    <ion-nav-view  name="tab-chats"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->

@@ -105,5 +105,5 @@ angular.module('starter.controllers', [])
       console.log(err);
     });
    }
-   $scope.addImage();
+   // $scope.addImage();
 });

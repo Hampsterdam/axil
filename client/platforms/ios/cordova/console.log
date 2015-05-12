@@ -437,3 +437,12 @@
 2015-05-12 15:44:01.460 client[43527:1990354] locationManager::didFailWithError (null)
 2015-05-12 15:44:03.525 client[43527:1990550] Camera.getPicture: source type 1 not available.
 >>>>>>> camera
+2015-05-12 15:56:29.564 client[44561:2007877] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 15:56:29.565 client[44561:2007877] Multi-tasking -> Device: YES, App: YES
+2015-05-12 15:56:29.567 client[44561:2007877] Unlimited access to network resources
+2015-05-12 15:56:29.677 client[44561:2007877] [CDVTimer][file] 3.461003ms
+2015-05-12 15:56:29.678 client[44561:2007877] [CDVTimer][TotalPluginStartup] 3.745973ms
+2015-05-12 15:56:29.776 client[44561:2007877] Resetting plugins due to page load.
+2015-05-12 15:56:30.415 client[44561:2007877] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/C30AB7E3-7B7C-42E7-B882-C0771F62420C/client.app/www/index.html#/tab/login
+2015-05-12 15:56:31.931 client[44561:2007877] locationManager::didFailWithError (null)
+2015-05-12 15:56:35.424 client[44561:2007944] Camera.getPicture: source type 1 not available.
