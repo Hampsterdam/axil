@@ -13,10 +13,10 @@ module.exports = function(app) {
   app.use('/api/media', require('./api/media'));
   app.use('/api/auth', require('./api/auth'));
 
-  app.route('/')
-    .get(function(req, res) {
-      var index = fs.createReadStream(path.resolve(__dirname, '../client/index.html'))
-      index.pipe(res);
-    });
+  // app.route('/')
+  //   .get(function(req, res) {
+  //     var index = fs.createReadStream(path.resolve(__dirname, '../client/index.html'))
+  //     index.pipe(res);
+  //   });
   
 };

@@ -1,58 +1,37 @@
-angular.module("phoenix.controllers", ["phoenix.services"])
+angular.module('starter.controllers', [])
+.controller("AuthCtrl", function($scope){
+	
+})
 
-.controller("LoginCtrl", function($scope, $cordovaOauth, $localStorage, $location) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers) {
 
-    $scope.login = function() {
-        $cordovaOauth.facebook("1095011603846978", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
-            $localStorage.accessToken = result.access_token;
-            $location.path("/tab.explore");
-        }, function(error) {
-            alert("There was a problem signing in!  See the console for logs");
-            console.log(error);
-        });
-    };
+    var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
+    
+    L.mapbox.accessToken = your_api_code;
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.3077609, -97.7534014], 12);
+    
+    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+         var lat = position.coords.latitude;
+         var long = position.coords.longitude;
+
+         map.panTo(new L.LatLng(lat, long));
+      })
+    var mediaFactory = MediaFactory.getAllMedia()
+    mediaFactory.then(function(data){
+        Helpers.populateMap(data.data, map);
+    })
+
+
+
+ })
+
+.controller('ProfileCtrl', function($scope) {
 
 })
 
-.controller("ProfileCtrl", function($scope, $http, $localStorage, $location) {
+.controller('AddMediaCtrl', function($scope) {
 
-    $scope.init = function() {
-        if($localStorage.hasOwnProperty("accessToken") === true) {
-            $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
-                $scope.profileData = result.data;
-            }, function(error) {
-                alert("There was a problem getting your profile.  Check the logs for details.");
-                console.log(error);
-            });
-        } else {
-            alert("Not signed in");
-            $location.path("/login");
-        }
-    };
-
-})
-
-.controller("FeedCtrl", function($scope, $http, $localStorage, $location) {
-
-    $scope.init = function() {
-        if($localStorage.hasOwnProperty("accessToken") === true) {
-            $http.get("https://graph.facebook.com/v2.2/me/feed", { params: { access_token: $localStorage.accessToken, format: "json" }}).then(function(result) {
-                $scope.feedData = result.data.data;
-                $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "picture", format: "json" }}).then(function(result) {
-                    $scope.feedData.myPicture = result.data.picture.data.url;
-                });
-            }, function(error) {
-                alert("There was a problem getting your profile.  Check the logs for details.");
-                console.log(error);
-            });
-        } else {
-            alert("Not signed in");
-            $location.path("/login");
-        }
-    };
-
-})
-
-.controller("UploadCtrl", function() {
-
-})
+});

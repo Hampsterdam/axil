@@ -24,5 +24,12 @@
     "socket.io": "^1.3.5",
     "sql-fixtures": "^0.10.1",
     "unirest": "^0.4.0"
-  }
+  },
+    "engines": {
+    "node": "0.10.x"
+  },
+  "keywords": [
+    "wedding",
+    "heroku"
+  ]
 }
