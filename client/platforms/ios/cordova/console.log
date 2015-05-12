@@ -377,6 +377,7 @@
 2015-05-11 21:44:36.763 client[16297:1500927] Resetting plugins due to page load.
 2015-05-11 21:44:37.009 client[16297:1500927] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/363D1F01-6346-4BAF-888B-A88F1CADF714/client.app/www/index.html#/tab/login
 2015-05-11 21:44:43.331 client[16297:1500927] locationManager::didFailWithError (null)
+<<<<<<< HEAD
 2015-05-12 10:48:08.331 client[25216:1761478] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/C67F740D-20F1-4480-9211-A4C6BC8CD29D/Library/Cookies/Cookies.binarycookies
 2015-05-12 10:48:08.677 client[25216:1761478] Apache Cordova native platform version 3.8.0 is starting.
 2015-05-12 10:48:08.678 client[25216:1761478] Multi-tasking -> Device: YES, App: YES
@@ -384,3 +385,55 @@
 2015-05-12 10:48:09.525 client[25216:1761478] Resetting plugins due to page load.
 2015-05-12 10:48:09.987 client[25216:1761478] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A5B465C3-5DAF-4A29-B19C-359EC8CDF530/client.app/www/index.html#/tab/login
 2015-05-12 10:48:12.166 client[25216:1761478] locationManager::didFailWithError (null)
+=======
+2015-05-12 11:43:57.392 client[28315:1806345] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/BCD09C8B-F4EB-431E-9D7E-B881A2D0C657/Library/Cookies/Cookies.binarycookies
+2015-05-12 11:43:57.841 client[28315:1806345] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 11:43:57.842 client[28315:1806345] Multi-tasking -> Device: YES, App: YES
+2015-05-12 11:43:57.849 client[28315:1806345] Unlimited access to network resources
+2015-05-12 11:43:58.398 client[28315:1806345] Resetting plugins due to page load.
+2015-05-12 11:43:58.986 client[28315:1806345] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/19EC0DD3-31C8-41CE-B7B3-00BB0CCFE43C/client.app/www/index.html#/tab/login
+2015-05-12 13:22:01.954 client[28315:1806345] THREAD WARNING: ['Geolocation'] took '21.827148' ms. Plugin should use a background thread.
+2015-05-12 13:22:01.976 client[28315:1806345] locationManager::didFailWithError (null)
+2015-05-12 14:59:07.185 client[40382:1943772] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 14:59:07.193 client[40382:1943772] Multi-tasking -> Device: YES, App: YES
+2015-05-12 14:59:07.215 client[40382:1943772] Unlimited access to network resources
+2015-05-12 14:59:07.631 client[40382:1943772] [CDVTimer][file] 13.237000ms
+2015-05-12 14:59:07.632 client[40382:1943772] [CDVTimer][TotalPluginStartup] 13.881028ms
+2015-05-12 14:59:08.020 client[40382:1943772] Resetting plugins due to page load.
+2015-05-12 14:59:08.699 client[40382:1943772] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/0350F70E-525A-48C4-8991-A33E5CBBC930/client.app/www/index.html#/tab/login
+2015-05-12 14:59:27.149 client[40382:1943772] locationManager::didFailWithError (null)
+2015-05-12 15:10:36.871 client[41183:1957028] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 15:10:36.872 client[41183:1957028] Multi-tasking -> Device: YES, App: YES
+2015-05-12 15:10:36.876 client[41183:1957028] Unlimited access to network resources
+2015-05-12 15:10:37.014 client[41183:1957028] [CDVTimer][file] 10.573983ms
+2015-05-12 15:10:37.014 client[41183:1957028] [CDVTimer][TotalPluginStartup] 10.879993ms
+2015-05-12 15:10:37.145 client[41183:1957028] Resetting plugins due to page load.
+2015-05-12 15:10:37.498 client[41183:1957028] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/1D68316E-80B1-4B24-AAAE-0706EEE57420/client.app/www/index.html#/tab/login
+2015-05-12 15:10:43.913 client[41183:1957028] locationManager::didFailWithError (null)
+2015-05-12 15:17:25.743 client[41762:1963932] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 15:17:25.744 client[41762:1963932] Multi-tasking -> Device: YES, App: YES
+2015-05-12 15:17:25.746 client[41762:1963932] Unlimited access to network resources
+2015-05-12 15:17:25.848 client[41762:1963932] [CDVTimer][file] 5.814970ms
+2015-05-12 15:17:25.849 client[41762:1963932] [CDVTimer][TotalPluginStartup] 6.097019ms
+2015-05-12 15:17:25.948 client[41762:1963932] Resetting plugins due to page load.
+2015-05-12 15:17:26.345 client[41762:1963932] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/B68A8C03-33A7-4402-B844-120F6E0C6BDE/client.app/www/index.html#/tab/login
+2015-05-12 15:17:31.743 client[41762:1963989] Camera.getPicture: source type 1 not available.
+2015-05-12 15:20:53.585 client[42163:1966992] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 15:20:53.587 client[42163:1966992] Multi-tasking -> Device: YES, App: YES
+2015-05-12 15:20:53.590 client[42163:1966992] Unlimited access to network resources
+2015-05-12 15:20:53.697 client[42163:1966992] [CDVTimer][file] 2.646029ms
+2015-05-12 15:20:53.697 client[42163:1966992] [CDVTimer][TotalPluginStartup] 2.898037ms
+2015-05-12 15:20:53.790 client[42163:1966992] Resetting plugins due to page load.
+2015-05-12 15:20:54.163 client[42163:1966992] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/F034C651-0203-4636-A173-7359E36F87BE/client.app/www/index.html#/tab/login
+2015-05-12 15:20:57.077 client[42163:1966992] locationManager::didFailWithError (null)
+2015-05-12 15:21:04.396 client[42163:1967041] Camera.getPicture: source type 1 not available.
+2015-05-12 15:43:58.193 client[43527:1990354] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 15:43:58.194 client[43527:1990354] Multi-tasking -> Device: YES, App: YES
+2015-05-12 15:43:58.197 client[43527:1990354] Unlimited access to network resources
+2015-05-12 15:43:58.310 client[43527:1990354] [CDVTimer][file] 3.565013ms
+2015-05-12 15:43:58.310 client[43527:1990354] [CDVTimer][TotalPluginStartup] 3.857017ms
+2015-05-12 15:43:58.424 client[43527:1990354] Resetting plugins due to page load.
+2015-05-12 15:43:59.070 client[43527:1990354] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/6F844C3B-7270-4207-AF45-FE7A81369B15/client.app/www/index.html#/tab/login
+2015-05-12 15:44:01.460 client[43527:1990354] locationManager::didFailWithError (null)
+2015-05-12 15:44:03.525 client[43527:1990550] Camera.getPicture: source type 1 not available.
+>>>>>>> camera
