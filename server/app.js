@@ -53,7 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // serve the client directory and connect to the router
-app.use(express.static('client'));
+// app.use(express.static('client'));
 require('./routes')(app);
 
 
