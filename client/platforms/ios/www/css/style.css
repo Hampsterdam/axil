@@ -1,10 +1,10 @@
 
-hmtl, body {
+html, body {
     height: 100%;
     width: 100%;
 }
 
 #map {
     height: 800px;
-    /* Change 100% to 400px and the map will display    */
+     /*Change 100% to 400px and the map will display    */
 }
