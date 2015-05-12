@@ -7,7 +7,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, Socket) {
+  Socket.emit('connection', function(){
+    console.log("socket connected to server");
+  })
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -60,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ProfileCtrl'
+          controller: 'AddMediaCtrl'
         }
       }
     })
@@ -69,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AddMediaCtrl'
+        controller: 'ProfileCtrl'
       }
     }
   });
@@ -78,3 +81,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $urlRouterProvider.otherwise('/tab/login');
 
 });
+

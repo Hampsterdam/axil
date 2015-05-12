@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ProfileCtrl'
+          controller: 'AddMediaCtrl'
         }
       }
     })
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AddMediaCtrl'
+        controller: 'ProfileCtrl'
       }
     }
   });
@@ -81,3 +81,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $urlRouterProvider.otherwise('/tab/login');
 
 });
+
