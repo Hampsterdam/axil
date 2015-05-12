@@ -322,3 +322,44 @@
 2015-05-11 19:28:05.959 client[7798:1410710] Resetting plugins due to page load.
 2015-05-11 19:28:06.734 client[7798:1410710] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A6F99441-1688-48B3-8333-13A01BA36932/client.app/www/index.html#/tab/login
 2015-05-11 19:28:08.464 client[7798:1410710] locationManager::didFailWithError (null)
+2015-05-11 19:30:01.772 client[8251:1412425] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/037F86C9-5D21-461D-BA89-08EB98C8D11E/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:30:01.920 client[8251:1412425] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:30:01.920 client[8251:1412425] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:30:01.922 client[8251:1412425] Unlimited access to network resources
+2015-05-11 19:30:02.292 client[8251:1412425] Resetting plugins due to page load.
+2015-05-11 19:30:02.825 client[8251:1412425] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/CACE1ED1-BC10-4F54-BEFD-5F972F5BEA52/client.app/www/index.html#/tab/login
+2015-05-11 19:30:05.496 client[8251:1412425] locationManager::didFailWithError (null)
+2015-05-11 19:31:35.770 client[8615:1413991] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/73F27198-AB66-4190-9EE3-337B7141CED5/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:31:35.913 client[8615:1413991] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:31:35.913 client[8615:1413991] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:31:35.915 client[8615:1413991] Unlimited access to network resources
+2015-05-11 19:31:36.126 client[8615:1413991] Resetting plugins due to page load.
+2015-05-11 19:31:36.870 client[8615:1413991] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/34729423-B5EE-4FC4-913A-91D8B48A0479/client.app/www/index.html#/tab/login
+2015-05-11 19:31:41.267 client[8615:1413991] locationManager::didFailWithError (null)
+2015-05-11 19:32:21.662 client[8893:1415054] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/080D02D8-C2C1-4143-9E00-5D23718B64AF/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:32:21.829 client[8893:1415054] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:32:21.830 client[8893:1415054] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:32:21.832 client[8893:1415054] Unlimited access to network resources
+2015-05-11 19:32:22.065 client[8893:1415054] Resetting plugins due to page load.
+2015-05-11 19:32:22.677 client[8893:1415054] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/B0B019CE-89BB-4EFE-A964-ACFFE1375E4F/client.app/www/index.html#/tab/login
+2015-05-11 19:32:44.433 client[9128:1415698] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/9CB48215-9F78-44CA-B3D0-E006C076AA79/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:32:44.578 client[9128:1415698] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:32:44.579 client[9128:1415698] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:32:44.581 client[9128:1415698] Unlimited access to network resources
+2015-05-11 19:32:44.843 client[9128:1415698] Resetting plugins due to page load.
+2015-05-11 19:32:45.618 client[9128:1415698] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/8175DA66-E929-46CB-B4D7-DE11072F1006/client.app/www/index.html#/tab/login
+2015-05-11 19:34:56.258 client[9128:1415698] locationManager::didFailWithError (null)
+2015-05-11 19:35:50.940 client[9669:1417877] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/7EBA4656-7722-437D-AE15-D3B20A176591/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:35:51.087 client[9669:1417877] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:35:51.087 client[9669:1417877] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:35:51.089 client[9669:1417877] Unlimited access to network resources
+2015-05-11 19:35:51.331 client[9669:1417877] Resetting plugins due to page load.
+2015-05-11 19:35:52.062 client[9669:1417877] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/EC1AF7C3-7C8D-42C1-88D9-BBEF5909B0BE/client.app/www/index.html#/tab/login
+2015-05-11 19:35:55.034 client[9669:1417877] locationManager::didFailWithError (null)
+2015-05-11 19:36:37.786 client[9957:1418863] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Data/Application/C80887D4-2A97-4FB4-87DB-15183ABBBA5A/Library/Cookies/Cookies.binarycookies
+2015-05-11 19:36:37.979 client[9957:1418863] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-11 19:36:37.979 client[9957:1418863] Multi-tasking -> Device: YES, App: YES
+2015-05-11 19:36:37.981 client[9957:1418863] Unlimited access to network resources
+2015-05-11 19:36:38.470 client[9957:1418863] Resetting plugins due to page load.
+2015-05-11 19:36:38.941 client[9957:1418863] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/752FF27C-6447-46CD-B9FB-E8D4A3B6B2E4/client.app/www/index.html#/tab/login
+2015-05-11 19:36:44.370 client[9957:1418863] locationManager::didFailWithError (null)
