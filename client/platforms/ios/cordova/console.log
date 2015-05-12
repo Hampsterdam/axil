@@ -446,3 +446,85 @@
 2015-05-12 15:56:30.415 client[44561:2007877] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/C30AB7E3-7B7C-42E7-B882-C0771F62420C/client.app/www/index.html#/tab/login
 2015-05-12 15:56:31.931 client[44561:2007877] locationManager::didFailWithError (null)
 2015-05-12 15:56:35.424 client[44561:2007944] Camera.getPicture: source type 1 not available.
+2015-05-12 16:53:15.025 client[47522:2094759] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 16:53:15.026 client[47522:2094759] Multi-tasking -> Device: YES, App: YES
+2015-05-12 16:53:15.029 client[47522:2094759] Unlimited access to network resources
+2015-05-12 16:53:15.168 client[47522:2094759] [CDVTimer][file] 3.894985ms
+2015-05-12 16:53:15.168 client[47522:2094759] [CDVTimer][TotalPluginStartup] 4.157007ms
+2015-05-12 16:53:15.283 client[47522:2094759] Resetting plugins due to page load.
+2015-05-12 16:53:15.712 client[47522:2094759] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/5F05EF0F-9B2D-4BBB-9294-4AE458552939/client.app/www/index.html#/tab/login
+2015-05-12 16:53:17.306 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:53:18.223 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:53:18.697 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:53:18.907 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:53:19.058 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:53:19.217 client[47522:2094759] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:10.044 client[47819:2096562] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 16:54:10.045 client[47819:2096562] Multi-tasking -> Device: YES, App: YES
+2015-05-12 16:54:10.047 client[47819:2096562] Unlimited access to network resources
+2015-05-12 16:54:10.147 client[47819:2096562] [CDVTimer][file] 2.099991ms
+2015-05-12 16:54:10.148 client[47819:2096562] [CDVTimer][TotalPluginStartup] 2.367020ms
+2015-05-12 16:54:10.222 client[47819:2096562] Resetting plugins due to page load.
+2015-05-12 16:54:10.609 client[47819:2096562] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/9F1EF610-5AB9-46DA-9720-50FEDA9C9A1F/client.app/www/index.html#/tab/login
+2015-05-12 16:54:35.659 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:36.533 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:36.835 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:37.331 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:37.531 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:37.732 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:37.934 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:38.117 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:38.332 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:38.534 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:38.732 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:38.929 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:39.118 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:39.303 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:39.471 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:39.631 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:40.755 client[47819:2096562] locationManager::didFailWithError (null)
+2015-05-12 16:54:41.959 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:42.614 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:42.800 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:42.988 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:53.556 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:53.767 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:53.962 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:55.300 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:55.688 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:55.894 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:57.572 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:58.214 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:54:58.390 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:01.328 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:04.841 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.008 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.082 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.174 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.358 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.550 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.727 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:27.911 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 16:55:28.112 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:00:58.540 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:01:01.423 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:31.787 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:32.703 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:33.395 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:33.835 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:33.979 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:34.122 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:34.266 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:34.410 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:34.600 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:03:34.834 client[47819:2096562] Capture.captureVideo: video mode not available.
+2015-05-12 17:07:32.522 client[48690:2116768] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-12 17:07:32.523 client[48690:2116768] Multi-tasking -> Device: YES, App: YES
+2015-05-12 17:07:32.526 client[48690:2116768] Unlimited access to network resources
+2015-05-12 17:07:32.654 client[48690:2116768] [CDVTimer][file] 3.329992ms
+2015-05-12 17:07:32.655 client[48690:2116768] [CDVTimer][TotalPluginStartup] 3.601015ms
+2015-05-12 17:07:32.765 client[48690:2116768] Resetting plugins due to page load.
+2015-05-12 17:07:33.267 client[48690:2116768] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/836D12F9-9EE2-4AD6-96FA-548CC1CFDDF2/client.app/www/index.html#/tab/login
+2015-05-12 17:07:35.002 client[48690:2116768] locationManager::didFailWithError (null)
+2015-05-12 17:07:36.954 client[48690:2116768] Capture.captureVideo: video mode not available.
+2015-05-12 17:07:37.632 client[48690:2116768] Capture.captureVideo: video mode not available.

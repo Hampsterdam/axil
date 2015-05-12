@@ -40,20 +40,29 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-media-capture": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-media-capture"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-file": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-file"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "org.apache.cordova.file": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.file"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "nl.x-services.plugins.videocaptureplus": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }
