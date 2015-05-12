@@ -101,7 +101,7 @@ setInterval(function(){
       .end(function (response) {
       // console.log(response.body);
     });
-}, 60 * 1000)
+}, 20 * 1000)
 
 
 /////////////////////////////////////////////

@@ -7,7 +7,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, Socket) {
+  Socket.emit('connection', function(){
+    console.log("socket connected to server");
+  })
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

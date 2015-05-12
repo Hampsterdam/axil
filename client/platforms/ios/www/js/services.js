@@ -5,7 +5,7 @@ angular.module('starter.services', [])
     function getAllMedia () {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media'
+            url: 'https://phoenixapi.herokuapp.com/api/media'
         }).then(function(data) {
             return data
         })
@@ -14,7 +14,7 @@ angular.module('starter.services', [])
     function getUniqueMedia (media_id) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/'+media_id
+            url: 'https://phoenixapi.herokuapp.com/api/media/'+media_id
         }).then(function(data) {
             return data
         });
@@ -23,7 +23,7 @@ angular.module('starter.services', [])
     function addMedia (video_url, type, lat, lon, user_id) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media',
+            url: 'https://phoenixapi.herokuapp.com/api/media',
             data: {
                 uri: video_url,
                 type: type,
@@ -39,7 +39,7 @@ angular.module('starter.services', [])
     function updateMedia (media_id, tag) {
         return $http({
             method: 'PUT',
-            url: 'http://localhost:9000/api/media/' + media_id + '/' + tag,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id + '/' + tag,
         }).then(function(res) {
             return res;
         });
@@ -48,7 +48,7 @@ angular.module('starter.services', [])
     function deleteUniqueMedia (media_id) {
         return $http({
             method: 'DELETE',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
         }).then(function(res) {
             return res;
         });
@@ -57,7 +57,7 @@ angular.module('starter.services', [])
     function likeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -69,7 +69,7 @@ angular.module('starter.services', [])
     function unlikeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -81,7 +81,7 @@ angular.module('starter.services', [])
     function getMediaByTag (tag) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/tags/' + tag
+            url: 'https://phoenixapi.herokuapp.com/api/media/tags/' + tag
         }).then(function (data) {
             return data;
         });
@@ -90,7 +90,7 @@ angular.module('starter.services', [])
     function getMediaByTime (time) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/time/' + time
+            url: 'https://phoenixapi.herokuapp.com/api/media/time/' + time
         }).then(function (data) {
             return data;
         });
@@ -112,7 +112,7 @@ angular.module('starter.services', [])
     function getAllUsers () {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/users'
+            url: 'https://phoenixapi.herokuapp.com/api/users'
         }).then(function (data) {
             return data;
         });
@@ -121,7 +121,7 @@ angular.module('starter.services', [])
     function getUniqueUser (user_id) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/users/' + user_id
+            url: 'https://phoenixapi.herokuapp.com/api/users/' + user_id
         }).then(function (data){
             return data;
         })
@@ -130,7 +130,7 @@ angular.module('starter.services', [])
     function addUser(firstname, lastname, hometown, email){
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/users/',
+            url: 'https://phoenixapi.herokuapp.com/api/users/',
             data: {
                 firstname: firstname,
                 lastname: lastname,
@@ -145,7 +145,7 @@ angular.module('starter.services', [])
     function getFollowing(user_id){
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/' + user_id + '/following' 
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following' 
         }).then(function(data){
             return data;
         })
@@ -154,7 +154,7 @@ angular.module('starter.services', [])
     function getFollowers(user_id){
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/' + user_id + '/followers',
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/followers',
         }).then(function(data){
             return data;
         })
@@ -163,7 +163,7 @@ angular.module('starter.services', [])
     function follow(user_id, friend_id){
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/' + user_id + '/following',
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following',
             data: {
                 friend_id: friend_id
             }
@@ -175,7 +175,7 @@ angular.module('starter.services', [])
     function unfollow(user_id, friend_id){
         return $http({
             method: 'DELETE',
-            url: 'http://localhost:9000/' + user_id + '/following/' + friend_id,
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following/' + friend_id,
         }).then(function(res){
             return res;
         })

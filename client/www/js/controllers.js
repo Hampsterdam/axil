@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 	
 })
 
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers, Socket) {
 
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
     
@@ -23,7 +23,9 @@ angular.module('starter.controllers', [])
     mediaFactory.then(function(data){
         Helpers.populateMap(data.data, map);
     })
-
+    Socket.on('mediaInsert', function(data){
+      console.log('Media Inserted', data);
+    })
 
 
  })
