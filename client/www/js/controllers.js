@@ -23,8 +23,8 @@ angular.module('starter.controllers', [])
     mediaFactory.then(function(data){
         Helpers.populateMap(data.data, map);
     })
-    Socket.on('mediaInsert', function(data){
-      console.log('Media Inserted', data);
+    Socket.on('mediaInsert', function(data) {
+      Helpers.populateMap([data], map);
     })
 
 
