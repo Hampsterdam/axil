@@ -202,7 +202,7 @@ exports.getMediaByTime = function(req, res) {
 exports.uploadMedia = function(req, res) {
   console.log('add media called:', req.files.file.path);
   cloudinary.uploader.upload(req.files.file.path, function(result) { 
-    console.log('cloudinary result:', result);
+    console.log('cloudinary result:', result.url);
     res.status(201).json(result.url);
   });
 }
