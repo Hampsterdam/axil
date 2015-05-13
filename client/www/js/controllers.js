@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
       
     $scope.addImage = function() {
       var options = {
-        quality: 50,
+        quality: 25,
         destinationType : Camera.DestinationType.FILE_URI,
         sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
         allowEdit : false,
@@ -52,9 +52,9 @@ angular.module('starter.controllers', [])
       $cordovaCamera.getPicture(options).then(function(imageData) {
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
-          .then(function(url){
+          .then(function(data){
             alert("image uploaded");
-            var mediaFactory = MediaFactory.addMedia(url, 'image', '30.56', '-97.45', '1', 'ATX', '125')
+            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
               alert('saved to database!');
             })
