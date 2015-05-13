@@ -45,7 +45,7 @@
             "type": "registry",
             "id": "cordova-plugin-file"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
     "org.apache.cordova.file": {
@@ -61,6 +61,14 @@
             "type": "git",
             "url": "https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin.git",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file-transfer": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-file-transfer"
         },
         "is_top_level": true,
         "variables": {}

@@ -1,7 +1,13 @@
 'use strict'
 
 var DB = require('../../components/pg.js');
+var cloudinary = require('cloudinary');
 
+cloudinary.config({ 
+  cloud_name: 'hcnlf3ljw', 
+  api_key: '513268448851729', 
+  api_secret: 'zbfcsUPG9FMH9gYA25UJ2MBIlBU' 
+});
 
 exports.getMedia = function(req, res){
   var filter = req.query
@@ -38,46 +44,51 @@ exports.getUniqueMedia = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-  var media_id, tag_id;
-	DB.client.query('INSERT INTO media (type, likes, lat, lon, uri, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [req.body.type, req.body.likes, req.body.lat, req.body.lon, req.body.uri, req.body.user_id], function(err, result) {
-    if (err) {
-      console.log("ERROR:", err);
-    } else {
-      media_id = result.rows[0].id;
-      req.socket.emit('mediaInsert', result.rows[0]);
-      DB.client.query('SELECT id FROM tags WHERE tag = $1', [req.body.tag], function(err, result) {
-        if (result && result.rows.length > 0) {
-          tag_id = result.rows[0].id;
-          DB.client.query('INSERT INTO tags_media (tag_id, media_id) VALUES ($1, $2)', [tag_id, media_id], function(err, result) {
-            if (err) {
-              console.log("ERROR:", err);
-            } else {
-              res.status(201).json({
-                message: "Well done, good sir"
-              });
-            }
-          });
-        } else {
-          DB.client.query('INSERT INTO tags (tag) VALUES ($1) RETURNING id', [req.body.tag], function(err, result) {
-            if (err) {
-              console.log("ERROR:", err);
-            } else {
-              tag_id = result.rows[0].id;
-              DB.client.query('INSERT INTO tags_media (tag_id, media_id) VALUES ($1, $2)', [tag_id, media_id], function(err, result) {
-                if (err) {
-                  console.log("ERROR:", err);
-                } else {
-                  res.status(201).json({
-                    message: "Well done, good sir"
-                  });
-                }
-              });
-            }
-          })
-        }
-      });
-    }
-  });
+  // '{"url":"http://res.cloudinary.com/hcnlf3ljw/image/upload/v1431553321/eagvrwa1lercnitb9qee.jpg"}' 
+    var url = JSON.parse(req.body.uri.response).url
+    console.log('url:', url);
+
+    var media_id, tag_id;
+  	DB.client.query('INSERT INTO media (type, likes, lat, lon, uri, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [req.body.type, req.body.likes, req.body.lat, req.body.lon, url, req.body.user_id], function(err, result) {
+      if (err) {
+        console.log("ERROR:", err);
+      } else {
+        media_id = result.rows[0].id;
+        req.socket.emit('mediaInsert', result.rows[0]);
+        DB.client.query('SELECT id FROM tags WHERE tag = $1', [req.body.tag], function(err, result) {
+          if (result && result.rows.length > 0) {
+            tag_id = result.rows[0].id;
+            DB.client.query('INSERT INTO tags_media (tag_id, media_id) VALUES ($1, $2)', [tag_id, media_id], function(err, result) {
+              if (err) {
+                console.log("ERROR:", err);
+              } else {
+                res.status(201).json({
+                  message: "Well done, good sir"
+                });
+              }
+            });
+          } else {
+            DB.client.query('INSERT INTO tags (tag) VALUES ($1) RETURNING id', [req.body.tag], function(err, result) {
+              if (err) {
+                console.log("ERROR:", err);
+              } else {
+                tag_id = result.rows[0].id;
+                DB.client.query('INSERT INTO tags_media (tag_id, media_id) VALUES ($1, $2)', [tag_id, media_id], function(err, result) {
+                  if (err) {
+                    console.log("ERROR:", err);
+                  } else {
+                    res.status(201).json({
+                      message: "Well done, good sir"
+                    });
+                  }
+                });
+              }
+            })
+          }
+        });
+      }
+    });
+
 }
 
 exports.removeMedia = function(req, res){
@@ -189,5 +200,13 @@ exports.getMediaByTime = function(req, res) {
         message: result
       });
     }
+  });
+}
+
+exports.uploadMedia = function(req, res) {
+  console.log('upload media called:', req.files.file.path);
+  cloudinary.uploader.upload(req.files.file.path, function(result) { 
+    console.log('cloudinary result:', result.url);
+    res.status(201).json({ url: result.url });
   });
 }

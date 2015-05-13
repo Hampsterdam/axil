@@ -28,13 +28,13 @@
                     "AssetsLibrary.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 3
                         }
                     ],
                     "MobileCoreServices.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ]
                 }
@@ -56,6 +56,14 @@
                         },
                         {
                             "xml": "<feature name=\"VideoCapturePlus\"><param name=\"ios-package\" value=\"VideoCapturePlus\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -81,6 +89,12 @@
             "PACKAGE_NAME": "com.ionicframework.client986197"
         },
         "nl.x-services.plugins.videocaptureplus": {
+            "PACKAGE_NAME": "com.ionicframework.client986197"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.client986197"
+        },
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.client986197"
         }
     },
