@@ -20,16 +20,19 @@ angular.module('starter.services', [])
         });
     };
 
-    function addMedia (media, type, lat, lon, user_id) {
+    function addMedia (uri, type, lat, lon, user_id, tag, likes) {
+        alert('inside add media factory');
         return $http({
             method: 'POST',
             url: 'https://phoenixapi.herokuapp.com/api/media',
             data: {
-                media: media,
+                uri: uri,
                 type: type,
                 lat: lat,
                 lon: lon,
-                user_id: user_id
+                user_id: user_id,
+                tag: tag,
+                likes: likes
             }
         }).then(function(res) {
             return res;
@@ -97,6 +100,7 @@ angular.module('starter.services', [])
     };
 
     return {
+        addMedia: addMedia, 
         getAllMedia: getAllMedia,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
