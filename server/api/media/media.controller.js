@@ -46,7 +46,7 @@ exports.getUniqueMedia = function(req, res) {
 exports.addMedia = function(req, res){
   console.log('add media called:', req.body);
   cloudinary.uploader.upload(req.body.media, function(result) { 
-    console.log(result) 
+    console.log('cloudinary result', result);  
     var media_id, tag_id;
   	DB.client.query('INSERT INTO media (type, likes, lat, lon, uri, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [req.body.type, req.body.likes, req.body.lat, req.body.lon, result.url, req.body.user_id], function(err, result) {
       if (err) {

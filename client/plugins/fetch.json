@@ -45,7 +45,7 @@
             "type": "registry",
             "id": "cordova-plugin-file"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
     "org.apache.cordova.file": {

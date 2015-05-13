@@ -534,3 +534,6 @@
 2015-05-13 09:41:47.873 client[65670:2534379] Resetting plugins due to page load.
 2015-05-13 09:41:48.354 client[65670:2534379] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/D03D744E-4092-4C36-AC5D-763F4A9449A0/client.app/www/index.html#/tab/login
 2015-05-13 09:41:57.076 client[65670:2534379] locationManager::didFailWithError (null)
+2015-05-13 11:07:42.386 client[65670:2597244] Camera.getPicture: source type 1 not available.
+2015-05-13 11:07:43.221 client[65670:2597244] Camera.getPicture: source type 1 not available.
+2015-05-13 11:07:43.405 client[65670:2597244] Camera.getPicture: source type 1 not available.
