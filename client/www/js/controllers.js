@@ -53,8 +53,8 @@ angular.module('starter.controllers', [])
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(url){
-            alert("upload result:" + url);
-            var mediaFactory = MediaFactory.addMedia(uri, 'image', '30.56', '-97.45', '1', 'ATX', '125')
+            alert("image uploaded");
+            var mediaFactory = MediaFactory.addMedia(url, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
               alert('saved to database!');
             })
