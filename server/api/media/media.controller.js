@@ -203,5 +203,6 @@ exports.uploadMedia = function(req, res) {
   console.log('add media called:', req.files.file.path);
   cloudinary.uploader.upload(req.files.file.path, function(result) { 
     console.log('cloudinary result:', result);
+    res.status(201).json(result.url);
   });
 }
