@@ -1,4 +1,42 @@
-angular.module('starter.services', [])
+angular.module('phoenix.services', [])
+
+.factory('AuthFactory', function($http) {
+
+    function login (email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/login',
+            data: {
+                email: email,
+                password: password
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+
+
+    function signup (firstname, lastname, email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/signup',
+            data: {
+                email: email,
+                password: password,
+                firstname: firstname,
+                lastname: lastname
+            }
+        }).then(function(response) {
+            $window.sessionStorage.token = response.token;
+        });
+    };
+
+    return {
+        login: login,
+        signup: signup
+    };
+
+})
 
 .factory('MediaFactory', function($http) {
 

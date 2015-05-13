@@ -1,6 +1,53 @@
-angular.module('starter.controllers', [])
-.controller("AuthCtrl", function($scope){
-	
+angular.module('phoenix.controllers', [])
+
+.controller("LoginCtrl", function($scope, $window, AuthFactory){
+	$scope.email = "";
+    $scope.password = "";
+
+    $scope.login = function() {
+        var response = AuthFactory.login($scope.email, $scope.password);
+        if (response.token) {
+            $window.sessionStorage.token = response.token;
+        } else {
+            delete $window.sessionStorage.token;
+            $scope.loginError = true;
+        }
+    }
+
+    $scope.isError = function() {
+        if ($scope.loginError) {
+            return true;
+        }
+        return false;
+    }
+
+
+})
+
+.controller("SignUpCtrl", function($scope, $window, AuthFactory) {
+    $scope.email = "";
+    $scope.password = "";
+    $scope.firstname = "firstname";
+    $scope.lastname = "lastname";
+    $scope.signinError = false;
+
+    $scope.signup = function() {
+        var response = AuthFactory.login($scope.email, $scope.password, $scope.firstname, $scope.lastname)
+        if (resonse.token) {
+            $window.sessionStorage.token = response.token;
+        } else {
+            delete $window.sessionStorage.token;
+            $scope.signinError = true;
+        }
+    };
+
+    $scope.isError = function() {
+        if ($scope.signinError) {
+            return true;
+        }
+        return false;
+    }
+
 })
 
 .controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers, Socket) {
