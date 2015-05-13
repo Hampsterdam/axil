@@ -37,10 +37,9 @@ fixtures.createFixtures = function(){
       var full_name = chance.name();
       full_name = full_name.split(" ");
       users.push({
-        fb_id: chance.fbid(),
         firstname: full_name[0],
         lastname: full_name[1],
-        hometown: chance.city(),
+        password: chance.word(),
         email: chance.email(),
         reputation: Math.floor(Math.random() * 150)
       })
