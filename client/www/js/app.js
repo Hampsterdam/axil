@@ -1,5 +1,6 @@
 angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', 'ngCordova'])
 
+// Set up socket.io connection with the server
 .run(function($ionicPlatform, Socket) {
   Socket.emit('connection', function(){
     console.log("socket connected to server");
@@ -17,6 +18,7 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
   });
 })
 
+// State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -73,6 +75,7 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
     }
   });
 
+  // Redirect to Login otherwise
   $urlRouterProvider.otherwise('/tab/login');
 
 });

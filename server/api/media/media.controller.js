@@ -44,7 +44,6 @@ exports.getUniqueMedia = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-  // '{"url":"http://res.cloudinary.com/hcnlf3ljw/image/upload/v1431553321/eagvrwa1lercnitb9qee.jpg"}' 
     var url = JSON.parse(req.body.uri.response).url
     console.log('url:', url);
 
