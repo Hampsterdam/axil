@@ -34,93 +34,34 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($scope, $cordovaCamera, $cordovaFile, $http, MediaFactory) {
-  
-  // 1
-  $scope.images = [];
-    
-  $scope.addImage = function() {
-    alert("add image called!");
-    // 2
-    var options = {
-      destinationType : Camera.DestinationType.FILE_URI,
-      sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
-      allowEdit : false,
-      encodingType: Camera.EncodingType.JPEG,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: true
-    };
+.controller('AddMediaCtrl', function($scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer) {
+  document.addEventListener('deviceready', function(){
+    $scope.images = [];
+      
+    $scope.addImage = function() {
+      var options = {
+        destinationType : Camera.DestinationType.FILE_URI,
+        sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
+        allowEdit : false,
+        encodingType: Camera.EncodingType.JPEG,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true
+      };
 
-    
-    // 3
-    $cordovaCamera.getPicture(options).then(function(imageData) {
-      alert("get picture called");
-      $http({
-        method: 'POST',
-        url: 'http://phoenixapi.herokuapp.com/api/media',
-        data: {
-          media: imageData,
-          type: 'image',
-          lat: '30.00',
-          lon: '-97.25',
-          user_id: '1',
-          likes: '120',
-          tag: 'dude'
-        }
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        alert("get picture called ");
+        var options = {}
+        $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media', imageData, options)
+          .then(function(result){
+            alert("upload result:", result);
+          }, function(err){
+            alert('upload error:', err);
+          }, false)
+      }, function(err) {
+        console.log(err);
       });
-
-      // 4
-      onImageSuccess(imageData);
-      
-      function onImageSuccess(fileURI) {
-        createFileEntry(fileURI);
-      }
-      
-      function createFileEntry(fileURI) {
-        window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
-      }
-      
-      // 5
-      function copyFile(fileEntry) {
-        var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
-        var newName = makeid() + name;
-        alert("copy file called");
-      
-        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
-          fileEntry.copyTo(
-            fileSystem2,
-            newName,
-            onCopySuccess,
-            fail
-          );
-        }, fail);
-      }
-      
-      // 6
-      function onCopySuccess(entry) {
-        $scope.$apply(function () {
-          $scope.images.push(entry.nativeURL);
-        });
-      }
-      
-      function fail(error) {
-        console.log("fail: " + error.code);
-      }
-      
-      function makeid() {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        
-        for (var i=0; i < 5; i++) {
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-        return text;
-      }
-      
-    }, function(err) {
-      console.log(err);
-    });
-  }
- 
+    }
+    
+  }) 
 })
 

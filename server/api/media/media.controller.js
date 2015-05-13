@@ -44,7 +44,7 @@ exports.getUniqueMedia = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-  console.log('add media called:', req.body);
+  console.log('add media called:', req.files);
   cloudinary.uploader.upload(req.body.media, function(result) { 
     console.log('cloudinary result', result);  
     var media_id, tag_id;

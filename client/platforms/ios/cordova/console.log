@@ -537,3 +537,7 @@
 2015-05-13 11:07:42.386 client[65670:2597244] Camera.getPicture: source type 1 not available.
 2015-05-13 11:07:43.221 client[65670:2597244] Camera.getPicture: source type 1 not available.
 2015-05-13 11:07:43.405 client[65670:2597244] Camera.getPicture: source type 1 not available.
+2015-05-13 12:18:49.589 client[65670:2662080] Terminating since there is no system app.
+2015-05-13 12:18:49.590 client[65670:2662076] Communications error: <OS_xpc_error: <error: 0x31665f4> { count = 1, contents =
+	"XPCErrorDescription" => <string: 0x316683c> { length = 22, contents = "Connection interrupted" }
+}>
