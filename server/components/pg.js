@@ -17,11 +17,10 @@ var connectDB = function(cb, fixtures){
 (function(){
 	var users = 'CREATE TABLE IF NOT EXISTS users ('           +
 				'id SERIAL NOT NULL PRIMARY KEY,'              +
-				'fb_id VARCHAR(255) NOT NULL,'                 +
 				'firstname VARCHAR(50) NOT NULL,'              +
 				'lastname VARCHAR(50) NOT NULL,'               +
-				'hometown VARCHAR(100) NOT NULL,'              +
 				'email TEXT NOT NULL,'                         +
+                'password TEXT NOT NULL,'                      +
 				'reputation INTEGER DEFAULT 1,'                +
 				'joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP'   +
 				');';

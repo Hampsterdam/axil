@@ -13,11 +13,5 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/users'));
   app.use('/api/media',[multer({ dest: './upload'})], require('./api/media'));
   app.use('/api/auth', require('./api/auth'));
-
-  // app.route('/')
-  //   .get(function(req, res) {
-  //     var index = fs.createReadStream(path.resolve(__dirname, '../client/index.html'))
-  //     index.pipe(res);
-  //   });
   
 };

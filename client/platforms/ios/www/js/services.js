@@ -1,4 +1,42 @@
-angular.module('starter.services', [])
+angular.module('phoenix.services', [])
+
+.factory('AuthFactory', function($http) {
+
+    function login (email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/login',
+            data: {
+                email: email,
+                password: password
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+
+
+    function signup (firstname, lastname, email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/signup',
+            data: {
+                email: email,
+                password: password,
+                firstname: firstname,
+                lastname: lastname
+            }
+        }).then(function(response) {
+            $window.sessionStorage.token = response.token;
+        });
+    };
+
+    return {
+        login: login,
+        signup: signup
+    };
+
+})
 
 .factory('MediaFactory', function($http) {
 
@@ -20,16 +58,19 @@ angular.module('starter.services', [])
         });
     };
 
-    function addMedia (media, type, lat, lon, user_id) {
+    function addMedia (uri, type, lat, lon, user_id, tag, likes) {
+        alert('inside add media factory');
         return $http({
             method: 'POST',
             url: 'https://phoenixapi.herokuapp.com/api/media',
             data: {
-                media: media,
+                uri: uri,
                 type: type,
                 lat: lat,
                 lon: lon,
-                user_id: user_id
+                user_id: user_id,
+                tag: tag,
+                likes: likes
             }
         }).then(function(res) {
             return res;
@@ -97,6 +138,7 @@ angular.module('starter.services', [])
     };
 
     return {
+        addMedia: addMedia, 
         getAllMedia: getAllMedia,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
