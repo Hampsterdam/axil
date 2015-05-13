@@ -44,9 +44,6 @@ exports.getUniqueMedia = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-  console.log('add media called:', req.files.file.path);
-  cloudinary.uploader.upload(req.files.file.path, function(result) { 
-    console.log('cloudinary result', result);  
     var media_id, tag_id;
   	DB.client.query('INSERT INTO media (type, likes, lat, lon, uri, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [req.body.type, req.body.likes, req.body.lat, req.body.lon, result.url, req.body.user_id], function(err, result) {
       if (err) {
@@ -87,7 +84,7 @@ exports.addMedia = function(req, res){
         });
       }
     });
-  });
+
 }
 
 exports.removeMedia = function(req, res){
@@ -199,5 +196,12 @@ exports.getMediaByTime = function(req, res) {
         message: result
       });
     }
+  });
+}
+
+exports.uploadMedia = function(req, res) {
+  console.log('add media called:', req.files.file.path);
+  cloudinary.uploader.upload(req.files.file.path, function(result) { 
+    console.log('cloudinary result:', result);
   });
 }

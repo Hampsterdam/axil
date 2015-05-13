@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
         var options = {}
-        $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media', imageData, options)
+        $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(result){
             alert("upload result:", result);
           }, function(err){
