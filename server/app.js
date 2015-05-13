@@ -10,14 +10,10 @@ var express = require('express');
 
 var app = express();
 var server = require('http').createServer(app);
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
 var pg = require('pg');
-var session = require('express-session');
-var DB = require('./components/pg.js');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var authenticate = require('./config/passport.js');
+var expressJwt = require('express-jwt');
+var jwtSecret = 'mysecret';
 
 var allowCrossDomain = function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
@@ -33,6 +29,11 @@ var allowCrossDomain = function(req, res, next){
 
 app.use(allowCrossDomain);
 
+// Protect /api routes with JWT
+app.use(bodyParser.json());
+// app.use(express.urlencoded());
+app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup']}));
+
 // Setup and Initialize socket.io
 var io = require('socket.io')(server);
 app.use(function(req, res, next){
@@ -43,27 +44,11 @@ io.on('connection', function(socket){
   console.log('socket connection');
 })
 
-app.use(session({
-  secret: 'theseus',
-  resave: true,
-  saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// serve the client directory and connect to the router
-app.use(express.static('client'));
+//connect to the router
 require('./routes')(app);
 
-
-// Setup Facebook Authorization
-app.use(bodyParser.json());
-app.use(cookieParser());
-
-
 // Start server on port 9000
-server.listen(9000, function () {
+server.listen(process.env.PORT || 9000, function () {
   console.log('Express server listening on PORT 9000');
 });
 

@@ -37,10 +37,9 @@ fixtures.createFixtures = function(){
       var full_name = chance.name();
       full_name = full_name.split(" ");
       users.push({
-        fb_id: chance.fbid(),
         firstname: full_name[0],
         lastname: full_name[1],
-        hometown: chance.city(),
+        password: chance.word(),
         email: chance.email(),
         reputation: Math.floor(Math.random() * 150)
       })
@@ -51,7 +50,7 @@ fixtures.createFixtures = function(){
         lat: getRandomInRange(30.135924, 30.457257, 6),
         lon: getRandomInRange(-97.958594, -97.564459, 6),
         time: randomDate('2015-05-01 00:00:00', new Date()),
-        uri: "http:://loremflickr.com/640/240/austin",
+        uri: "http:://my10online.com/wp-content/uploads/2011/09/4480604.jpg",
         user_id: Math.floor(Math.random() * num)
       })
 
@@ -89,19 +88,19 @@ setInterval(function(){
     likes: Math.floor(Math.random() * numFix),
     lat: getRandomInRange(30.135924, 30.457257, 6),
     lon: getRandomInRange(-97.958594, -97.564459, 6),
-    uri: "http:://loremflickr.com/320/240/austin",
-    time: randomDate('2015-05-01 00:00:00', new Date()),
+    uri: "http:://my10online.com/wp-content/uploads/2011/09/4480604.jpg",
+    time: randomDate('2015-05-03 00:00:00', new Date()),
     user_id: Math.floor(Math.random() * numFix),
     tag: "Dude!"
   }
 
-    unirest.post('http://localhost:9000/api/media')
+    unirest.post('https://phoenixapi.herokuapp.com/api/media')
       .header('Content-Type', 'application/json')
       .send(media)
       .end(function (response) {
       // console.log(response.body);
     });
-}, 60 * 1000)
+}, 6000 * 1000)
 
 
 /////////////////////////////////////////////

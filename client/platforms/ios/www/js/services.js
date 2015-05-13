@@ -1,11 +1,49 @@
-angular.module('starter.services', [])
+angular.module('phoenix.services', [])
+
+.factory('AuthFactory', function($http) {
+
+    function login (email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/login',
+            data: {
+                email: email,
+                password: password
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+
+
+    function signup (firstname, lastname, email, password) {
+        $http({
+            method: 'POST',
+            url: 'https://phoenixapi.herokuapp.com/api/auth/signup',
+            data: {
+                email: email,
+                password: password,
+                firstname: firstname,
+                lastname: lastname
+            }
+        }).then(function(response) {
+            $window.sessionStorage.token = response.token;
+        });
+    };
+
+    return {
+        login: login,
+        signup: signup
+    };
+
+})
 
 .factory('MediaFactory', function($http) {
 
     function getAllMedia () {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media'
+            url: 'https://phoenixapi.herokuapp.com/api/media'
         }).then(function(data) {
             return data
         })
@@ -14,22 +52,25 @@ angular.module('starter.services', [])
     function getUniqueMedia (media_id) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/'+media_id
+            url: 'https://phoenixapi.herokuapp.com/api/media/'+media_id
         }).then(function(data) {
             return data
         });
     };
 
-    function addMedia (video_url, type, lat, lon, user_id) {
+    function addMedia (uri, type, lat, lon, user_id, tag, likes) {
+        alert('inside add media factory');
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media',
+            url: 'https://phoenixapi.herokuapp.com/api/media',
             data: {
-                uri: video_url,
+                uri: uri,
                 type: type,
                 lat: lat,
                 lon: lon,
-                user_id
+                user_id: user_id,
+                tag: tag,
+                likes: likes
             }
         }).then(function(res) {
             return res;
@@ -39,7 +80,7 @@ angular.module('starter.services', [])
     function updateMedia (media_id, tag) {
         return $http({
             method: 'PUT',
-            url: 'http://localhost:9000/api/media/' + media_id + '/' + tag,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id + '/' + tag,
         }).then(function(res) {
             return res;
         });
@@ -48,7 +89,7 @@ angular.module('starter.services', [])
     function deleteUniqueMedia (media_id) {
         return $http({
             method: 'DELETE',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
         }).then(function(res) {
             return res;
         });
@@ -57,7 +98,7 @@ angular.module('starter.services', [])
     function likeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -69,7 +110,7 @@ angular.module('starter.services', [])
     function unlikeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/media/' + media_id,
+            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -81,7 +122,7 @@ angular.module('starter.services', [])
     function getMediaByTag (tag) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/tags/' + tag
+            url: 'https://phoenixapi.herokuapp.com/api/media/tags/' + tag
         }).then(function (data) {
             return data;
         });
@@ -90,13 +131,14 @@ angular.module('starter.services', [])
     function getMediaByTime (time) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/media/time/' + time
+            url: 'https://phoenixapi.herokuapp.com/api/media/time/' + time
         }).then(function (data) {
             return data;
         });
     };
 
     return {
+        addMedia: addMedia, 
         getAllMedia: getAllMedia,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
@@ -112,7 +154,7 @@ angular.module('starter.services', [])
     function getAllUsers () {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/users'
+            url: 'https://phoenixapi.herokuapp.com/api/users'
         }).then(function (data) {
             return data;
         });
@@ -121,7 +163,7 @@ angular.module('starter.services', [])
     function getUniqueUser (user_id) {
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/api/users/' + user_id
+            url: 'https://phoenixapi.herokuapp.com/api/users/' + user_id
         }).then(function (data){
             return data;
         })
@@ -130,7 +172,7 @@ angular.module('starter.services', [])
     function addUser(firstname, lastname, hometown, email){
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/api/users/',
+            url: 'https://phoenixapi.herokuapp.com/api/users/',
             data: {
                 firstname: firstname,
                 lastname: lastname,
@@ -145,7 +187,7 @@ angular.module('starter.services', [])
     function getFollowing(user_id){
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/' + user_id + '/following' 
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following' 
         }).then(function(data){
             return data;
         })
@@ -154,7 +196,7 @@ angular.module('starter.services', [])
     function getFollowers(user_id){
         return $http({
             method: 'GET',
-            url: 'http://localhost:9000/' + user_id + '/followers',
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/followers',
         }).then(function(data){
             return data;
         })
@@ -163,7 +205,7 @@ angular.module('starter.services', [])
     function follow(user_id, friend_id){
         return $http({
             method: 'POST',
-            url: 'http://localhost:9000/' + user_id + '/following',
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following',
             data: {
                 friend_id: friend_id
             }
@@ -175,7 +217,7 @@ angular.module('starter.services', [])
     function unfollow(user_id, friend_id){
         return $http({
             method: 'DELETE',
-            url: 'http://localhost:9000/' + user_id + '/following/' + friend_id,
+            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following/' + friend_id,
         }).then(function(res){
             return res;
         })
@@ -213,9 +255,9 @@ angular.module('starter.services', [])
                    description: '1718 14th St NW, Washington, DC',
                    // one can customize markers by adding simplestyle properties
                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                   'marker-size': 'large',
-                   'marker-color': '#BE9A6B',
-                   'marker-symbol': 'cafe'
+                   'marker-size': 'medium',
+                   'marker-color': '#e60000',
+                   'marker-symbol': 'star'
                }
            }).addTo(map); 
         })
@@ -224,6 +266,29 @@ angular.module('starter.services', [])
     return {
         populateMap: populateMap
     }
+})
+.factory('Socket', function($rootScope){
+    var socket = io.connect('https://phoenixapi.herokuapp.com:443');
+      return {
+        on: function (eventName, callback) {
+          socket.on(eventName, function () {  
+            var args = arguments;
+            $rootScope.$apply(function () {
+              callback.apply(socket, args);
+            });
+          });
+        },
+        emit: function (eventName, data, callback) {
+          socket.emit(eventName, data, function () {
+            var args = arguments;
+            $rootScope.$apply(function () {
+              if (callback) {
+                callback.apply(socket, args);
+              }
+            });
+          })
+        }
+      };
 })
 
 
