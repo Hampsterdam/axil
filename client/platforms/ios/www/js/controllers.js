@@ -34,95 +34,78 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($scope, $cordovaCapture) {
- // var image = false;
- // console.log('inside media ctrl');
- // if(image){
- //   // 1
- //   console.log('picture fired!')
- //   $scope.images = [];
-    
- //   $scope.addImage = function() {
- //    // 2
- //    var options = {
- //      destinationType : Camera.DestinationType.FILE_URI,
- //      sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
- //      allowEdit : true,
- //      encodingType: Camera.EncodingType.JPEG,
- //      popoverOptions: CameraPopoverOptions,
- //      saveToPhotoAlbum: true
- //    };
-    
- //    // 3
- //    $cordovaCamera.getPicture(options).then(function(imageData) {
-    
- //    // 4
- //    onImageSuccess(imageData);
-    
- //    function onImageSuccess(fileURI) {
- //    createFileEntry(fileURI);
- //    }
-    
- //    function createFileEntry(fileURI) {
- //    window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
- //    }
-    
- //    // 5
- //    function copyFile(fileEntry) {
- //    var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
- //    var newName = makeid() + name;
-    
- //    window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
- //    fileEntry.copyTo(
- //    fileSystem2,
- //    newName,
- //    onCopySuccess,
- //    fail
- //    );
- //    },
- //    fail);
- //    }
-    
- //    // 6
- //    function onCopySuccess(entry) {
- //      $scope.$apply(function () {
- //        $scope.images.push(entry.nativeURL);
- //      });
- //    }
-    
- //    function fail(error) {
- //      console.log("fail: " + error.code);
- //    }
-    
- //    function makeid() {
- //      var text = "";
- //      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      
- //      for (var i=0; i < 5; i++) {
- //        text += possible.charAt(Math.floor(Math.random() * possible.length));
- //      }
- //      return text;
- //    }
-      
- //      }, function(err) {
- //        console.log(err);
- //      });
- //     }
- // } else {
+.controller('AddMediaCtrl', function($scope, $cordovaCamera, MediaFactory) {
   
-  $scope.clip = '';
-  var options = { duration: 10, limit: 3 }
-
-  $scope.addImage = function() {
-    $cordovaCapture.captureVideo(options).then(function(videoData){
-      VideoService.saveVideo(videoData).success(function(data){
-        $scope.clip = data;
-        $scope.$apply();
-      }, function(err) {
-        console.log("err:", err);
+   // 1
+   $scope.images = [];
+    
+   $scope.addImage = function() {
+    // 2
+    var options = {
+      destinationType : Camera.DestinationType.FILE_URI,
+      sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
+      allowEdit : true,
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+    
+    // 3
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+    
+    // 4
+    MediaFactory.addMedia(imageData, 'image', '-30.00', '-97.34', '1')
+    onImageSuccess(imageData);
+    
+    function onImageSuccess(fileURI) {
+    createFileEntry(fileURI);
+    }
+    
+    function createFileEntry(fileURI) {
+    window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
+    }
+    
+    // 5
+    function copyFile(fileEntry) {
+    var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
+    var newName = makeid() + name;
+    
+    window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
+    fileEntry.copyTo(
+    fileSystem2,
+    newName,
+    onCopySuccess,
+    fail
+    );
+    },
+    fail);
+    }
+    
+    // 6
+    function onCopySuccess(entry) {
+      $scope.$apply(function () {
+        $scope.images.push(entry.nativeURL);
       });
-    });
-  }
- // }
+    }
+    
+    function fail(error) {
+      console.log("fail: " + error.code);
+    }
+    
+    function makeid() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      
+      for (var i=0; i < 5; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
+    }
+      
+      }, function(err) {
+        console.log(err);
+      });
+     }
+ 
 })
 

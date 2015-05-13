@@ -34,12 +34,9 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($scope, $cordovaCamera) {
- 
- console.log('inside media ctrl');
- 
+.controller('AddMediaCtrl', function($scope, $cordovaCamera, MediaFactory) {
+  
    // 1
-   console.log('picture fired!')
    $scope.images = [];
     
    $scope.addImage = function() {
@@ -50,13 +47,14 @@ angular.module('starter.controllers', [])
       allowEdit : true,
       encodingType: Camera.EncodingType.JPEG,
       popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum: false
     };
     
     // 3
     $cordovaCamera.getPicture(options).then(function(imageData) {
     
     // 4
+    MediaFactory.addMedia(imageData, 'image', '-30.00', '-97.34', '1')
     onImageSuccess(imageData);
     
     function onImageSuccess(fileURI) {

@@ -528,3 +528,9 @@
 2015-05-12 17:07:35.002 client[48690:2116768] locationManager::didFailWithError (null)
 2015-05-12 17:07:36.954 client[48690:2116768] Capture.captureVideo: video mode not available.
 2015-05-12 17:07:37.632 client[48690:2116768] Capture.captureVideo: video mode not available.
+2015-05-13 09:41:47.026 client[65670:2534379] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 09:41:47.029 client[65670:2534379] Multi-tasking -> Device: YES, App: YES
+2015-05-13 09:41:47.047 client[65670:2534379] Unlimited access to network resources
+2015-05-13 09:41:47.873 client[65670:2534379] Resetting plugins due to page load.
+2015-05-13 09:41:48.354 client[65670:2534379] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/D03D744E-4092-4C36-AC5D-763F4A9449A0/client.app/www/index.html#/tab/login
+2015-05-13 09:41:57.076 client[65670:2534379] locationManager::didFailWithError (null)

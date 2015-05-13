@@ -20,12 +20,12 @@ angular.module('starter.services', [])
         });
     };
 
-    function addMedia (video_url, type, lat, lon, user_id) {
+    function addMedia (media, type, lat, lon, user_id) {
         return $http({
             method: 'POST',
             url: 'https://phoenixapi.herokuapp.com/api/media',
             data: {
-                uri: video_url,
+                media: media,
                 type: type,
                 lat: lat,
                 lon: lon,
