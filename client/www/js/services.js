@@ -99,6 +99,7 @@ angular.module('starter.services', [])
     };
 
     return {
+        addMedia: addMedia, 
         getAllMedia: getAllMedia,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
