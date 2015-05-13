@@ -15,9 +15,9 @@ angular.module('starter.controllers', [])
       .getCurrentPosition(posOptions)
       .then(function (position) {
          var lat = position.coords.latitude;
-         var long = position.coords.longitude;
+         var lon = position.coords.longitude;
 
-         map.panTo(new L.LatLng(lat, long));
+         map.panTo(new L.LatLng(lat, lon));
       })
     var mediaFactory = MediaFactory.getAllMedia()
     mediaFactory.then(function(data){
