@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('phoenix.controllers', [])
 .controller("AuthCtrl", function($scope){
 	
 })

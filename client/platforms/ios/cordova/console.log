@@ -4,3 +4,9 @@
 2015-05-13 12:08:32.277 client[31431:445759] Unlimited access to network resources
 2015-05-13 12:08:35.222 client[31431:445759] Resetting plugins due to page load.
 2015-05-13 12:08:36.621 client[31431:445759] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/5FC7EEFC-A563-4E6D-B81D-1FE4DF72850E/client.app/www/index.html#/tab/login
+2015-05-13 15:18:58.291 client[33709:499552] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Data/Application/78400B05-FBAA-47D5-9436-E1D415C0D5DB/Library/Cookies/Cookies.binarycookies
+2015-05-13 15:19:00.146 client[33709:499552] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 15:19:00.147 client[33709:499552] Multi-tasking -> Device: YES, App: YES
+2015-05-13 15:19:00.203 client[33709:499552] Unlimited access to network resources
+2015-05-13 15:19:03.377 client[33709:499552] Resetting plugins due to page load.
+2015-05-13 15:19:05.306 client[33709:499552] Finished load of: file:///Users/charlesmcbride/Library/Developer/CoreSimulator/Devices/FD04CCF3-2AEE-49F8-8AF2-3659B0B5580C/data/Containers/Bundle/Application/74E14004-D7A7-4F6B-AD06-875A5C2C8A4F/client.app/www/index.html

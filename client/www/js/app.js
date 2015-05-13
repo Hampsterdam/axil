@@ -32,7 +32,16 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-login.html',
-        controller: 'AuthCtrl'
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('tab.signup', {
+    url: '/signup',
+    views: {
+      'tab-signup': {
+        templateUrl: 'templates/tab-signup.html',
+        controller: 'SignUpCtrl'
       }
     }
   })
@@ -53,7 +62,7 @@ angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', '
           controller: 'AddMediaCtrl'
         }
       }
-    })
+  })
   .state('tab.account', {
     url: '/account',
     views: {
