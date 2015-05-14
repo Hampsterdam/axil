@@ -1,6 +1,8 @@
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'mysecret';
 var DB = require('../../components/pg.js');
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
 
 exports.login = function(req, res) {
     var token = jwt.sign({
@@ -11,7 +13,9 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            if (results.rows[0] && results.rows[0].password === req.body.password) {
+            var hash = bcrypt.hashSync(req.body.password, salt);
+            var auth = bcryt.compareSync(hash, results.rows[0].password);                       
+            if (results.rows[0] && auth) {
                 res.status(200).json({
                     token: token
                 });
@@ -28,8 +32,9 @@ exports.signup = function(req, res) {
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
+    var hash = bcrypt.hashSync(req.body.password, salt);
 
-    DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, req.body.password], function(err, results) {
+    DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
         if (err) {
             console.log("Error in signup:", err);
         } else {
@@ -37,4 +42,8 @@ exports.signup = function(req, res) {
             exports.login(request, res);
         }
     });
+}
+
+exports.logout = function(req, res) {
+
 }

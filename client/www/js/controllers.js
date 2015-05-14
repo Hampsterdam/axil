@@ -1,6 +1,6 @@
 angular.module('phoenix.controllers', [])
 
-.controller("LoginCtrl", function($scope, $window, AuthFactory){
+.controller("LoginCtrl", function($scope, $rootScope, $window, AuthFactory){
 	$scope.email = "";
     $scope.password = "";
 
