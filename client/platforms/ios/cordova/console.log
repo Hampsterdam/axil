@@ -546,3 +546,13 @@
 2015-05-13 17:01:46.511 client[91271:2837262] Resetting plugins due to page load.
 2015-05-13 17:01:47.148 client[91271:2837262] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/30FCD05E-95F5-44CC-897F-E5CC05046899/client.app/www/index.html#/tab/login
 2015-05-13 17:01:50.354 client[91271:2837262] locationManager::didFailWithError (null)
+2015-05-13 18:41:37.645 client[99285:2895991] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 18:41:37.646 client[99285:2895991] Multi-tasking -> Device: YES, App: YES
+2015-05-13 18:41:37.648 client[99285:2895991] Unlimited access to network resources
+2015-05-13 18:41:38.180 client[99285:2895991] Resetting plugins due to page load.
+2015-05-13 18:41:38.759 client[99285:2895991] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/FE46F156-90DE-45C3-A8F2-F0533C689F9C/client.app/www/index.html#/tab/login
+2015-05-13 18:43:45.535 client[99728:2898590] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 18:43:45.536 client[99728:2898590] Multi-tasking -> Device: YES, App: YES
+2015-05-13 18:43:45.539 client[99728:2898590] Unlimited access to network resources
+2015-05-13 18:43:45.738 client[99728:2898590] Resetting plugins due to page load.
+2015-05-13 18:43:46.517 client[99728:2898590] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/0071C054-1016-43BA-8311-C5E16C916679/client.app/www/index.html#/tab/login

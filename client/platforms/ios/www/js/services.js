@@ -251,7 +251,7 @@ angular.module('phoenix.services', [])
                    ]
                },
                properties: {
-                   title: 'Peregrine Espresso',
+                   type: media.type,
                    description: '1718 14th St NW, Washington, DC',
                    // one can customize markers by adding simplestyle properties
                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
