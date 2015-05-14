@@ -1,7 +1,10 @@
 angular.module('phoenix.services', [])
 
+
+// Factory for communication with the web server authentication endpoints (login and signup)
 .factory('AuthFactory', function($http) {
 
+    // Method to query the web server for a new session
     function login (email, password) {
         $http({
             method: 'POST',

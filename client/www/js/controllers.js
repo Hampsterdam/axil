@@ -57,15 +57,19 @@ angular.module('phoenix.controllers', [])
     L.mapbox.accessToken = your_api_code;
     var map = L.mapbox.map('map', 'mapbox.streets').setView([30.3077609, -97.7534014], 12);
     
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
          var lat = position.coords.latitude;
          var lon = position.coords.longitude;
+         alert('lat '+lat+' lon '+lon);
 
          map.panTo(new L.LatLng(lat, lon));
+      }, function(err){
+        alert("geolocation error" + err);
       })
+
     var mediaFactory = MediaFactory.getAllMedia()
     mediaFactory.then(function(data){
         Helpers.populateMap(data.data, map);
