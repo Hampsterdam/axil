@@ -1,14 +1,14 @@
-angular.module('phoenix.services', [])
+angular.module('axil.services', [])
 
 
 // Factory for communication with the web server authentication endpoints (login and signup)
-.factory('AuthFactory', function($http) {
+.factory('AuthFactory', function($http, myConfig) {
 
     // Method to query the web server for a new session
     function login (email, password) {
         $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/auth/login',
+            url: myConfig.serverUrl + '/auth/login',
             data: {
                 email: email,
                 password: password
@@ -22,7 +22,7 @@ angular.module('phoenix.services', [])
     function signup (firstname, lastname, email, password) {
         $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/auth/signup',
+            url: myConfig.serverUrl + '/auth/signup',
             data: {
                 email: email,
                 password: password,
@@ -41,12 +41,12 @@ angular.module('phoenix.services', [])
 
 })
 
-.factory('MediaFactory', function($http) {
+.factory('MediaFactory', function($http, myConfig) {
 
     function getAllMedia () {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/media'
+            url: myConfig.serverUrl + '/media'
         }).then(function(data) {
             return data
         })
@@ -55,7 +55,7 @@ angular.module('phoenix.services', [])
     function getUniqueMedia (media_id) {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/media/'+media_id
+            url: myConfig.serverUrl + '/media/' + media_id
         }).then(function(data) {
             return data
         });
@@ -64,7 +64,7 @@ angular.module('phoenix.services', [])
     function addMedia (uri, type, lat, lon, user_id, tag, likes) {
         return $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/media',
+            url: myConfig.serverUrl + '/media',
             data: {
                 uri: uri,
                 type: type,
@@ -82,7 +82,7 @@ angular.module('phoenix.services', [])
     function updateMedia (media_id, tag) {
         return $http({
             method: 'PUT',
-            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id + '/' + tag,
+            url: myConfig.serverUrl + '/media/' + media_id + '/' + tag,
         }).then(function(res) {
             return res;
         });
@@ -91,7 +91,7 @@ angular.module('phoenix.services', [])
     function deleteUniqueMedia (media_id) {
         return $http({
             method: 'DELETE',
-            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
+            url: myConfig.serverUrl + '/media/' + media_id,
         }).then(function(res) {
             return res;
         });
@@ -100,7 +100,7 @@ angular.module('phoenix.services', [])
     function likeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
+            url: myConfig.serverUrl + '/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -112,7 +112,7 @@ angular.module('phoenix.services', [])
     function unlikeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/media/' + media_id,
+            url: myConfig.serverUrl + '/media/' + media_id,
             data: {
                 user_id: user_id
             }
@@ -124,7 +124,7 @@ angular.module('phoenix.services', [])
     function getMediaByTag (tag) {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/media/tags/' + tag
+            url: myConfig.serverUrl + '/media/tags/' + tag
         }).then(function (data) {
             return data;
         });
@@ -133,7 +133,7 @@ angular.module('phoenix.services', [])
     function getMediaByTime (time) {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/media/time/' + time
+            url: myConfig.serverUrl + '/media/time/' + time
         }).then(function (data) {
             return data;
         });
@@ -156,7 +156,7 @@ angular.module('phoenix.services', [])
     function getAllUsers () {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/users'
+            url: myConfig.serverUrl + '/api/users'
         }).then(function (data) {
             return data;
         });
@@ -165,7 +165,7 @@ angular.module('phoenix.services', [])
     function getUniqueUser (user_id) {
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/api/users/' + user_id
+            url: myConfig.serverUrl + '/users/' + user_id
         }).then(function (data){
             return data;
         })
@@ -174,7 +174,7 @@ angular.module('phoenix.services', [])
     function addUser(firstname, lastname, hometown, email){
         return $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/api/users/',
+            url: myConfig.serverUrl + '/users/',
             data: {
                 firstname: firstname,
                 lastname: lastname,
@@ -189,7 +189,7 @@ angular.module('phoenix.services', [])
     function getFollowing(user_id){
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following' 
+            url: myConfig.serverUrl + '/users/' + user_id + '/following' 
         }).then(function(data){
             return data;
         })
@@ -198,7 +198,7 @@ angular.module('phoenix.services', [])
     function getFollowers(user_id){
         return $http({
             method: 'GET',
-            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/followers',
+            url: myConfig.serverUrl + '/users/' + user_id + '/followers',
         }).then(function(data){
             return data;
         })
@@ -207,7 +207,7 @@ angular.module('phoenix.services', [])
     function follow(user_id, friend_id){
         return $http({
             method: 'POST',
-            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following',
+            url: myConfig.serverUrl + '/users/' + user_id + '/following',
             data: {
                 friend_id: friend_id
             }
@@ -219,7 +219,7 @@ angular.module('phoenix.services', [])
     function unfollow(user_id, friend_id){
         return $http({
             method: 'DELETE',
-            url: 'https://phoenixapi.herokuapp.com/' + user_id + '/following/' + friend_id,
+            url: myConfig.serverUrl + '/users/' + user_id + '/following/' + friend_id,
         }).then(function(res){
             return res;
         })
@@ -237,8 +237,8 @@ angular.module('phoenix.services', [])
 })
 
 .factory('Helpers', function(){
+    var geoJSON = []
     function populateMap (dataArray, layer){
-        var geoJSON = []
         dataArray.forEach(function(media){
             console.log("media", media);
             geoJSON.push({
@@ -246,7 +246,6 @@ angular.module('phoenix.services', [])
                 "geometry": { "type": "Point", "coordinates": [media.lon, media.lat]},
                 "properties": {
                     "image": media.uri,
-                    "marker-symbol": "star",
                     "marker-color": "#ff8888",
                     "marker-size": "large",
                     "city": "Washington, D.C."
@@ -265,7 +264,7 @@ angular.module('phoenix.services', [])
 
             // http://leafletjs.com/reference.html#popup
             marker.bindPopup(popupContent,{
-                closeButton: false,
+                closeButton: true,
                 minWidth: 320
             });
         });
@@ -275,8 +274,8 @@ angular.module('phoenix.services', [])
         populateMap: populateMap
     }
 })
-.factory('Socket', function($rootScope){
-    var socket = io.connect('https://phoenixapi.herokuapp.com:443');
+.factory('Socket', function($rootScope, myConfig){
+    var socket = io.connect(myConfig.socketUrl);
       return {
         on: function (eventName, callback) {
           socket.on(eventName, function () {  

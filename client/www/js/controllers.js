@@ -1,4 +1,4 @@
-angular.module('phoenix.controllers', [])
+angular.module('axil.controllers', [])
 
 .controller("LoginCtrl", function($scope, $rootScope, $window, AuthFactory){
 	$scope.email = "";
@@ -85,20 +85,21 @@ angular.module('phoenix.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, MediaFactory) {
 
   document.addEventListener('deviceready', function(){
     $scope.images = [];
     $rootScope.spinner = false;  
     $scope.addImage = function() {
       var options = {
-        quality: 25,
+        quality: 15,
         destinationType : Camera.DestinationType.FILE_URI,
         sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
         allowEdit : false,
         encodingType: Camera.EncodingType.JPEG,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: true,
+        correctOrientation: true
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
@@ -107,14 +108,20 @@ angular.module('phoenix.controllers', [])
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
-            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
-            mediaFactory.then(function(response){
-                
-            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
-            mediaFactory.then(function(response){
-              $rootScope.spinner = false;
-              alert("Image Upload Success");
-            })
+              var posOptions = {timeout: 10000, enableHighAccuracy: true};
+              $cordovaGeolocation.getCurrentPosition(posOptions)
+              .then(function(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
+                mediaFactory.then(function(response){
+                    
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
+                mediaFactory.then(function(response){
+                  $rootScope.spinner = false;
+                  alert("Image Upload Success");
+                })
+              })
           }, function(err){
           }, false)
       }, function(err) {
