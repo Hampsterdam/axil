@@ -75,7 +75,7 @@ angular.module('phoenix.controllers', [])
         Helpers.populateMap(data.data, mainLayer);
     })
     Socket.on('mediaInsert', function(data) {
-      Helpers.populateMap([data], map);
+      Helpers.populateMap([data], mainLayer);
     })
 
 
@@ -85,7 +85,7 @@ angular.module('phoenix.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, MediaFactory) {
 
   document.addEventListener('deviceready', function(){
     $scope.images = [];
@@ -102,16 +102,18 @@ angular.module('phoenix.controllers', [])
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
+        $state.go('tab.explore');
+        $rootScope.spinner = true;
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
             var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
                 
-            $rootScope.spinner = true;
             var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
               $rootScope.spinner = false;
+              alert("Image Upload Success");
             })
           }, function(err){
           }, false)

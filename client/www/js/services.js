@@ -62,7 +62,6 @@ angular.module('phoenix.services', [])
     };
 
     function addMedia (uri, type, lat, lon, user_id, tag, likes) {
-        alert('inside add media factory');
         return $http({
             method: 'POST',
             url: 'https://phoenixapi.herokuapp.com/api/media',
