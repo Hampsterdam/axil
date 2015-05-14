@@ -82,6 +82,8 @@ angular.module('phoenix.controllers', [])
 })
 
 .controller('AddMediaCtrl', function($scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, MediaFactory) {
+  $scope.loading = false;
+
   document.addEventListener('deviceready', function(){
     $scope.images = [];
       
@@ -100,10 +102,9 @@ angular.module('phoenix.controllers', [])
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
-            alert("image uploaded");
             var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
-              alert('saved to database!');
+                
             })
           }, function(err){
             alert('upload error:', err);
