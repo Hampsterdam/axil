@@ -1,4 +1,4 @@
-angular.module('phoenix.controllers', [])
+angular.module('axil.controllers', [])
 
 .controller("LoginCtrl", function($scope, $rootScope, $window, AuthFactory){
 	$scope.email = "";
@@ -50,34 +50,66 @@ angular.module('phoenix.controllers', [])
 
 })
 
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, MapFactory, Socket) {
 
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
     
+    // Load the Default Map
     L.mapbox.accessToken = your_api_code;
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.3077609, -97.7534014], 12);
-    var mainLayer = L.mapbox.featureLayer().addTo(map);
-    
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
+    // var mainlayer = L.mapbox.featureLayer().addTo(map);
+    var marker = new L.MarkerClusterGroup({
+      // The iconCreateFunction takes the cluster as an argument and returns
+      // an icon that represents it. We use L.mapbox.marker.icon in this
+      // example, but you could also use L.icon or L.divIcon.
+      iconCreateFunction: function(cluster) {
+        return L.mapbox.marker.icon({
+          // show the number of markers in the cluster on the icon.
+          'marker-symbol': cluster.getChildCount(),
+          'marker-color': '#ff8888',
+          'marker-size': 'large'
+        });
+      }
+    });
+    var user = new L.mapbox.featureLayer().addTo(map);
+
+    // Get the user position and move the map to their location;
     var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
-         var lat = position.coords.latitude;
-         var lon = position.coords.longitude;
+        
+        // Set a marker at the user's location
+         MapFactory.userMarker(position.coords, user);
 
-         map.panTo(new L.LatLng(lat, lon));
+         // No phone support for pan
+         map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+
+         // Instead, re-center the layer over the location marker
+
       }, function(err){
         alert("geolocation error" + err);
-      })
-
-    var mediaFactory = MediaFactory.getAllMedia()
-    mediaFactory.then(function(data){
-        Helpers.populateMap(data.data, mainLayer);
     })
+
+    MediaFactory.getAllMedia()
+      .then(function(data){
+        MapFactory.populateMap(data.data, marker, map);
+    });
+
+    // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
-      Helpers.populateMap([data], map);
-    })
+      MapFactory.populateMap([data], marker, map);
+    });
 
+    // center the map on a selected marker
+    marker.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+    });
+
+    // center the map on the user when selected
+    user.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+    });
 
  })
 
@@ -85,7 +117,7 @@ angular.module('phoenix.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, MediaFactory) {
 
   document.addEventListener('deviceready', function(){
     $scope.images = [];
@@ -103,17 +135,25 @@ angular.module('phoenix.controllers', [])
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
+        $state.go('tab.explore');
+        $rootScope.spinner = true;
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
-            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
-            mediaFactory.then(function(response){
-                
-            $rootScope.spinner = true;
-            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
-            mediaFactory.then(function(response){
-              $rootScope.spinner = false;
-            })
+              var posOptions = {timeout: 10000, enableHighAccuracy: true};
+              $cordovaGeolocation.getCurrentPosition(posOptions)
+              .then(function(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
+                mediaFactory.then(function(response){
+                    
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
+                mediaFactory.then(function(response){
+                  $rootScope.spinner = false;
+                  alert("Image Upload Success");
+                })
+              })
           }, function(err){
           }, false)
       }, function(err) {

@@ -1,4 +1,4 @@
-angular.module('phoenix', ['ionic', 'phoenix.controllers', 'phoenix.services', 'ngCordova'])
+angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.constants', 'ngCordova'])
 
 // Set up socket.io connection with the server
 .run(function($ionicPlatform, Socket) {
