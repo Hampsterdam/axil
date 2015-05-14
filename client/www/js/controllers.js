@@ -118,7 +118,7 @@ angular.module('phoenix.controllers', [])
       }, function(err) {
         console.log(err);
       });
-    }
+    })
     
   }) 
 })
