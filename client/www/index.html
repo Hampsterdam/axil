@@ -39,7 +39,14 @@
     
     <!-- NavBar at the Top of the Screen -->
     <ion-nav-bar class="bar-positive">
-      <!-- <ion-spinner ng-show="spinner" icon="spiral" class="spinner-energized"></ion-spinner> -->
+      <ion-nav-buttons side="primary">
+        <ion-spinner ng-show="spinner" icon="spiral" class="spinner-energized"></ion-spinner>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="secondary">
+          <button class="button logout-btn" ng-click="doSomething()">
+            logout
+          </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
     
     <!-- The View-->
