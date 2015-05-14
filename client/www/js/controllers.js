@@ -92,13 +92,14 @@ angular.module('phoenix.controllers', [])
     $rootScope.spinner = false;  
     $scope.addImage = function() {
       var options = {
-        quality: 25,
+        quality: 15,
         destinationType : Camera.DestinationType.FILE_URI,
         sourceType : Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
         allowEdit : false,
         encodingType: Camera.EncodingType.JPEG,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: true,
+        correctOrientation: true
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
