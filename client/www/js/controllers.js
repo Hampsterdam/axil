@@ -50,33 +50,44 @@ angular.module('axil.controllers', [])
 
 })
 
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, Helpers, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, MapFactory, Socket) {
 
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
     
+    // Load the Default Map
     L.mapbox.accessToken = your_api_code;
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.3077609, -97.7534014], 12);
-    var mainLayer = L.mapbox.featureLayer().addTo(map);
-    
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
+    // var mainlayer = L.mapbox.featureLayer().addTo(map);
+    var marker = new L.MarkerClusterGroup();
+    var user = new L.mapbox.featureLayer().addTo(map);
+
+    // Get the user position and move the map to their location;
     var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
-         var lat = position.coords.latitude;
-         var lon = position.coords.longitude;
+        
+        // Set a marker at the user's location
+         MapFactory.userMarker(position.coords, user);
 
-         map.panTo(new L.LatLng(lat, lon));
+         // No phone support for pan
+         map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+
+         // Instead, re-center the layer over the location marker
+
       }, function(err){
         alert("geolocation error" + err);
-      })
+    })
 
-    var mediaFactory = MediaFactory.getAllMedia()
-    mediaFactory.then(function(data){
-        Helpers.populateMap(data.data, mainLayer);
-    })
+    MediaFactory.getAllMedia()
+      .then(function(data){
+        MapFactory.populateMap(data.data, marker, map);
+    });
+
+    // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
-      Helpers.populateMap([data], mainLayer);
-    })
+      MapFactory.populateMap([data], marker, map);
+    });
 
 
  })

@@ -236,42 +236,32 @@ angular.module('axil.services', [])
     }
 })
 
-.factory('Helpers', function(){
-    var geoJSON = []
-    function populateMap (dataArray, layer){
-        dataArray.forEach(function(media){
-            console.log("media", media);
-            geoJSON.push({
-                type: 'Feature',
-                "geometry": { "type": "Point", "coordinates": [media.lon, media.lat]},
-                "properties": {
-                    "image": media.uri,
-                    "marker-color": "#ff8888",
-                    "marker-size": "large",
-                    "city": "Washington, D.C."
-                }   
-             })
-        })
+.factory('MapFactory', function() {
+    var mediaData = [];
 
-        layer.on('layeradd', function(e) {
-            var marker = e.layer,
-                feature = marker.feature;
-
-            // Create custom popup content
-            var popupContent =  '<a target="_blank" class="popup">' +
-                                    '<img class="map_image" src="' + feature.properties.image + '" />' +
-                                '</a>';
-
-            // http://leafletjs.com/reference.html#popup
-            marker.bindPopup(popupContent,{
-                closeButton: true,
-                minWidth: 320
+    function populateMap (dataArray, layer, map){
+       
+       // Set up Marker Clusters for the Map Data
+        for (var i=0; i < dataArray.length; i++) {
+            mediaData.push(dataArray[i]);
+            var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
+                icon: L.mapbox.marker.icon({'marker-symbol': 'post', 'marker-color': "#ff8888" })
             });
-        });
-        layer.setGeoJSON(geoJSON);
+            layer.addLayer(marker);
+        }
+        map.addLayer(layer);
     }
+
+    function userMarker (coords, layer) {
+        var marker = L.marker( new L.LatLng(coords.latitude, coords.longitude), {
+            icon: L.mapbox.marker.icon({'marker-color': '0044FF'})
+        });
+        layer.addLayer(marker);
+    }
+
     return {
-        populateMap: populateMap
+        populateMap: populateMap,
+        userMarker: userMarker
     }
 })
 .factory('Socket', function($rootScope, myConfig){
