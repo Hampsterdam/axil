@@ -58,7 +58,19 @@ angular.module('axil.controllers', [])
     L.mapbox.accessToken = your_api_code;
     var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
     // var mainlayer = L.mapbox.featureLayer().addTo(map);
-    var marker = new L.MarkerClusterGroup();
+    var marker = new L.MarkerClusterGroup({
+      // The iconCreateFunction takes the cluster as an argument and returns
+      // an icon that represents it. We use L.mapbox.marker.icon in this
+      // example, but you could also use L.icon or L.divIcon.
+      iconCreateFunction: function(cluster) {
+        return L.mapbox.marker.icon({
+          // show the number of markers in the cluster on the icon.
+          'marker-symbol': cluster.getChildCount(),
+          'marker-color': '#ff8888',
+          'marker-size': 'large'
+        });
+      }
+    });
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;

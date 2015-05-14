@@ -245,7 +245,7 @@ angular.module('axil.services', [])
         for (var i=0; i < dataArray.length; i++) {
             mediaData.push(dataArray[i]);
             var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
-                icon: L.mapbox.marker.icon({'marker-symbol': 'post', 'marker-color': "#ff8888" })
+                icon: L.mapbox.marker.icon({'marker-size': 'large', 'marker-color': "#ff8888" })
             });
             layer.addLayer(marker);
         }
