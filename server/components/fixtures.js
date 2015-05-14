@@ -4,7 +4,7 @@ var dbConfig = require('../config/dbconfig.js')
 var Chance = require('chance');
 var fixtures = {};
 var unirest = require('unirest');
-var numFix = 150
+var numFix = 15
 
 var chance = new Chance()
 

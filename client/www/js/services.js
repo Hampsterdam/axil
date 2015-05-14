@@ -238,34 +238,40 @@ angular.module('phoenix.services', [])
 })
 
 .factory('Helpers', function(){
-    function populateMap (dataArray, map){
+    function populateMap (dataArray, layer){
+        var geoJSON = []
         dataArray.forEach(function(media){
-           L.mapbox.featureLayer({
-               // this feature is in the GeoJSON format: see geojson.org
-               // for the full specification
-               type: 'Feature',
-               geometry: {
-                   type: 'Point',
-                   // coordinates here are in longitude, latitude order because
-                   // x, y is the standard for GeoJSON and many formats
-                   coordinates: [
-                     media.lon, 
-                     media.lat
-                   ]
-               },
-               properties: {
-                   title: 'Peregrine Espresso',
-                   description: '1718 14th St NW, Washington, DC',
-                   // one can customize markers by adding simplestyle properties
-                   // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                   'marker-size': 'medium',
-                   'marker-color': '#e60000',
-                   'marker-symbol': 'star'
-               }
-           }).addTo(map); 
+            console.log("media", media);
+            geoJSON.push({
+                type: 'Feature',
+                "geometry": { "type": "Point", "coordinates": [media.lon, media.lat]},
+                "properties": {
+                    "image": media.uri,
+                    "marker-symbol": "star",
+                    "marker-color": "#ff8888",
+                    "marker-size": "large",
+                    "city": "Washington, D.C."
+                }   
+             })
         })
-    }
 
+        layer.on('layeradd', function(e) {
+            var marker = e.layer,
+                feature = marker.feature;
+
+            // Create custom popup content
+            var popupContent =  '<a target="_blank" class="popup">' +
+                                    '<img class="map_image" src="' + feature.properties.image + '" />' +
+                                '</a>';
+
+            // http://leafletjs.com/reference.html#popup
+            marker.bindPopup(popupContent,{
+                closeButton: false,
+                minWidth: 320
+            });
+        });
+        layer.setGeoJSON(geoJSON);
+    }
     return {
         populateMap: populateMap
     }

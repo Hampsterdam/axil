@@ -1,0 +1,9 @@
+2015-05-13 23:07:32.272 client[14107:3056034] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-13 23:07:32.272 client[14107:3056034] Multi-tasking -> Device: YES, App: YES
+2015-05-13 23:07:32.275 client[14107:3056034] Unlimited access to network resources
+2015-05-13 23:07:32.363 client[14107:3056034] [CDVTimer][keyboard] 0.060022ms
+2015-05-13 23:07:32.368 client[14107:3056034] [CDVTimer][file] 4.220009ms
+2015-05-13 23:07:32.368 client[14107:3056034] [CDVTimer][TotalPluginStartup] 5.002022ms
+2015-05-13 23:07:32.443 client[14107:3056034] Resetting plugins due to page load.
+2015-05-13 23:07:32.766 client[14107:3056034] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/42AD8862-8401-462B-9BE0-952271DAB29C/client.app/www/index.html#/tab/login
+2015-05-13 23:07:39.529 client[14107:3056034] locationManager::didFailWithError (null)

@@ -1,7 +1,10 @@
 angular.module('phoenix.services', [])
 
+
+// Factory for communication with the web server authentication endpoints (login and signup)
 .factory('AuthFactory', function($http) {
 
+    // Method to query the web server for a new session
     function login (email, password) {
         $http({
             method: 'POST',
@@ -251,7 +254,7 @@ angular.module('phoenix.services', [])
                    ]
                },
                properties: {
-                   title: 'Peregrine Espresso',
+                   type: media.type,
                    description: '1718 14th St NW, Washington, DC',
                    // one can customize markers by adding simplestyle properties
                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle

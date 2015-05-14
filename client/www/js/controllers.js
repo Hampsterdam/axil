@@ -56,8 +56,9 @@ angular.module('phoenix.controllers', [])
     
     L.mapbox.accessToken = your_api_code;
     var map = L.mapbox.map('map', 'mapbox.streets').setView([30.3077609, -97.7534014], 12);
+    var mainLayer = L.mapbox.featureLayer().addTo(map);
     
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
@@ -65,10 +66,13 @@ angular.module('phoenix.controllers', [])
          var lon = position.coords.longitude;
 
          map.panTo(new L.LatLng(lat, lon));
+      }, function(err){
+        alert("geolocation error" + err);
       })
+
     var mediaFactory = MediaFactory.getAllMedia()
     mediaFactory.then(function(data){
-        Helpers.populateMap(data.data, map);
+        Helpers.populateMap(data.data, mainLayer);
     })
     Socket.on('mediaInsert', function(data) {
       Helpers.populateMap([data], map);
@@ -81,12 +85,11 @@ angular.module('phoenix.controllers', [])
 
 })
 
-.controller('AddMediaCtrl', function($scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, MediaFactory) {
-  $scope.loading = false;
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, MediaFactory) {
 
   document.addEventListener('deviceready', function(){
     $scope.images = [];
-      
+    $rootScope.spinner = false;  
     $scope.addImage = function() {
       var options = {
         quality: 25,
@@ -105,9 +108,12 @@ angular.module('phoenix.controllers', [])
             var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
             mediaFactory.then(function(response){
                 
+            $rootScope.spinner = true;
+            var mediaFactory = MediaFactory.addMedia(data, 'image', '30.56', '-97.45', '1', 'ATX', '125')
+            mediaFactory.then(function(response){
+              $rootScope.spinner = false;
             })
           }, function(err){
-            alert('upload error:', err);
           }, false)
       }, function(err) {
         console.log(err);

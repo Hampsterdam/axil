@@ -9,3 +9,22 @@ html, body {
      /*Change 100% to 400px and the map will display    */
     width: 100%;
 }
+
+.spinner svg {
+  width: 150px;
+  height: 150px;
+  stroke: #444;
+  fill: #444;
+}
+
+.map_image {
+	height: 100%;
+	width: 100%;
+}
+
+.centered {
+	z-index: 50;
+  position: absolute; /* or absolute */
+  top: 50%;
+  left: 50%;
+}
