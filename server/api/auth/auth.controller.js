@@ -14,8 +14,8 @@ exports.login = function(req, res) {
             console.log("Error in login:", err);
         } else {
             var hash = bcrypt.hashSync(req.body.password, salt);
-            var auth = bcryt.compareSync(hash, results.rows[0].password);                       
-            if (results.rows[0] && auth) {
+
+            if (results.rows[0] && hash === results.rows[0].password) {
                 res.status(200).json({
                     token: token
                 });
@@ -34,13 +34,26 @@ exports.signup = function(req, res) {
     }, jwtSecret);
     var hash = bcrypt.hashSync(req.body.password, salt);
 
-    DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
+    DB.client.query("SELECT * FROM users WHERE email = $1", [req.body.email], function(err, results) {
         if (err) {
             console.log("Error in signup:", err);
+        } else if (results.rows.length > 0){
+            res.status(401).json({
+                message: "That email address is already in use"
+            });
         } else {
-            var request = {body: {email: req.body.email, password: req.body.password } }
-            exports.login(request, res);
+            var hash = bcrypt.hashSync(req.body.password, salt);
+
+            DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
+                if (err) {
+                    console.log("Error in signup:", err);
+                } else {
+                    var request = {body: {email: req.body.email, password: req.body.password } }
+                    exports.login(request, res);
+                }
+            }); 
         }
+
     });
 }
 
