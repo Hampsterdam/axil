@@ -89,6 +89,15 @@ angular.module('axil.controllers', [])
       MapFactory.populateMap([data], marker, map);
     });
 
+    // center the map on a selected marker
+    marker.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+    });
+
+    // center the map on the user when selected
+    user.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+    });
 
  })
 
