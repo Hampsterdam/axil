@@ -10,7 +10,7 @@ angular.module('axil.controllers', [])
         console.log('response:', response);
         if (response.token) {
             $window.sessionStorage.token = response.token;
-            $state.go('/explore');
+            $state.go('/#/explore');
         } else {
             delete $window.sessionStorage.token;
             $scope.loginError = true;
