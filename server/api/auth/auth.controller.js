@@ -12,7 +12,7 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            if (!results.rows[0]) {
+            if (!results.row[0].password) {
                 res.status(401).json({
                     message: "We don't have a record of that email address"
                 });
