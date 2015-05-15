@@ -5,7 +5,6 @@ var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
 exports.login = function(req, res) {
-    console.log("auth request:", req);
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
@@ -17,10 +16,12 @@ exports.login = function(req, res) {
             var hash = bcrypt.hashSync(req.body.password, salt);
 
             if (results.rows[0] && hash === results.rows[0].password) {
+                console.log("Token returned!")
                 res.status(200).json({
                     token: token
                 });
             } else {
+                console.log("We don't have a record of that email or password")
                 res.status(401).json({
                     message: "We don't have a record of that email or password"
                 });
