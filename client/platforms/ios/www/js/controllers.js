@@ -73,17 +73,26 @@ angular.module('axil.controllers', [])
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;
-    var posOptions = {timeout: 10000, enableHighAccuracy: true};
+    var posOptions = { timeout: 30000, enableHighAccuracy: true };
     $cordovaGeolocation
-      .watchPosition(posOptions)
+      .getCurrentPosition(posOptions)
+      .then(function(position){
+         MapFactory.userMarker(position.coords, user);
+      }, function(err){
+        
+      })
+
+    var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
+    $cordovaGeolocation
+      .watchPosition(watchOptions)
       .then(null, function(err) { 
         alert("geolocation error" + err);
       }, function(position){
         // Set a marker at the user's location
-         MapFactory.userMarker(position.coords, user);
          // No phone support for pan
          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-    });
+         MapFactory.updateUserPosition(position.coords);
+      });
 
     MediaFactory.getAllMedia()
       .then(function(data){

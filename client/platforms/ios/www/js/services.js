@@ -238,14 +238,20 @@ angular.module('axil.services', [])
 
 .factory('MapFactory', function() {
     var mediaData = [];
+    var marker;
 
     function populateMap (dataArray, layer, map){
        
        // Set up Marker Clusters for the Map Data
         for (var i=0; i < dataArray.length; i++) {
+            var img = "<img src='" + dataArray[i].uri + "' />";
             mediaData.push(dataArray[i]);
             var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
-                icon: L.mapbox.marker.icon({'marker-size': 'large', 'marker-color': "#ff8888" })
+                icon: L.divIcon({
+                    html: img,
+                    className: 'image-icon',
+                    iconSize: [52, 52]
+                })
             });
             var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
             marker.bindPopup(content);
@@ -255,15 +261,20 @@ angular.module('axil.services', [])
     }
 
     function userMarker (coords, layer) {
-        var marker = L.marker( new L.LatLng(coords.latitude, coords.longitude), {
-            icon: L.mapbox.marker.icon({'marker-color': '#6c936c'})
+        marker = L.circleMarker( new L.LatLng(coords.latitude, coords.longitude), {
+            icon: L.mapbox.marker.icon({'marker-color': '#0080ff', 'marker-size': 'large'})
         });
         layer.addLayer(marker);
+
     }
 
+    function updateUserPosition (coords){
+        marker.setLatLng(L.latLng(coords.latitude, coords.longitude));
+    }
     return {
         populateMap: populateMap,
-        userMarker: userMarker
+        userMarker: userMarker,
+        updateUserPosition: updateUserPosition
     }
 })
 .factory('Socket', function($rootScope, myConfig){

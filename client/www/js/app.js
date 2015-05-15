@@ -24,7 +24,7 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   $stateProvider
 
   .state('signup', {
-      url: '/signup',
+      url: '/',
       templateUrl: 'templates/signup.html',
       controller: 'SignupCtrl'
   })

@@ -47,3 +47,41 @@ file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-46
 2015-05-14 19:24:44.775 client[39776:3528436] Resetting plugins due to page load.
 2015-05-14 19:24:45.175 client[39776:3528436] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/0DAED8C8-EE52-4D07-93F4-1CFFEFE3CBEF/client.app/www/index.html#/tab/login
 2015-05-14 19:24:48.026 client[39776:3528436] locationManager::didFailWithError (null)
+2015-05-14 19:28:40.035 client[39776:3531020] Terminating since there is no system app.
+2015-05-14 21:40:47.386 client[4515:74721] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 21:40:47.390 client[4515:74721] Multi-tasking -> Device: YES, App: YES
+2015-05-14 21:40:47.401 client[4515:74721] Unlimited access to network resources
+2015-05-14 21:40:47.653 client[4515:74721] [CDVTimer][keyboard] 0.055969ms
+2015-05-14 21:40:47.660 client[4515:74721] [CDVTimer][file] 6.079018ms
+2015-05-14 21:40:47.660 client[4515:74721] [CDVTimer][TotalPluginStartup] 7.077992ms
+2015-05-14 21:40:47.894 client[4515:74721] Resetting plugins due to page load.
+2015-05-14 21:40:48.387 client[4515:74721] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/33011BB3-54DB-4B90-A073-34612D7E67C9/client.app/www/index.html#/tab/login
+2015-05-14 22:00:01.009 client[5666:90495] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 22:00:01.013 client[5666:90495] Multi-tasking -> Device: YES, App: YES
+2015-05-14 22:00:01.032 client[5666:90495] Unlimited access to network resources
+2015-05-14 22:00:01.489 client[5666:90495] [CDVTimer][keyboard] 0.056028ms
+2015-05-14 22:00:01.512 client[5666:90495] [CDVTimer][file] 22.351980ms
+2015-05-14 22:00:01.512 client[5666:90495] [CDVTimer][TotalPluginStartup] 23.566008ms
+2015-05-14 22:00:01.925 client[5666:90495] Resetting plugins due to page load.
+2015-05-14 22:00:02.737 client[5666:90495] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/F0CE03EB-049C-4ADF-876A-65C0FE127DD7/client.app/www/index.html#/tab/login
+2015-05-14 22:00:07.377 client[5666:90495] THREAD WARNING: ['Geolocation'] took '25.936035' ms. Plugin should use a background thread.
+2015-05-14 22:00:07.379 client[5666:90495] locationManager::didFailWithError (null)
+2015-05-14 22:03:58.313 client[6339:94535] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 22:03:58.314 client[6339:94535] Multi-tasking -> Device: YES, App: YES
+2015-05-14 22:03:58.349 client[6339:94535] Unlimited access to network resources
+2015-05-14 22:03:58.879 client[6339:94535] [CDVTimer][keyboard] 0.079989ms
+2015-05-14 22:03:58.885 client[6339:94535] [CDVTimer][file] 5.589008ms
+2015-05-14 22:03:58.885 client[6339:94535] [CDVTimer][TotalPluginStartup] 6.089985ms
+2015-05-14 22:03:59.225 client[6339:94535] Resetting plugins due to page load.
+2015-05-14 22:04:00.197 client[6339:94535] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/131A0729-1D5F-4A67-82C3-9AB4CA4BBBC3/client.app/www/index.html#/tab/login
+2015-05-15 09:26:04.098 client[15766:215891] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-15 09:26:04.100 client[15766:215891] Multi-tasking -> Device: YES, App: YES
+2015-05-15 09:26:04.121 client[15766:215891] Unlimited access to network resources
+2015-05-15 09:26:04.537 client[15766:215891] [CDVTimer][keyboard] 0.083983ms
+2015-05-15 09:26:04.549 client[15766:215891] [CDVTimer][file] 12.335002ms
+2015-05-15 09:26:04.550 client[15766:215891] [CDVTimer][TotalPluginStartup] 13.150990ms
+2015-05-15 09:26:04.855 client[15766:215891] Resetting plugins due to page load.
+2015-05-15 09:26:05.429 client[15766:215891] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/B96EB543-8611-4442-9F55-0DD4001B3F92/client.app/www/index.html#/tab/login
+2015-05-15 09:26:07.049 client[15766:215891] locationManager::didFailWithError (null)
+2015-05-15 09:26:07.053 client[15766:215891] locationManager::didFailWithError (null)
+2015-05-15 09:26:17.430 client[15766:215967] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
