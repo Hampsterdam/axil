@@ -3,7 +3,7 @@ var jwtSecret = 'mysecret';
 var DB = require('../../components/pg.js');
 var bcrypt = require('bcrypt-nodejs');
 var salt = bcrypt.genSaltSync(10);
-
+// 
 exports.login = function(req, res) {
     var token = jwt.sign({
         email: req.body.email
