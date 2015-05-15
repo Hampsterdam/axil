@@ -14,9 +14,14 @@ var pg = require('pg');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwtSecret = 'mysecret';
-var cors = require('cors')
 
-app.use(cors());
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', app.get('client-url'));
+    res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
+
 // Protect /api routes with JWT
 app.use(bodyParser.json());
 app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));
