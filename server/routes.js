@@ -12,6 +12,6 @@ module.exports = function(app) {
   app.use(BodyParser.json());
   app.use('/api/users', require('./api/users'));
   app.use('/api/media',[multer({ dest: './upload'})], require('./api/media'));
-  app.use('/api/auth', require('./api/auth'));
+  app.use('/api/auth',[multer()], require('./api/auth'));
   
 };
