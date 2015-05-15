@@ -6,6 +6,7 @@ angular.module('axil.services', [])
 
     // Method to query the web server for a new session
     function login (email, password) {
+        console.log('Inside AuthFactory.login')
         return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/auth/login',
@@ -13,9 +14,11 @@ angular.module('axil.services', [])
                 email: email,
                 password: password
             }
-        }).then(function(response) {
+        }).success(function(response) {
             return response;
-        });
+        }).error(function(error){
+            console.log('Auth requerst error', error)
+        })
     };
 
 

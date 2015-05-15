@@ -15,17 +15,17 @@ var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwtSecret = 'mysecret';
 
+
+// Protect /api routes with JWT
+app.use(bodyParser.json());
+app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));
+
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://192.168.1.29:8100');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
     res.header('Access-Control-Allow-Credentials', 'true');
     next();
 });
-
-// Protect /api routes with JWT
-app.use(bodyParser.json());
-app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));
-
 // Setup and Initialize socket.io
 var io = require('socket.io')(server);
 app.use(function(req, res, next){
