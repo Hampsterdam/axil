@@ -14,21 +14,9 @@ var pg = require('pg');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwtSecret = 'mysecret';
+var cors = require('cors')
 
-var allowCrossDomain = function(req, res, next){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-    if('OPTIONS' == req.method){
-        res.send(200);
-    } else {
-        next();
-    }
-}
-
-app.use(allowCrossDomain);
-
+app.use(cors());
 // Protect /api routes with JWT
 app.use(bodyParser.json());
 app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));

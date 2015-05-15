@@ -1,17 +1,21 @@
 angular.module('axil.controllers', [])
 
 .controller("LoginCtrl", function($scope, $rootScope, $window, AuthFactory){
-	$scope.email = "";
-    $scope.password = "";
+	 $scope.loginInfo = {}; 
 
     $scope.login = function() {
-        var response = AuthFactory.login($scope.email, $scope.password);
+    console.log('email:', $scope.loginInfo.email, "password:", $scope.loginInfo.password);
+      AuthFactory.login($scope.email, $scope.password)
+      .then(function(response){
+        console.log('response:', response);
         if (response.token) {
             $window.sessionStorage.token = response.token;
+            $state.go('/explore');
         } else {
             delete $window.sessionStorage.token;
             $scope.loginError = true;
         }
+      })
     }
 
     $scope.isError = function() {

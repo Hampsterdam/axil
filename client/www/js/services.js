@@ -6,7 +6,7 @@ angular.module('axil.services', [])
 
     // Method to query the web server for a new session
     function login (email, password) {
-        $http({
+        return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/auth/login',
             data: {
@@ -20,7 +20,7 @@ angular.module('axil.services', [])
 
 
     function signup (firstname, lastname, email, password) {
-        $http({
+        return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/auth/signup',
             data: {
