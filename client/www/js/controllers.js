@@ -57,8 +57,7 @@ angular.module('axil.controllers', [])
     // Load the Default Map
     L.mapbox.accessToken = your_api_code;
     var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
-    // var mainlayer = L.mapbox.featureLayer().addTo(map);
-    var marker = new L.MarkerClusterGroup({
+    var clusters = new L.MarkerClusterGroup({
       // The iconCreateFunction takes the cluster as an argument and returns
       // an icon that represents it. We use L.mapbox.marker.icon in this
       // example, but you could also use L.icon or L.divIcon.
@@ -76,33 +75,29 @@ angular.module('axil.controllers', [])
     // Get the user position and move the map to their location;
     var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
-      .getCurrentPosition(posOptions)
-      .then(function (position) {
-        
+      .watchPosition(posOptions)
+      .then(function (err) { 
+        alert("geolocation error" + err);
+      }, function(position){
         // Set a marker at the user's location
          MapFactory.userMarker(position.coords, user);
-
          // No phone support for pan
          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-
          // Instead, re-center the layer over the location marker
-
-      }, function(err){
-        alert("geolocation error" + err);
     })
 
     MediaFactory.getAllMedia()
       .then(function(data){
-        MapFactory.populateMap(data.data, marker, map);
+        MapFactory.populateMap(data.data, clusters, map);
     });
 
     // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
-      MapFactory.populateMap([data], marker, map);
+      MapFactory.populateMap([data], clusters, map);
     });
 
     // center the map on a selected marker
-    marker.on('click', function(e) {
+    clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
     });
 
@@ -147,11 +142,7 @@ angular.module('axil.controllers', [])
                 var lon = position.coords.longitude;
                 var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
                 mediaFactory.then(function(response){
-                    
-                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
-                mediaFactory.then(function(response){
                   $rootScope.spinner = false;
-                  alert("Image Upload Success");
                 })
               })
           }, function(err){
@@ -159,7 +150,6 @@ angular.module('axil.controllers', [])
       }, function(err) {
         console.log(err);
       });
-    })  
   }
 });
 });

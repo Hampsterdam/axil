@@ -247,6 +247,8 @@ angular.module('axil.services', [])
             var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
                 icon: L.mapbox.marker.icon({'marker-size': 'large', 'marker-color': "#ff8888" })
             });
+            var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
+            marker.bindPopup(content);
             layer.addLayer(marker);
         }
         map.addLayer(layer);

@@ -5,7 +5,7 @@ html, body {
 }
 
 #map {
-    height: 800px;
+    height: 700px;
      /*Change 100% to 400px and the map will display    */
     width: 100%;
 }
@@ -20,9 +20,12 @@ html, body {
 
 .map_image {
 	height: 100%;
-	width: 100%;
+	width: 200px;
 }
 
-ion-nav-buttons button .logout-btn {
-  color: red;
+.alert {
+  height: 20px;
+  font-size: 10px;
+  background-color: green;
+  color: white;
 }

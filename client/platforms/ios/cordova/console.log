@@ -7,3 +7,14 @@
 2015-05-13 23:07:32.443 client[14107:3056034] Resetting plugins due to page load.
 2015-05-13 23:07:32.766 client[14107:3056034] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/42AD8862-8401-462B-9BE0-952271DAB29C/client.app/www/index.html#/tab/login
 2015-05-13 23:07:39.529 client[14107:3056034] locationManager::didFailWithError (null)
+2015-05-14 18:32:58.006 client[36595:3491573] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 18:32:58.007 client[36595:3491573] Multi-tasking -> Device: YES, App: YES
+2015-05-14 18:32:58.023 client[36595:3491573] Unlimited access to network resources
+2015-05-14 18:32:58.392 client[36595:3491573] [CDVTimer][keyboard] 0.057995ms
+2015-05-14 18:32:58.406 client[36595:3491573] [CDVTimer][file] 13.595045ms
+2015-05-14 18:32:58.406 client[36595:3491573] [CDVTimer][TotalPluginStartup] 14.391005ms
+2015-05-14 18:32:58.704 client[36595:3491573] Resetting plugins due to page load.
+2015-05-14 18:32:59.309 client[36595:3491573] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/AC27C13C-DA0E-4A9F-84BA-F38D7B08F1AB/client.app/www/index.html#/tab/login
+2015-05-14 18:33:02.914 client[36595:3491573] locationManager::didFailWithError (null)
+2015-05-14 18:33:11.302 client[36595:3491793] Camera.getPicture: source type 1 not available.
+2015-05-14 18:33:11.306 client[36595:3491573] No camera available
