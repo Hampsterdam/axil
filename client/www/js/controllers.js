@@ -91,7 +91,7 @@ angular.module('axil.controllers', [])
     $cordovaGeolocation
       .watchPosition(watchOptions)
       .then(null, function(err) { 
-        alert("geolocation error" + err);
+        // geolocation down, no worries
       }, function(position){
         // Set a marker at the user's location
          // No phone support for pan
