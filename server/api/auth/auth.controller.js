@@ -13,6 +13,7 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
+            console.log('req.body:', req.body, 'salt: ', salt);
             var hash = bcrypt.hashSync(req.body.password, salt);
 
             if (results.rows[0] && hash === results.rows[0].password) {
