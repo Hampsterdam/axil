@@ -23,27 +23,23 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 
   $stateProvider
 
+  .state('signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupCtrl'
+  })
   .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
   })
 
-  .state('tab.auth', {
+  .state('tab.login', {
     url: '/login',
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-login.html',
         controller: 'LoginCtrl'
-      }
-    }
-  })
-  .state('tab.signup', {
-    url: '/signup',
-    views: {
-      'tab-signup': {
-        templateUrl: 'templates/tab-signup.html',
-        controller: 'SignUpCtrl'
       }
     }
   })
@@ -56,20 +52,20 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
       }
     }
   })
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.camera', {
+      url: '/camera',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
+        'tab-camera': {
+          templateUrl: 'templates/tab-camera.html',
           controller: 'AddMediaCtrl'
         }
       }
   })
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
+      'tab-profile': {
+        templateUrl: 'templates/tab-profile.html',
         controller: 'ProfileCtrl'
       }
     }

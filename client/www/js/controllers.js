@@ -85,8 +85,6 @@ angular.module('axil.controllers', [])
          // No phone support for pan
          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 
-         // Instead, re-center the layer over the location marker
-
       }, function(err){
         alert("geolocation error" + err);
     })
@@ -113,8 +111,8 @@ angular.module('axil.controllers', [])
 
  })
 
-.controller('ProfileCtrl', function($scope) {
-
+.controller('ProfileCtrl', function($scope, UserFactory) {
+  UserFactory.getUniqueUser()
 })
 
 .controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, MediaFactory) {
