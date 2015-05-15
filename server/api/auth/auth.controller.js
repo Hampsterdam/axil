@@ -13,7 +13,7 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            var hash = bcrypt.hashSync(req.body.password, null);
+            var hash = bcrypt.hashSync(req.body.password, "charlie");
             if (results.rows[0] && hash === results.rows[0].password) {
                 res.status(200).json({
                     token: token
@@ -40,7 +40,7 @@ exports.signup = function(req, res) {
                 message: "That email address is already in use"
             });
         } else {
-            var hash = bcrypt.hashSync(req.body.password, null);
+            var hash = bcrypt.hashSync(req.body.password, "charlie");
 
             DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
                 if (err) {
