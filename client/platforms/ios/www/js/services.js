@@ -13,9 +13,11 @@ angular.module('axil.services', [])
                 email: email,
                 password: password
             }
-        }).then(function(response) {
+        }).success(function(response) {
             return response;
-        });
+        }).error(function(error){
+            console.log('Auth requerst error', error)
+        })
     };
 
 
