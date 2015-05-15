@@ -4,3 +4,4 @@
 node_modules/
 platforms/
 plugins/
+platforms/ios/cordova/console.log
