@@ -85,3 +85,72 @@ file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-46
 2015-05-15 09:26:07.049 client[15766:215891] locationManager::didFailWithError (null)
 2015-05-15 09:26:07.053 client[15766:215891] locationManager::didFailWithError (null)
 2015-05-15 09:26:17.430 client[15766:215967] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2015-05-15 10:07:52.711 client[19719:250915] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-15 10:07:52.712 client[19719:250915] Multi-tasking -> Device: YES, App: YES
+2015-05-15 10:07:52.716 client[19719:250915] Unlimited access to network resources
+2015-05-15 10:07:52.832 client[19719:250915] [CDVTimer][keyboard] 0.077009ms
+2015-05-15 10:07:52.839 client[19719:250915] [CDVTimer][file] 7.252038ms
+2015-05-15 10:07:52.840 client[19719:250915] [CDVTimer][TotalPluginStartup] 7.988989ms
+2015-05-15 10:07:53.033 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:07:53.480 client[19719:250915] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/3E9B3217-9B9F-4D28-8E43-BFF06E7A4116/client.app/www/index.html#/tab/login
+2015-05-15 10:08:15.047 client[19719:250915] locationManager::didFailWithError (null)
+2015-05-15 10:08:56.758 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:08:56.763 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:08:58.406 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:08:58.410 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:08:59.426 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:08:59.434 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:00.073 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:00.077 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:00.728 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:00.736 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:01.184 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:01.192 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:01.646 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:01.648 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:02.055 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:02.059 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:02.689 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:02.691 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:02.992 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:02.993 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:03.151 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:03.152 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:03.322 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:03.323 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:09:03.485 client[19719:250915] Resetting plugins due to page load.
+2015-05-15 10:09:03.487 client[19719:250915] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:12:58.683 client[20252:254261] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-15 10:12:58.686 client[20252:254261] Multi-tasking -> Device: YES, App: YES
+2015-05-15 10:12:58.690 client[20252:254261] Unlimited access to network resources
+2015-05-15 10:12:58.805 client[20252:254261] [CDVTimer][keyboard] 0.061989ms
+2015-05-15 10:12:58.807 client[20252:254261] [CDVTimer][file] 1.747012ms
+2015-05-15 10:12:58.807 client[20252:254261] [CDVTimer][TotalPluginStartup] 2.169013ms
+2015-05-15 10:12:58.885 client[20252:254261] Resetting plugins due to page load.
+2015-05-15 10:12:59.520 client[20252:254261] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/81B6E1B8-179F-46AD-8B20-FCF0057FAB73/client.app/www/index.html#/tab/login
+2015-05-15 10:13:02.768 client[20252:254261] Resetting plugins due to page load.
+2015-05-15 10:13:02.770 client[20252:254261] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:13:03.759 client[20252:254261] THREAD WARNING: ['Keyboard'] took '11.220947' ms. Plugin should use a background thread.
+2015-05-15 10:13:10.368 client[20252:254261] Resetting plugins due to page load.
+2015-05-15 10:13:10.370 client[20252:254261] Failed to load webpage with error: Frame load interrupted
+2015-05-15 10:13:43.154 client[20817:255708] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-15 10:13:43.154 client[20817:255708] Multi-tasking -> Device: YES, App: YES
+2015-05-15 10:13:43.157 client[20817:255708] Unlimited access to network resources
+2015-05-15 10:13:43.250 client[20817:255708] [CDVTimer][keyboard] 0.059009ms
+2015-05-15 10:13:43.252 client[20817:255708] [CDVTimer][file] 2.649009ms
+2015-05-15 10:13:43.253 client[20817:255708] [CDVTimer][TotalPluginStartup] 3.113031ms
+2015-05-15 10:13:43.324 client[20817:255708] Resetting plugins due to page load.
+2015-05-15 10:13:43.695 client[20817:255708] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/B43BABD0-1AF7-40C5-9870-A9E3AC50C19E/client.app/www/index.html#/tab/login
+2015-05-15 10:14:00.337 client[20817:255708] Resetting plugins due to page load.
+2015-05-15 10:14:00.340 client[20817:255708] Failed to load webpage with error: The requested URL was not found on this server.
+2015-05-15 10:15:12.315 client[21974:258720] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-15 10:15:12.316 client[21974:258720] Multi-tasking -> Device: YES, App: YES
+2015-05-15 10:15:12.319 client[21974:258720] Unlimited access to network resources
+2015-05-15 10:15:12.439 client[21974:258720] [CDVTimer][keyboard] 0.079036ms
+2015-05-15 10:15:12.442 client[21974:258720] [CDVTimer][file] 2.566993ms
+2015-05-15 10:15:12.442 client[21974:258720] [CDVTimer][TotalPluginStartup] 3.103018ms
+2015-05-15 10:15:12.515 client[21974:258720] Resetting plugins due to page load.
+2015-05-15 10:15:13.003 client[21974:258720] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/0B69F29F-B723-41EB-8046-A4CF219C4396/client.app/www/index.html#/tab/login
+2015-05-15 10:15:16.391 client[21974:258720] THREAD WARNING: ['Geolocation'] took '14.033936' ms. Plugin should use a background thread.
+2015-05-15 10:18:27.009 client[21974:258720] locationManager::didFailWithError (null)
+2015-05-15 10:20:39.945 client[21974:258762] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode

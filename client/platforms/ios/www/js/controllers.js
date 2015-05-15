@@ -24,7 +24,7 @@ angular.module('axil.controllers', [])
 
 })
 
-.controller("SignUpCtrl", function($scope, $window, AuthFactory) {
+.controller("SignupCtrl", function($scope, $window, AuthFactory) {
     $scope.email = "";
     $scope.password = "";
     $scope.firstname = "firstname";
@@ -50,8 +50,9 @@ angular.module('axil.controllers', [])
 
 })
 
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, MediaFactory, MapFactory, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, MediaFactory, MapFactory, Socket) {
 
+  $ionicPlatform.ready(function() {
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
     
     // Load the Default Map
@@ -113,16 +114,16 @@ angular.module('axil.controllers', [])
     user.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
     });
-
+  });
  })
 
 .controller('ProfileCtrl', function($scope, UserFactory) {
   UserFactory.getUniqueUser()
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, MediaFactory) {
 
-  document.addEventListener('deviceready', function(){
+  $ionicPlatform.ready(function() {
     $scope.images = [];
     $rootScope.spinner = false;  
     $scope.addImage = function() {
