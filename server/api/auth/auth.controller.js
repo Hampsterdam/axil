@@ -5,7 +5,6 @@ var bcrypt = require('bcrypt-node');
 var salt = bcrypt.genSaltSync(10);
 
 exports.login = function(req, res) {
-    console.log("req.body: ", req.body);
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
@@ -15,7 +14,6 @@ exports.login = function(req, res) {
             console.log("Error in login:", err);
         } else {
             var hash = bcrypt.hashSync(req.body.password, salt);
-            console.log('bcrypt hash:', hash);
             if (results.rows[0] && hash === results.rows[0].password) {
                 res.status(200).json({
                     token: token
@@ -33,7 +31,6 @@ exports.signup = function(req, res) {
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
-    var hash = bcrypt.hashSync(req.body.password, salt);
 
     DB.client.query("SELECT * FROM users WHERE email = $1", [req.body.email], function(err, results) {
         if (err) {
