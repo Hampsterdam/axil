@@ -12,14 +12,15 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            var hash = bcrypt.hashSync(req.body.password, brcypt.genSaltSync());
-            if (results.rows[0] && hash === results.rows[0].password) {
+            var hash = bcrypt.hashSync(req.body.password);
+            var authenticate = bcrypt.compareSync(req.body.password, results.rows[0].password);
+            if (authenticate) {
                 res.status(200).json({
                     token: token
                 });
             } else {
                 res.status(401).json({
-                    message: "We don't have a record of that email or password"
+                    message: "Your password was incorrect"
                 });
             }
         }
@@ -39,13 +40,12 @@ exports.signup = function(req, res) {
                 message: "That email address is already in use"
             });
         } else {
-            var hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync());
-
+            var hash = bcrypt.hashSync(req.body.password);
             DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
                 if (err) {
                     console.log("Error in signup:", err);
                 } else {
-                    var request = {body: {email: req.body.email, password: req.body.password } }
+                    var request = {body: {email: req.body.email, password: req.body.password } };
                     exports.login(request, res);
                 }
             }); 
