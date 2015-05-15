@@ -1,18 +1,16 @@
 angular.module('axil.controllers', [])
 
-.controller("LoginCtrl", function($scope, $rootScope, $window, AuthFactory){
+.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory){
 	 $scope.loginInfo = {}; 
 
     $scope.login = function() {
-    console.log('email:', $scope.loginInfo.email, "password:", $scope.loginInfo.password);
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
-        console.log('response:', response);
-        if (response.token) {
-            $window.sessionStorage.token = response.token;
-            $state.go('/explore');
+        if (response.data.token) {
+            $window.localStorage.setItem("token", response.data.token);
+            $state.go('tab.explore')
         } else {
-            delete $window.sessionStorage.token;
+            delete localStorage["token"];
             $scope.loginError = true;
         }
       })
@@ -28,7 +26,7 @@ angular.module('axil.controllers', [])
 
 })
 
-.controller("SignupCtrl", function($scope, $window, AuthFactory) {
+.controller("SignupCtrl", function($scope, AuthFactory, $window) {
     $scope.email = "";
     $scope.password = "";
     $scope.firstname = "firstname";
@@ -37,10 +35,10 @@ angular.module('axil.controllers', [])
 
     $scope.signup = function() {
         var response = AuthFactory.login($scope.email, $scope.password, $scope.firstname, $scope.lastname)
-        if (resonse.token) {
-            $window.sessionStorage.token = response.token;
+        if (resonse.data.token) {
+            $window.localStorage.setItem("token", response.data.token);
         } else {
-            delete $window.sessionStorage.token;
+            delete sessionStorage.token;
             $scope.signinError = true;
         }
     };
@@ -91,7 +89,7 @@ angular.module('axil.controllers', [])
     $cordovaGeolocation
       .watchPosition(watchOptions)
       .then(null, function(err) { 
-        alert("geolocation error" + err);
+        // geolocation down, no worries
       }, function(position){
         // Set a marker at the user's location
          // No phone support for pan

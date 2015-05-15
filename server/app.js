@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 
 // Protect /api routes with JWT
 app.use(bodyParser.json());
-app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));
+app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users', '/socket.io']}));
 
 // Setup and Initialize socket.io
 var io = require('socket.io')(server);

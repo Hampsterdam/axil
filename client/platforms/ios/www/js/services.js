@@ -15,9 +15,7 @@ angular.module('axil.services', [])
             }
         }).success(function(response) {
             return response;
-        }).error(function(error){
-            console.log('Auth requerst error', error)
-        })
+        });
     };
 
 
@@ -32,7 +30,7 @@ angular.module('axil.services', [])
                 lastname: lastname
             }
         }).then(function(response) {
-            $window.sessionStorage.token = response.token;
+            return response;
         });
     };
 
@@ -51,7 +49,7 @@ angular.module('axil.services', [])
             url: myConfig.serverUrl + '/media'
         }).then(function(data) {
             return data
-        })
+        });
     };
 
     function getUniqueMedia (media_id) {
