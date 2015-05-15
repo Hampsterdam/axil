@@ -18,3 +18,32 @@
 2015-05-14 18:33:02.914 client[36595:3491573] locationManager::didFailWithError (null)
 2015-05-14 18:33:11.302 client[36595:3491793] Camera.getPicture: source type 1 not available.
 2015-05-14 18:33:11.306 client[36595:3491573] No camera available
+2015-05-14 19:21:34.281 client[39341:3525089] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 19:21:34.284 client[39341:3525089] Multi-tasking -> Device: YES, App: YES
+2015-05-14 19:21:34.303 client[39341:3525089] Unlimited access to network resources
+2015-05-14 19:21:34.628 client[39341:3525089] [CDVTimer][keyboard] 0.056982ms
+2015-05-14 19:21:34.639 client[39341:3525089] [CDVTimer][file] 10.486007ms
+2015-05-14 19:21:34.639 client[39341:3525089] [CDVTimer][TotalPluginStartup] 11.063993ms
+2015-05-14 19:21:34.956 client[39341:3525089] Resetting plugins due to page load.
+2015-05-14 19:21:35.534 client[39341:3525089] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/index.html#/tab/login
+2015-05-14 19:21:38.755 client[39341:3525089] locationManager::didFailWithError (null)
+2015-05-14 19:21:38.773 client[39341:3525089] ERROR: Error: undefined is not an object (evaluating 'coords.latitude')
+userMarker@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/js/services.js:258:51
+file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/js/controllers.js:83:31
+processQueue@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:21888:29
+file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:21904:39
+$eval@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:23100:28
+$digest@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:22916:36
+$apply@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:23205:31
+file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:24931:42
+completeOutstandingRequest@file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:13604:15
+file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/A011B843-2918-4BDC-B1F5-2854D1353D3E/client.app/www/lib/ionic/js/ionic.bundle.js:13984:33
+2015-05-14 19:24:44.576 client[39776:3528436] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-14 19:24:44.577 client[39776:3528436] Multi-tasking -> Device: YES, App: YES
+2015-05-14 19:24:44.579 client[39776:3528436] Unlimited access to network resources
+2015-05-14 19:24:44.668 client[39776:3528436] [CDVTimer][keyboard] 0.052989ms
+2015-05-14 19:24:44.673 client[39776:3528436] [CDVTimer][file] 5.114973ms
+2015-05-14 19:24:44.673 client[39776:3528436] [CDVTimer][TotalPluginStartup] 5.540013ms
+2015-05-14 19:24:44.775 client[39776:3528436] Resetting plugins due to page load.
+2015-05-14 19:24:45.175 client[39776:3528436] Finished load of: file:///Users/Christian/Library/Developer/CoreSimulator/Devices/295691C2-A202-4624-90BC-CA4F519751E9/data/Containers/Bundle/Application/0DAED8C8-EE52-4D07-93F4-1CFFEFE3CBEF/client.app/www/index.html#/tab/login
+2015-05-14 19:24:48.026 client[39776:3528436] locationManager::didFailWithError (null)

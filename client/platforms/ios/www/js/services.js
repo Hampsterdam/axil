@@ -256,7 +256,7 @@ angular.module('axil.services', [])
 
     function userMarker (coords, layer) {
         var marker = L.marker( new L.LatLng(coords.latitude, coords.longitude), {
-            icon: L.mapbox.marker.icon({'marker-color': '0044FF'})
+            icon: L.mapbox.marker.icon({'marker-color': '#6c936c'})
         });
         layer.addLayer(marker);
     }
