@@ -13,16 +13,12 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            console.log('req.body:', req.body, 'salt: ', salt);
             var hash = bcrypt.hashSync(req.body.password, salt);
-
             if (results.rows[0] && hash === results.rows[0].password) {
-                console.log("Token returned!")
                 res.status(200).json({
                     token: token
                 });
             } else {
-                console.log("We don't have a record of that email or password")
                 res.status(401).json({
                     message: "We don't have a record of that email or password"
                 });
