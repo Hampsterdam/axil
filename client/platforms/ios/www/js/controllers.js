@@ -5,7 +5,7 @@ angular.module('axil.controllers', [])
 
     $scope.login = function() {
     console.log('email:', $scope.loginInfo.email, "password:", $scope.loginInfo.password);
-      AuthFactory.login($scope.email, $scope.password)
+      AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         console.log('response:', response);
         if (response.token) {
