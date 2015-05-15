@@ -12,8 +12,14 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
+            if (!results.rows[0]) {
+                res.status(401).json({
+                    message: "We don't have a record of that email address"
+                });
+            } 
             var hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync());
             var authenticate = bcrypt.compareSync(req.body.password, results.rows[0].password);
+            
             if (authenticate) {
                 res.status(200).json({
                     token: token
