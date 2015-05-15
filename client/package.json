@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "Axil Mobile",
   "version": "1.0.0",
-  "description": "client: An Ionic project",
+  "description": "Axil: A photo sharing application that associates your media with a time and place.",
   "dependencies": {
     "cloudinary": "^1.2.1",
     "gulp": "^3.5.6",

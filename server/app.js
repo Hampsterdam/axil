@@ -31,8 +31,7 @@ app.use(allowCrossDomain);
 
 // Protect /api routes with JWT
 app.use(bodyParser.json());
-// app.use(express.urlencoded());
-app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup']}));
+app.use('/api', expressJwt({secret: jwtSecret}).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/upload', '/api/users']}));
 
 // Setup and Initialize socket.io
 var io = require('socket.io')(server);

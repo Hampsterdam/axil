@@ -1,6 +1,8 @@
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'mysecret';
 var DB = require('../../components/pg.js');
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
 
 exports.login = function(req, res) {
     var token = jwt.sign({
@@ -11,7 +13,9 @@ exports.login = function(req, res) {
         if (err) {
             console.log("Error in login:", err);
         } else {
-            if (results.rows[0] && results.rows[0].password === req.body.password) {
+            var hash = bcrypt.hashSync(req.body.password, salt);
+
+            if (results.rows[0] && hash === results.rows[0].password) {
                 res.status(200).json({
                     token: token
                 });
@@ -28,13 +32,31 @@ exports.signup = function(req, res) {
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
+    var hash = bcrypt.hashSync(req.body.password, salt);
 
-    DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, req.body.password], function(err, results) {
+    DB.client.query("SELECT * FROM users WHERE email = $1", [req.body.email], function(err, results) {
         if (err) {
             console.log("Error in signup:", err);
+        } else if (results.rows.length > 0){
+            res.status(401).json({
+                message: "That email address is already in use"
+            });
         } else {
-            var request = {body: {email: req.body.email, password: req.body.password } }
-            exports.login(request, res);
+            var hash = bcrypt.hashSync(req.body.password, salt);
+
+            DB.client.query("INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4)", [req.body.firstname, req.body.lastname, req.body.email, hash], function(err, results) {
+                if (err) {
+                    console.log("Error in signup:", err);
+                } else {
+                    var request = {body: {email: req.body.email, password: req.body.password } }
+                    exports.login(request, res);
+                }
+            }); 
         }
+
     });
+}
+
+exports.logout = function(req, res) {
+
 }

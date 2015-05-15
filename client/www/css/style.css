@@ -5,7 +5,36 @@ html, body {
 }
 
 #map {
-    height: 800px;
+    height: 700px;
      /*Change 100% to 400px and the map will display    */
     width: 100%;
 }
+
+.spinner svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  fill: white;
+  z-index: 100;
+}
+
+.map_image {
+	height: 100%;
+	width: 200px;
+}
+
+.alert {
+  height: 20px;
+  font-size: 10px;
+  background-color: green;
+  color: white;
+}
+
+.image-icon img {
+  height: 52px !important;
+  width: 52px !important;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0080ff;
+}
+
