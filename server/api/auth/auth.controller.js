@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
 exports.login = function(req, res) {
+    console.log("auth request:", req);
     var token = jwt.sign({
         email: req.body.email
     }, jwtSecret);
