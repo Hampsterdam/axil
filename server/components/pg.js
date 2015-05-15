@@ -54,26 +54,26 @@ var connectDB = function(cb, fixtures){
 
 	connectDB(function() {
 		//TABLE DROP
-		DB.client.query("DROP TABLE users", function(err, results){
-			if(err) console.log("users DROP ERROR:", err);
-			console.log("Dropped 'users' table." );
-		});
-		DB.client.query("DROP TABLE media", function(err, results){
-			if(err) console.log("media DROP ERROR:", err);
-			console.log("Dropped 'media' table." );
-		});
-		DB.client.query("DROP TABLE friends", function(err, results){
-			if(err) console.log("friends DROP ERROR:", err);
-			console.log("Dropped 'friends' table." );
-		});
-		DB.client.query("DROP TABLE tags", function(err, results){
-			if(err) console.log("tags DROP ERROR:", err);
-			console.log("Dropped 'tags' table." );
-		});
-		DB.client.query("DROP TABLE tags_media", function(err, results){
-			if(err) console.log("tags_media DROP ERROR:", err);
-			console.log("Dropped 'tags_media' table." );
-		});
+		// DB.client.query("DROP TABLE users", function(err, results){
+		// 	if(err) console.log("users DROP ERROR:", err);
+		// 	console.log("Dropped 'users' table." );
+		// });
+		// DB.client.query("DROP TABLE media", function(err, results){
+		// 	if(err) console.log("media DROP ERROR:", err);
+		// 	console.log("Dropped 'media' table." );
+		// });
+		// DB.client.query("DROP TABLE friends", function(err, results){
+		// 	if(err) console.log("friends DROP ERROR:", err);
+		// 	console.log("Dropped 'friends' table." );
+		// });
+		// DB.client.query("DROP TABLE tags", function(err, results){
+		// 	if(err) console.log("tags DROP ERROR:", err);
+		// 	console.log("Dropped 'tags' table." );
+		// });
+		// DB.client.query("DROP TABLE tags_media", function(err, results){
+		// 	if(err) console.log("tags_media DROP ERROR:", err);
+		// 	console.log("Dropped 'tags_media' table." );
+		// });
 
 
 
@@ -114,7 +114,7 @@ var connectDB = function(cb, fixtures){
 			if(err) console.log("tags_media ERROR:", err);
 			console.log("Created 'tags_media' table." );
 			// Kind of hacky but it works!!! :(
-			fixtures.createFixtures();
+			// fixtures.createFixtures();
 		});
 	});
 })();
