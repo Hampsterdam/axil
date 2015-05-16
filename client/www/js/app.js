@@ -26,25 +26,20 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 
   $stateProvider
 
-  .state('signup', {
-      url: '/',
-      templateUrl: 'templates/signup.html',
-      controller: 'SignupCtrl'
+  .state('/', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
   })
+  // .state('signup', {
+  //     url: '/',
+  //     templateUrl: 'templates/signup.html',
+  //     controller: 'SignupCtrl'
+  // })
   .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
-  })
-
-  .state('tab.login', {
-    url: '/login',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-login.html',
-        controller: 'LoginCtrl'
-      }
-    }
   })
   .state('tab.explore', {
     url: '/explore',
@@ -76,6 +71,6 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 
   // Redirect to Login otherwise
   $httpProvider.interceptors.push('Interceptor');
-  $urlRouterProvider.otherwise('/tab/login');
+  $urlRouterProvider.otherwise('/login');
 });
 

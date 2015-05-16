@@ -3,11 +3,11 @@
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
-        <input type="text" placeholder="john@phoenix.com" ng-model="loginInfo.email">
+        <input autocapitalize="off" autocorrect="off" type="text" placeholder="john@phoenix.com" ng-model="loginInfo.email">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Password</span>
-        <input type="text" placeholder="********" ng-model="loginInfo.password">
+        <input autocapitalize="off"  autocorrect="off" type="password" placeholder="********" ng-model="loginInfo.password">
       </label>
       <button class="button button-block button-positive" ng-click="login()">
         Login

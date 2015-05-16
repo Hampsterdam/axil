@@ -22,29 +22,24 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 })
 
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   $stateProvider
 
-  .state('signup', {
-      url: '/',
-      templateUrl: 'templates/signup.html',
-      controller: 'SignupCtrl'
+  .state('/', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
   })
+  // .state('signup', {
+  //     url: '/',
+  //     templateUrl: 'templates/signup.html',
+  //     controller: 'SignupCtrl'
+  // })
   .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
-  })
-
-  .state('tab.login', {
-    url: '/login',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-login.html',
-        controller: 'LoginCtrl'
-      }
-    }
   })
   .state('tab.explore', {
     url: '/explore',
@@ -75,7 +70,7 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 
   // Redirect to Login otherwise
-  $urlRouterProvider.otherwise('/tab/login');
-
+  $httpProvider.interceptors.push('Interceptor');
+  $urlRouterProvider.otherwise('/login');
 });
 

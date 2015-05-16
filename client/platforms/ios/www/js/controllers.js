@@ -1,16 +1,18 @@
 angular.module('axil.controllers', [])
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory){
+.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory, TokenFactory){
 	 $scope.loginInfo = {}; 
-
+   $rootScope.authenticated = false;
     $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
-            $window.localStorage.setItem("token", response.data.token);
+            delete $window.localStorage['token'];
+            TokenFactory.setToken(response.data.token);
+            $rootScope.authenticated = true;
             $state.go('tab.explore')
         } else {
-            delete localStorage["token"];
+            delete $window.localStorage['token'];
             $scope.loginError = true;
         }
       })
@@ -23,6 +25,12 @@ angular.module('axil.controllers', [])
         return false;
     }
 
+    $scope.logout = function(){
+      console.log('logout fired!');
+      delete $window.localStorage['token'];
+      $state.go('/');
+    }
+
 
 })
 
@@ -32,11 +40,13 @@ angular.module('axil.controllers', [])
     $scope.firstname = "firstname";
     $scope.lastname = "lastname";
     $scope.signinError = false;
-
+    $rootScope.authenticated = false;
+    
     $scope.signup = function() {
         var response = AuthFactory.login($scope.email, $scope.password, $scope.firstname, $scope.lastname)
         if (resonse.data.token) {
             $window.localStorage.setItem("token", response.data.token);
+            $rootScope.authenticated = true;
         } else {
             delete sessionStorage.token;
             $scope.signinError = true;
