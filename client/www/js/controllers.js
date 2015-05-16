@@ -1,16 +1,15 @@
 angular.module('axil.controllers', [])
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory){
+.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory, TokenFactory){
 	 $scope.loginInfo = {}; 
 
     $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
-            $window.localStorage.setItem("token", response.data.token);
+            TokenFactory.setToken(response.data.token);
             $state.go('tab.explore')
         } else {
-            delete localStorage["token"];
             $scope.loginError = true;
         }
       })

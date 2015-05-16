@@ -22,7 +22,7 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 })
 
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   $stateProvider
 
@@ -76,6 +76,6 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 
   // Redirect to Login otherwise
   $urlRouterProvider.otherwise('/tab/login');
-
+  $httpProvider.interceptors.push('Interceptor');
 });
 

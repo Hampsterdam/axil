@@ -300,6 +300,38 @@ angular.module('axil.services', [])
         }
       };
 })
+.factory('TokenFactory', function($window){
+    function setToken(token){
+        if(token){
+            $window.localStorage.setItem('token', token)
+        } else {
+            $window.localStorage.removeItem('token');
+        }
+    }
+
+    function getToken(){
+        return $window.localStorage.getItem('token');
+    }
+
+    return {
+        setToken: setToken,
+        getToken: getToken
+    }
+})
+.factory('Interceptor', function(TokenFactory){
+    function request(config){
+        var token = TokenFactory.getToken();
+        if(token){
+            config.headers = config.headers || {};
+            config.headers.Authorization = 'Bearer ' + token;
+        }
+        return config;
+    }
+
+    return {
+        request: request
+    }
+})
 
 
 
