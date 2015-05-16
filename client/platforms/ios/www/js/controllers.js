@@ -7,12 +7,13 @@ angular.module('axil.controllers', [])
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
-            delete $window.localStorage['token'];
+            console.log('########$scope.login .then(response)', JSON.stringify(response.data.token));
+            delete $window.localStorage.removeItem('token');
             TokenFactory.setToken(response.data.token);
             $rootScope.authenticated = true;
             $state.go('tab.explore')
         } else {
-            delete $window.localStorage['token'];
+            delete $window.localStorage.removeItem('token');
             $scope.loginError = true;
         }
       })
@@ -27,7 +28,7 @@ angular.module('axil.controllers', [])
 
     $scope.logout = function(){
       console.log('logout fired!');
-      delete $window.localStorage['token'];
+      delete $window.localStorage.removeItem('token');
       $state.go('/');
     }
 

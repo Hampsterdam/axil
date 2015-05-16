@@ -17,13 +17,14 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
     }
   });
 })
-.config(function($httpProvider){
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-})
+// .config(function($httpProvider){
+//     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+// })
 
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
+  $httpProvider.interceptors.push('Interceptor');
   $stateProvider
 
   .state('/', {
@@ -70,7 +71,6 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 
   // Redirect to Login otherwise
-  $httpProvider.interceptors.push('Interceptor');
   $urlRouterProvider.otherwise('/login');
 });
 
