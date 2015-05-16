@@ -321,6 +321,7 @@ angular.module('axil.services', [])
 .factory('Interceptor', function(TokenFactory){
     function request(config){
         var token = TokenFactory.getToken();
+        console.log('Interceptor Token', token);
         if(token){
             config.headers = config.headers || {};
             config.headers.Authorization = 'Bearer ' + token;

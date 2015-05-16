@@ -7,9 +7,11 @@ angular.module('axil.controllers', [])
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
+            delete $window.localStorage['token'];
             TokenFactory.setToken(response.data.token);
             $state.go('tab.explore')
         } else {
+            delete $window.localStorage['token'];
             $scope.loginError = true;
         }
       })

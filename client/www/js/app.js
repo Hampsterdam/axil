@@ -75,7 +75,7 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 
   // Redirect to Login otherwise
-  $urlRouterProvider.otherwise('/tab/login');
   $httpProvider.interceptors.push('Interceptor');
+  $urlRouterProvider.otherwise('/tab/login');
 });
 
