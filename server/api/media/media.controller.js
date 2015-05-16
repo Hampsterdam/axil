@@ -44,6 +44,7 @@ exports.getUniqueMedia = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
+    console.log('add media called!')
     var url = JSON.parse(req.body.uri.response).url
     console.log('url:', url);
 
@@ -203,7 +204,7 @@ exports.getMediaByTime = function(req, res) {
 }
 
 exports.uploadMedia = function(req, res) {
-  console.log('upload media called:', req.files.file.path);
+  console.log('upload media called!');
   cloudinary.uploader.upload(req.files.file.path, function(result) { 
     console.log('cloudinary result:', result.url);
     res.status(201).json({ url: result.url });

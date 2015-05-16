@@ -14,6 +14,7 @@ angular.module('axil.services', [])
                 password: password
             }
         }).success(function(response) {
+            console.log('##################AuthFactoryLogin response:', JSON.stringify(response));
             return response;
         });
     };
@@ -321,11 +322,12 @@ angular.module('axil.services', [])
 .factory('Interceptor', function(TokenFactory){
     function request(config){
         var token = TokenFactory.getToken();
-        console.log('Interceptor Token', token);
         if(token){
             config.headers = config.headers || {};
             config.headers.Authorization = 'Bearer ' + token;
         }
+        console.log('#####Interceptor config:', JSON.stringify(config));
+        console.log('________________________________________________________________');
         return config;
     }
 

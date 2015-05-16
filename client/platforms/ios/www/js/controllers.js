@@ -1,18 +1,20 @@
 angular.module('axil.controllers', [])
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $window, AuthFactory, TokenFactory){
-	 $scope.loginInfo = {}; 
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
+
+   $scope.loginInfo = {}; 
    $rootScope.authenticated = false;
     $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
-            delete $window.localStorage['token'];
+            console.log('########$scope.login .then(response)', JSON.stringify(response.data.token));
+            delete $window.localStorage.removeItem('token');
             TokenFactory.setToken(response.data.token);
             $rootScope.authenticated = true;
             $state.go('tab.explore')
         } else {
-            delete $window.localStorage['token'];
+            delete $window.localStorage.removeItem('token');
             $scope.loginError = true;
         }
       })
@@ -27,7 +29,7 @@ angular.module('axil.controllers', [])
 
     $scope.logout = function(){
       console.log('logout fired!');
-      delete $window.localStorage['token'];
+      delete $window.localStorage.removeItem('token');
       $state.go('/');
     }
 
@@ -133,12 +135,35 @@ angular.module('axil.controllers', [])
   UserFactory.getUniqueUser()
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
+
+  //Setting up modal
 
   $ionicPlatform.ready(function() {
+    
+    $ionicModal.fromTemplateUrl('upload-media-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal){
+      $scope.modal = modal;
+    })
+
+    $scope.openModal = function(){
+      $scope.modal.show();
+    }
+
+    $scope.closeModal = function(){
+      $scope.modal.hide();
+    }
+
+    $scope.$on('$destroy', function(){
+      $scope.modal.remove();
+    })
+  
     $scope.images = [];
     $rootScope.spinner = false;  
     $scope.addImage = function() {
+
       var options = {
         quality: 15,
         destinationType : Camera.DestinationType.FILE_URI,
@@ -151,14 +176,15 @@ angular.module('axil.controllers', [])
       };
 
       $cordovaCamera.getPicture(options).then(function(imageData) {
-        $state.go('tab.explore');
         $rootScope.spinner = true;
         var options = {}
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
+              $scope.openModal();
               var posOptions = {timeout: 10000, enableHighAccuracy: true};
               $cordovaGeolocation.getCurrentPosition(posOptions)
               .then(function(position) {
+                $state.go('tab.explore');
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
