@@ -22,7 +22,8 @@ exports.login = function(req, res) {
                 
                 if (authenticate) {
                     res.status(200).json({
-                        token: token
+                        token: token,
+                        user_id: results.rows[0].user_id
                     });
                 } else {
                     res.status(401).json({
