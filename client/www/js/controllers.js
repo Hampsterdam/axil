@@ -189,7 +189,8 @@ angular.module('axil.controllers', [])
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
               //data is the image url returned from clodinary.
-              $scope.img.url = data.resonse.url;
+              $scope.img.url = JSON.parse(data.response).url;
+              console.log('##### cloudinary PARSED data.response.url:', $scope.img.url + ' #####');
               $scope.openModal();
               var posOptions = {timeout: 10000, enableHighAccuracy: true};
               //Get current position and save the url along with geo location to the database.

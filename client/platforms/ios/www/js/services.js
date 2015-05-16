@@ -14,7 +14,6 @@ angular.module('axil.services', [])
                 password: password
             }
         }).success(function(response) {
-            console.log('##################AuthFactoryLogin response:', JSON.stringify(response));
             return response;
         });
     };
@@ -301,33 +300,41 @@ angular.module('axil.services', [])
         }
       };
 })
-.factory('TokenFactory', function($window){
-    function setToken(token){
-        if(token){
-            $window.localStorage.setItem('token', token)
+.factory('TokenFactory', function($window) {
+    function setToken(data) {
+        if(data.token){
+            $window.localStorage.setItem('token', data.token);
+            $window.localStorage.setItem('user_id', data.user_id);
         } else {
-            $window.localStorage.removeItem('token');
+            deleteToken();
         }
     }
 
-    function getToken(){
+    function getToken() {
         return $window.localStorage.getItem('token');
+    }
+
+    function deleteToken() {
+        $window.localStorage.removeItem('token');
+        $window.localStorage.removeItem('user_id');
     }
 
     return {
         setToken: setToken,
-        getToken: getToken
-    }
+        getToken: getToken,
+        deleteToken: deleteToken
+    };
+
 })
-.factory('Interceptor', function(TokenFactory){
+.factory('Interceptor', function(TokenFactory) {
     function request(config){
         var token = TokenFactory.getToken();
         if(token){
             config.headers = config.headers || {};
             config.headers.Authorization = 'Bearer ' + token;
         }
-        console.log('#####Interceptor config:', JSON.stringify(config));
-        console.log('________________________________________________________________');
+        // console.log('#####Interceptor config:', JSON.stringify(config));
+        // console.log('________________________________________________________________');
         return config;
     }
 

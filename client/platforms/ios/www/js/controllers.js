@@ -4,18 +4,16 @@ angular.module('axil.controllers', [])
 
    $scope.loginInfo = {}; 
    $rootScope.authenticated = false;
-    $scope.login = function() {
+   $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
         if (response.data.token) {
-            console.log('########$scope.login .then(response)', JSON.stringify(response.data.token));
-            delete $window.localStorage.removeItem('token');
-            TokenFactory.setToken(response.data.token);
+            TokenFactory.deleteToken();
+            TokenFactory.setToken(response.data);
             $rootScope.authenticated = true;
             $state.go('tab.explore')
         } else {
-            delete $window.localStorage.removeItem('token');
-            $scope.loginError = true;
+            TokenFactory.deleteToken();
         }
       })
     }
@@ -27,32 +25,36 @@ angular.module('axil.controllers', [])
         return false;
     }
 
-    $scope.logout = function(){
-      console.log('logout fired!');
-      delete $window.localStorage.removeItem('token');
-      $state.go('/');
+    $scope.logout = function() {
+      TokenFactory.deleteToken();
+      $state.go('/login');
     }
 
+    $scope.signupRedirect = function() {
+      $state.go('/signup');
+    }
 
 })
 
-.controller("SignupCtrl", function($scope, AuthFactory, $window) {
-    $scope.email = "";
-    $scope.password = "";
-    $scope.firstname = "firstname";
-    $scope.lastname = "lastname";
+.controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window) {
+    $scope.signupInfo = {};
     $scope.signinError = false;
     $rootScope.authenticated = false;
     
     $scope.signup = function() {
-        var response = AuthFactory.login($scope.email, $scope.password, $scope.firstname, $scope.lastname)
-        if (resonse.data.token) {
-            $window.localStorage.setItem("token", response.data.token);
-            $rootScope.authenticated = true;
-        } else {
-            delete sessionStorage.token;
-            $scope.signinError = true;
-        }
+      console.log("name: ", $scope.signupInfo.firstname + ' ' + $scope.signupInfo.lastname);
+      AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
+        .then(function(response) {
+          console.log("response: ", response );
+          if (response.data.token) {
+              TokenFactory.setToken(response.data);
+              $rootScope.authenticated = true;
+              $state.go("tab.explore");
+          } else {
+              TokenFactory.deleteToken();
+              $scope.signinError = true;
+          }
+        });
     };
 
     $scope.isError = function() {
@@ -60,6 +62,10 @@ angular.module('axil.controllers', [])
             return true;
         }
         return false;
+    }
+
+    $scope.loginRedirect = function() {
+      $state.go('/login');
     }
 
 })
@@ -138,9 +144,8 @@ angular.module('axil.controllers', [])
 .controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
 
   //Setting up modal
-
   $ionicPlatform.ready(function() {
-    
+
     $ionicModal.fromTemplateUrl('upload-media-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -161,6 +166,7 @@ angular.module('axil.controllers', [])
     })
   
     $scope.images = [];
+    $scope.img = {};
     $rootScope.spinner = false;  
     $scope.addImage = function() {
 
@@ -174,14 +180,20 @@ angular.module('axil.controllers', [])
         saveToPhotoAlbum: true,
         correctOrientation: true
       };
-
+      
+      //Launch Camera
       $cordovaCamera.getPicture(options).then(function(imageData) {
         $rootScope.spinner = true;
         var options = {}
+        //Upload request to phoenix api, then to cloudinary.
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
+              //data is the image url returned from clodinary.
+              $scope.img.url = JSON.parse(data.response).url;
+              console.log('##### cloudinary PARSED data.response.url:', $scope.img.url + ' #####');
               $scope.openModal();
               var posOptions = {timeout: 10000, enableHighAccuracy: true};
+              //Get current position and save the url along with geo location to the database.
               $cordovaGeolocation.getCurrentPosition(posOptions)
               .then(function(position) {
                 $state.go('tab.explore');
