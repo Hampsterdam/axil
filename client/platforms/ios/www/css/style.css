@@ -38,3 +38,14 @@ html, body {
   border-color: #0080ff;
 }
 
+.media-modal{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  top:0;
+  left:0;
+}
+

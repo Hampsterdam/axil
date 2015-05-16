@@ -326,7 +326,7 @@ angular.module('axil.services', [])
             config.headers = config.headers || {};
             config.headers.Authorization = 'Bearer ' + token;
         }
-        console.log('#$#$#$#$#$#$#$#$#$#$Interceptor config:', JSON.stringify(config));
+        console.log('#####Interceptor config:', JSON.stringify(config));
         console.log('________________________________________________________________');
         return config;
     }
