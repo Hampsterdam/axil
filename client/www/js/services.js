@@ -14,7 +14,6 @@ angular.module('axil.services', [])
                 password: password
             }
         }).success(function(response) {
-            // console.log('##################AuthFactoryLogin response:', JSON.stringify(response));
             return response;
         });
     };

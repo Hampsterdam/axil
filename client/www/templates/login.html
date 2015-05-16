@@ -3,7 +3,7 @@
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
-        <input autocapitalize="off" autocorrect="off" type="text" placeholder="john@phoenix.com" ng-model="loginInfo.email">
+        <input autocapitalize="off" autocorrect="off" type="email" placeholder="john@phoenix.com" ng-model="loginInfo.email">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Password</span>
@@ -11,6 +11,9 @@
       </label>
       <button class="button button-block button-positive" ng-click="login()">
         Login
+      </button>
+      <button class="button button-block button-positive" ng-click="signupRedirect()">
+        New to Axil? Sign up!
       </button>
     </div>
   </ion-content>

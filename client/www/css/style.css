@@ -49,3 +49,8 @@ html, body {
   left:0;
 }
 
+.modal-thumnail {
+  height: 200px;
+  width: 200px;
+}
+

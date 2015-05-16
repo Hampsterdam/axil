@@ -26,10 +26,15 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
 
   $httpProvider.interceptors.push('Interceptor');
   $stateProvider
-  .state('/', {
+  .state('/login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+  .state('/signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'SignupCtrl'
   })
   .state('tab', {
     url: "/tab",
