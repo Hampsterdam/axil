@@ -16,7 +16,6 @@ var expressJwt = require('express-jwt');
 var jwtSecret = 'mysecret';
 
 app.use(function (req, res, next) {
-	console.log("Request:", req);
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With,Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
