@@ -155,17 +155,17 @@ angular.module('axil.controllers', [])
 // Main controller for the Profile Page
 // TODO: Fetch the logged in users info to load their profile and list their uploaded media (with associated data)
 // Dynamically spin up profile views for other users if the logged in user wants to view someone else's profile.
-.controller('ProfileCtrl', function($scope, UserFactory) {
+.controller('ProfileCtrl', function($scope, UserFactory, MediaFactory, TokenFactory) {
   $scope.userInfo = {};
+  $scope.userInfo.user_id = TokenFactory.getToken().user_id;
 
   // Fetch the user's profile information from the database
-  UserFactory.getUniqueUser()
+  UserFactory.getUniqueUser($scope.user_id)
   .then(function(data) {
     // Assign the profile information to scope variables
     $scope.userInfo.firstname = data.firstname;
     $scope.userInfo.lastname = data.lastname;
-    $scope.userInfo.email = data.emailAddress;
-    $scope.userInfo.user_id = data.user_id;
+    $scope.userInfo.email = data.email;
   });
 
   // Get the user's media from the database and store it in MediaList
