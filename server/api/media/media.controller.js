@@ -43,6 +43,18 @@ exports.getUniqueMedia = function(req, res) {
   });
 }
 
+exports.getMediaByUser = function(req, res) {
+    DB.client.query('SELECT * FROM media WHERE user_id = $1', [req.params.user_id], function(err, result) {
+        if (result && result.rows.length > 0) {
+            res.status(200).json(result.rows);
+        } else {
+            res.status(200).json({
+                message: "This user has not uploaded any media yet"
+            });
+        }
+    });
+}
+
 exports.addMedia = function(req, res){
     console.log('add media called!')
     var url = JSON.parse(req.body.uri.response).url

@@ -68,7 +68,7 @@ MEDIA FACTORY ("../api/media")
             method: 'GET',
             url: myConfig.serverUrl + '/media'
         }).then(function(data) {
-            return data
+            return data;
         });
     };
     
@@ -78,10 +78,20 @@ MEDIA FACTORY ("../api/media")
             method: 'GET',
             url: myConfig.serverUrl + '/media/' + media_id
         }).then(function(data) {
-            return data
+            return data;
         });
     };
     
+    // Get All Media By a Unique User
+    function getMediaByUser (user_id) {
+        return $http({
+            method: 'GET',
+            url: myConfig.serverUrl + '/media/mediabyuser/' + user_id
+        }).then(function(data) {
+            return data;
+        });
+    };
+
     // Add media to the database
     function addMedia (uri, type, lat, lon, user_id, tag, likes) {
         return $http({
