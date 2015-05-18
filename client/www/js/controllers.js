@@ -4,33 +4,40 @@ angular.module('axil.controllers', [])
 
    $scope.loginInfo = {};
    $rootScope.authenticated = false;
+
+   // Primary Login Method, uses Auth Factory to send login request to the API
    $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
       .then(function(response){
+        // The response will contain a json web token if the login was successful
         if (response.data.token) {
             TokenFactory.deleteToken();
             TokenFactory.setToken(response.data);
             $rootScope.authenticated = true;
             $state.go('tab.explore')
         } else {
+            $scope.loginError = true;
             TokenFactory.deleteToken();
         }
       })
     }
 
+     // Helper function to keep track of login status
     $scope.isError = function() {
         if ($scope.loginError) {
             return true;
         }
         return false;
     }
-
+    // Simple logout... delete the token on the client side
+    // TODO - delete the server side token as well
     $scope.logout = function() {
       TokenFactory.deleteToken();
       $rootScope.authenticated = false;
       $state.go('/login');
     }
 
+    // If the user wants to sign up, redirect to the signup view
     $scope.signupRedirect = function() {
       $state.go('/signup');
     }
@@ -42,11 +49,10 @@ angular.module('axil.controllers', [])
     $scope.signinError = false;
     $rootScope.authenticated = false;
 
+    // Main Signup Method, uses the AuthFactory to create a new user and log the user in with a new session token.
     $scope.signup = function() {
-      console.log("name: ", $scope.signupInfo.firstname + ' ' + $scope.signupInfo.lastname);
       AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
         .then(function(response) {
-          console.log("response: ", response );
           if (response.data.token) {
               TokenFactory.setToken(response.data);
               $rootScope.authenticated = true;
@@ -58,6 +64,7 @@ angular.module('axil.controllers', [])
         });
     };
 
+    // Auth Helper Function, not yet in use
     $scope.isError = function() {
         if ($scope.signinError) {
             return true;
@@ -65,14 +72,18 @@ angular.module('axil.controllers', [])
         return false;
     }
 
+    // Simple state redirect to login
     $scope.loginRedirect = function() {
       $state.go('/login');
     }
 
 })
 
+// Controller for the Explore Page
+// Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
 .controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, MediaFactory, MapFactory, Socket) {
 
+  // Wrapper function that listens for when the state is ready
   $ionicPlatform.ready(function() {
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
 
@@ -93,9 +104,11 @@ angular.module('axil.controllers', [])
       }
     });
 
+    //Renders list view for selected marker cluster.
     $scope.listView = function() {
       console.log('listView fired');
     }
+    // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;
@@ -108,6 +121,7 @@ angular.module('axil.controllers', [])
 
       })
 
+    // Keep track of the user as they move (while the application is running, no background tracking)
     var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
     $cordovaGeolocation
       .watchPosition(watchOptions)
@@ -115,13 +129,14 @@ angular.module('axil.controllers', [])
         // geolocation down, no worries
       }, function(position){
         // Set a marker at the user's location
-         // No phone support for pan
          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
          MapFactory.updateUserPosition(position.coords);
       });
 
+    // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
+        // Populate the map with media clusters
         MapFactory.populateMap(data.data, clusters, map);
     });
 
@@ -130,25 +145,29 @@ angular.module('axil.controllers', [])
       MapFactory.populateMap([data], clusters, map);
     });
 
-    // center the map on a selected marker
+    // Center the map on a selected marker
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
     });
 
-    // center the map on the user when selected
+    // Center the map on the user when selected
     user.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
     });
   });
  })
 
+// Main controller for the Profile Page
+// TODO: Fetch the logged in users info to load their profile and list their uploaded media (with associated data)
+// Dynamically spin up profile views for other users if the logged in user wants to view someone else's profile.
 .controller('ProfileCtrl', function($scope, UserFactory) {
   UserFactory.getUniqueUser()
 })
 
+// Main Controller for the Add Media Tab ( the camera )
 .controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
 
-  //Setting up modal
+  //Setting up the Upload Media Modal that will pop up after the user has taken a video/picture
   $ionicPlatform.ready(function() {
 
     $ionicModal.fromTemplateUrl('upload-media-modal.html', {
@@ -173,8 +192,12 @@ angular.module('axil.controllers', [])
     $scope.images = [];
     $scope.media = {};
     $rootScope.spinner = false;
+
+
+    // If the user opts to add an image, this method will be called
     $scope.addImage = function() {
 
+      // Set the options for image upload to the server/cloudinary
       var options = {
         quality: 15,
         destinationType : Camera.DestinationType.FILE_URI,
@@ -193,16 +216,19 @@ angular.module('axil.controllers', [])
         //Upload request to phoenix api, then to cloudinary.
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
-              //data is the image url returned from clodinary.
+              //data is the image url returned from clodinary. Set the image thumbail
               $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
+              // Open the uplaod media modal
               $scope.openModal();
               var posOptions = {timeout: 30000, enableHighAccuracy: true};
               //Get current position and save the url along with geo location to the database.
               $cordovaGeolocation.getCurrentPosition(posOptions)
               .then(function(position) {
+                // Redirect to the Exlore Page
                 $state.go('tab.explore');
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
+                // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
                 var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
                 mediaFactory.then(function(response){
                   $rootScope.spinner = false;
@@ -215,28 +241,34 @@ angular.module('axil.controllers', [])
       });
   }
 
+  // If the user opts to add a video, this method will be called
   $scope.addVideo = function(){
-    var options = { limit: 3, duration: 10 };
+    // Set the time limit for the video and limit the number of videos per upload (no iOS support)
+    var options = { limit: 1, duration: 10 };
 
+    // Launch the video-camera with the options that we've defined
     $cordovaCapture.captureVideo(options).then(function(videoData) {
       $rootScope.spinner = true;
       var options = {};
       // Success! Video data is here
       $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
       .then(function(data){
-        console.log("DATA: ", JSON.stringify(data));
+        // Set the thumbnail Image
         $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
-        $scope.openModal()
+        // Open the upload media modal
+        $scope.openModal();
         var posOptions = {timeout: 30000, enableHighAccuracy: true};
 
+        //Get current position and save the url along with geo location to the database.
         $cordovaGeolocation.getCurrentPosition(posOptions)
         .then(function(position){
+          // Redirect to the explore page
           $state.go('tab.explore');
           var lat = position.coords.latitude;
           var lon = position.coords.longitude;
+          // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
           var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, '1', 'ATX', '125');
           mediaFactory.then(function(response){
-            console.log('Video media factory response:', response);
             $rootScope.spinner = false;
           })
         })
