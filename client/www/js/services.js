@@ -93,7 +93,7 @@ MEDIA FACTORY ("../api/media")
     };
 
     // Add media to the database
-    function addMedia (uri, type, lat, lon, user_id, tag) {
+    function addMedia (uri, type, lat, lon, user_id, tag, likes) {
         return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/media',
@@ -103,7 +103,8 @@ MEDIA FACTORY ("../api/media")
                 lat: lat,
                 lon: lon,
                 user_id: user_id,
-                tag: tag
+                tag: tag,
+                likes: likes
             }
         }).then(function(res) {
             return res;

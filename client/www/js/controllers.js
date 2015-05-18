@@ -212,10 +212,15 @@ angular.module('axil.controllers', [])
     $scope.images = [];
     $scope.media = {};
     $rootScope.spinner = false; 
-
+    
+    //User info needed to associate the uploaded media with the logged in user
     $scope.userInfo = {};
-
     $scope.userInfo.user_id = TokenFactory.getUserId();
+    
+    // Upload info captured in the upload media modal (tab-camera.html)
+    $scope.uploadInfo = {};
+    $scope.uploadInfo.tags = "";
+    
 
     // If the user opts to add an image, this method will be called
     $scope.addImage = function() {
@@ -252,7 +257,7 @@ angular.module('axil.controllers', [])
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
-                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, $scope.userInfo.user_id, 'ATX')
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, $scope.userInfo.user_id, 'ATX', 0)
                 mediaFactory.then(function(response){
                   $rootScope.spinner = false;
                 })
@@ -290,7 +295,7 @@ angular.module('axil.controllers', [])
           var lat = position.coords.latitude;
           var lon = position.coords.longitude;
           // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
-          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, $scope.userInfo.user_id, 'ATX');
+          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, $scope.userInfo.user_id, 'ATX', 0);
           mediaFactory.then(function(response){
             $rootScope.spinner = false;
           })

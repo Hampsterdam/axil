@@ -23,7 +23,6 @@ app.use(function (req, res, next) {
 });
 
 app.use(function(req, res, next){
-	console.log('Request authorization:', req.Authorization);
 	next();
 })
 
