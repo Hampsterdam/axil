@@ -215,7 +215,13 @@ angular.module('axil.controllers', [])
     var options = { limit: 3, duration: 10 };
 
     $cordovaCapture.captureVideo(options).then(function(videoData) {
+      console.log("--------------- Video data:", videoData[0].fullPath, '------------------------');
+      var options = {};
       // Success! Video data is here
+      $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', videoData[0].fullPath, options)
+      .then(function(data){
+        console.log("DATA: ", JSON.stringify(data));
+      })
     }, function(err) {
       // An error occurred. Show a message to the user
     });

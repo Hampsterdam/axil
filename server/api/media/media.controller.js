@@ -3,10 +3,10 @@
 var DB = require('../../components/pg.js');
 var cloudinary = require('cloudinary');
 
-cloudinary.config({ 
-  cloud_name: 'hcnlf3ljw', 
-  api_key: '513268448851729', 
-  api_secret: 'zbfcsUPG9FMH9gYA25UJ2MBIlBU' 
+cloudinary.config({
+  cloud_name: 'hcnlf3ljw',
+  api_key: '513268448851729',
+  api_secret: 'zbfcsUPG9FMH9gYA25UJ2MBIlBU'
 });
 
 exports.getMedia = function(req, res){
@@ -31,7 +31,7 @@ exports.getMedia = function(req, res){
     //   if(!filter.order) res.sendStatus(400)
     //   query += ' ORDER BY ' + filter.orderBy + (filter.order > 0 ? ' ASC ;': ' DESC;')
     // }
-    
+
   }
 }
 
@@ -205,8 +205,16 @@ exports.getMediaByTime = function(req, res) {
 
 exports.uploadMedia = function(req, res) {
   console.log('upload media called!');
-  cloudinary.uploader.upload(req.files.file.path, function(result) { 
-    console.log('cloudinary result:', result.url);
+  cloudinary.uploader.upload(req.files.file.path, function(result) {
+    console.log('cloudinary image upload result:', result.url);
     res.status(201).json({ url: result.url });
   });
+}
+
+exports.uploadVideo = function(req, res) {
+  console.log('upload video called');
+  cloudinary.uploader.upload(req.files.file.path, function result {
+    console.log('cloudinary video upload result:', result.url);
+    res.status(201).json({ url: result.url });
+  }, { resource_type: "video" });
 }
