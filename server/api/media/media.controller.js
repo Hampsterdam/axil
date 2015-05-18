@@ -46,7 +46,7 @@ exports.getUniqueMedia = function(req, res) {
 exports.addMedia = function(req, res){
     console.log('add media called!')
     var url = JSON.parse(req.body.uri.response).url
-    var thumb = url.slice(-3) + 'jpg';
+    var thumb = url.slice(0, -3) + 'jpg';
     console.log('url:', url, 'thumb:', thumb);
 
     var media_id, tag_id;
