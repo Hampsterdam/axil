@@ -215,12 +215,32 @@ angular.module('axil.controllers', [])
 // Main controller for the Profile Page
 // TODO: Fetch the logged in users info to load their profile and list their uploaded media (with associated data)
 // Dynamically spin up profile views for other users if the logged in user wants to view someone else's profile.
-.controller('ProfileCtrl', function($scope, UserFactory) {
-  UserFactory.getUniqueUser()
+.controller('ProfileCtrl', function($scope, UserFactory, MediaFactory, TokenFactory) {
+  $scope.userInfo = {};
+  $scope.userInfo.user_id = TokenFactory.getUserId();
+
+  // Fetch the user's profile information from the database
+  UserFactory.getUniqueUser($scope.userInfo.user_id)
+  .then(function(data) {
+    var user = data.data[0];
+    // Assign the profile information to scope variables
+    $scope.userInfo.firstname = user.firstname;
+    $scope.userInfo.lastname = user.lastname;
+    $scope.userInfo.email = user.email;
+  });
+
+  // Get the user's media from the database and store it in MediaList
+  MediaFactory.getMediaByUser($scope.userInfo.user_id)
+  .then(function(data) {
+    $scope.userInfo.mediaList = data.data;
+    console.log($scope.userInfo.mediaList);
+  });
+
+
 })
 
 // Main Controller for the Add Media Tab ( the camera )
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, TokenFactory) {
 
   //Setting up the Upload Media Modal that will pop up after the user has taken a video/picture
   $ionicPlatform.ready(function() {
@@ -246,8 +266,16 @@ angular.module('axil.controllers', [])
 
     $scope.images = [];
     $scope.media = {};
-    $rootScope.spinner = false;
-
+    $rootScope.spinner = false; 
+    
+    //User info needed to associate the uploaded media with the logged in user
+    $scope.userInfo = {};
+    $scope.userInfo.user_id = TokenFactory.getUserId();
+    
+    // Upload info captured in the upload media modal (tab-camera.html)
+    $scope.uploadInfo = {};
+    $scope.uploadInfo.tags = "";
+    
 
     // If the user opts to add an image, this method will be called
     $scope.addImage = function() {
@@ -284,7 +312,7 @@ angular.module('axil.controllers', [])
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
-                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, '1', 'ATX', '125')
+                var mediaFactory = MediaFactory.addMedia(data, 'image', lat, lon, $scope.userInfo.user_id, 'ATX', 0)
                 mediaFactory.then(function(response){
                   $rootScope.spinner = false;
                 })
@@ -322,7 +350,7 @@ angular.module('axil.controllers', [])
           var lat = position.coords.latitude;
           var lon = position.coords.longitude;
           // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
-          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, '1', 'ATX', '125');
+          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, $scope.userInfo.user_id, 'ATX', 0);
           mediaFactory.then(function(response){
             $rootScope.spinner = false;
           })

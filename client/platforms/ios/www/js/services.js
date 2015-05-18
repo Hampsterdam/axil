@@ -68,7 +68,7 @@ MEDIA FACTORY ("../api/media")
             method: 'GET',
             url: myConfig.serverUrl + '/media'
         }).then(function(data) {
-            return data
+            return data;
         });
     };
     
@@ -78,10 +78,20 @@ MEDIA FACTORY ("../api/media")
             method: 'GET',
             url: myConfig.serverUrl + '/media/' + media_id
         }).then(function(data) {
-            return data
+            return data;
         });
     };
     
+    // Get All Media By a Unique User
+    function getMediaByUser (user_id) {
+        return $http({
+            method: 'GET',
+            url: myConfig.serverUrl + '/media/mediabyuser/' + user_id
+        }).then(function(data) {
+            return data;
+        });
+    };
+
     // Add media to the database
     function addMedia (uri, type, lat, lon, user_id, tag, likes) {
         return $http({
@@ -171,6 +181,7 @@ MEDIA FACTORY ("../api/media")
     return {
         addMedia: addMedia,
         getAllMedia: getAllMedia,
+        getMediaByUser: getMediaByUser,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
         unlikeMedia: unlikeMedia,
@@ -190,7 +201,7 @@ USER FACTORY ("../api/users")
 
 // Factory for communication with all paths starting with "../api/users"
 // This is a protected path on the server
-.factory('UserFactory', function($http) {
+.factory('UserFactory', function($http, myConfig) {
     
     // Returns all of the applications users
     function getAllUsers () {
@@ -412,6 +423,10 @@ TOKEN FACTORY
     function getToken() {
         return $window.localStorage.getItem('token');
     }
+
+    function getUserId() {
+        return $window.localStorage.getItem('user_id');
+    }
     
     // Delete the user token (when they log out or in the event of an error)
     function deleteToken() {
@@ -423,6 +438,7 @@ TOKEN FACTORY
     return {
         setToken: setToken,
         getToken: getToken,
+        getUserId: getUserId,
         deleteToken: deleteToken
     };
 

@@ -18,6 +18,14 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 })
 
+// Filter to allow us to load videos from the cloud storage
+// This is to comply with the AngularJS Security Policy
+.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+}])
+
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
