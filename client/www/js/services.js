@@ -1,10 +1,18 @@
 angular.module('axil.services', [])
 
 
-// Factory for communication with the web server authentication endpoints (login and signup)
+/*--------------------------------------------------
+----------------------------------------------------
+
+AUTH FACTORY ("../api/auth")
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Factory for communication with the API authentication endpoints (login and signup)
 .factory('AuthFactory', function($http, myConfig) {
 
-    // Method to query the web server for a new session
+    // Method to query the API for a new session.
     function login (email, password) {
         return $http({
             method: 'POST',
@@ -18,7 +26,7 @@ angular.module('axil.services', [])
         });
     };
 
-
+    // Signup a new user, the API will also log the user in if the signup was successful.
     function signup (firstname, lastname, email, password) {
         return $http({
             method: 'POST',
@@ -33,7 +41,8 @@ angular.module('axil.services', [])
             return response;
         });
     };
-
+    
+    // Expose the Auth methods to the rest of the application
     return {
         login: login,
         signup: signup
@@ -41,8 +50,18 @@ angular.module('axil.services', [])
 
 })
 
+/*--------------------------------------------------
+----------------------------------------------------
+
+MEDIA FACTORY ("../api/media")
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Media Factory communicates with the any api endpoint starting with ".../api/media"
 .factory('MediaFactory', function($http, myConfig) {
 
+    // Method to fetch all media in the database
     function getAllMedia () {
         return $http({
             method: 'GET',
@@ -51,7 +70,8 @@ angular.module('axil.services', [])
             return data
         });
     };
-
+    
+    // Get media by it's unique identifier
     function getUniqueMedia (media_id) {
         return $http({
             method: 'GET',
@@ -60,7 +80,8 @@ angular.module('axil.services', [])
             return data
         });
     };
-
+    
+    // Add media to the database
     function addMedia (uri, type, lat, lon, user_id, tag, likes) {
         return $http({
             method: 'POST',
@@ -78,7 +99,8 @@ angular.module('axil.services', [])
             return res;
         });
     };
-
+    
+    // Update existing media (with new tags)
     function updateMedia (media_id, tag) {
         return $http({
             method: 'PUT',
@@ -87,7 +109,8 @@ angular.module('axil.services', [])
             return res;
         });
     };
-
+    
+    // Delete media from the database (and any relationships that media has)
     function deleteUniqueMedia (media_id) {
         return $http({
             method: 'DELETE',
@@ -96,7 +119,8 @@ angular.module('axil.services', [])
             return res;
         });
     };
-
+     
+    // Method for a user to "like" media
     function likeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
@@ -109,6 +133,7 @@ angular.module('axil.services', [])
         });
     };
 
+    // Method for a user to "unlike" media
     function unlikeMedia (media_id, user_id) {
         return $http({
             method: 'POST',
@@ -121,6 +146,7 @@ angular.module('axil.services', [])
         });
     };
 
+    // Fetch all Media that has a given "tag"
     function getMediaByTag (tag) {
         return $http({
             method: 'GET',
@@ -130,6 +156,7 @@ angular.module('axil.services', [])
         });
     };
 
+    // Fetch all media associated with given time frame
     function getMediaByTime (time) {
         return $http({
             method: 'GET',
@@ -139,6 +166,7 @@ angular.module('axil.services', [])
         });
     };
 
+    // Expose the Media Factory Methods to the rest of the application
     return {
         addMedia: addMedia,
         getAllMedia: getAllMedia,
