@@ -9,14 +9,30 @@
   <div class="modal explore-modal">
   <ion-header-bar class="bar-positive">
     <h1 class="title">Media List</h1>
-    <button class="button" ng-click="closeModal()">close</button>
+    <button class="button" ng-click="closeListModal()">close</button>
   </ion-header-bar>
   <ion-content>
       <ion-list>
       	<ion-item ng-repeat="media in medias">
-          <img class="round-thumbnail" src="{{media.thumb}}">
+          <img class="round-thumbnail" src="{{media.options.icon.options.thumb}}">
+          <p>Type: {{ media.options.icon.options.type }}
       	</ion-item>
       </ion-list>
+  </ion-content>
+  </div>
+</script>
+
+<script id='marker-modal.html' type="text/ng-template">
+  <div class="modal explore-modal">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Marker Modal</h1>
+    <button class="button" ng-click="closeMarkerModal()">close</button>
+  </ion-header-bar>
+  <ion-content>
+        <p>{{markerInfo.type}}</p>
+        <div ng-if="markerInfo.thumb">
+          <img class="marker-modal-img" src="{{markerInfo.thumb}}">
+        </div>
   </ion-content>
   </div>
 </script>

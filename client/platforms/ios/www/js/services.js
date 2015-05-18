@@ -294,9 +294,10 @@ MAP FACTORY
 // Communicates with the Mapbox API to set up the map layers for the explore page
 // Defines media clusters on the map
 // Added image and video thumbnails to the maplayer
-.factory('MapFactory', function() {
+.factory('MapFactory', function($ionicModal) {
     var mediaData = [];
     var marker;
+
 
     // Populates the explore map with all media organized in clusters
     function populateMap (dataArray, layer, map){
@@ -305,11 +306,14 @@ MAP FACTORY
         for (var i=0; i < dataArray.length; i++) {
             var img = "<img src='" + dataArray[i].thumb + "' />";
             mediaData.push(dataArray[i]);
-            var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
+            marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
                 icon: L.divIcon({
                     html: img,
                     className: 'image-icon',
-                    iconSize: [52, 52]
+                    iconSize: [52, 52],
+                    uri: dataArray[i].uri,
+                    thumb: dataArray[i].thumb,
+                    type: dataArray[i].type 
                 })
             });
             // If the media is an image, add an image tag to the map
