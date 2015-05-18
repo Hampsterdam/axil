@@ -59,6 +59,7 @@ MEDIA FACTORY ("../api/media")
 --------------------------------------------------*/
 
 // Media Factory communicates with the any api endpoint starting with ".../api/media"
+// This is a protected path on the server
 .factory('MediaFactory', function($http, myConfig) {
 
     // Method to fetch all media in the database
@@ -179,8 +180,19 @@ MEDIA FACTORY ("../api/media")
 
 })
 
-.factory('UserFactory', function($http) {
+/*--------------------------------------------------
+----------------------------------------------------
 
+USER FACTORY ("../api/users")
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Factory for communication with all paths starting with "../api/users"
+// This is a protected path on the server
+.factory('UserFactory', function($http) {
+    
+    // Returns all of the applications users
     function getAllUsers () {
         return $http({
             method: 'GET',
@@ -189,7 +201,8 @@ MEDIA FACTORY ("../api/media")
             return data;
         });
     };
-
+    
+    // Returns a unique user given their user_id
     function getUniqueUser (user_id) {
         return $http({
             method: 'GET',
@@ -198,7 +211,8 @@ MEDIA FACTORY ("../api/media")
             return data;
         })
     }
-
+    
+    // Adds a user to the database
     function addUser(firstname, lastname, hometown, email){
         return $http({
             method: 'POST',
@@ -214,6 +228,7 @@ MEDIA FACTORY ("../api/media")
         })
     }
 
+    // Returns all users that the requested user is following
     function getFollowing(user_id){
         return $http({
             method: 'GET',
@@ -222,7 +237,8 @@ MEDIA FACTORY ("../api/media")
             return data;
         })
     }
-
+    
+    // Returns all "followers" for a given user
     function getFollowers(user_id){
         return $http({
             method: 'GET',
@@ -232,6 +248,7 @@ MEDIA FACTORY ("../api/media")
         })
     }
 
+    // Allows one user to follow another user
     function follow(user_id, friend_id){
         return $http({
             method: 'POST',
@@ -244,6 +261,7 @@ MEDIA FACTORY ("../api/media")
         })
     }
 
+    // Allows one user to unfollow another user
     function unfollow(user_id, friend_id){
         return $http({
             method: 'DELETE',
@@ -253,6 +271,7 @@ MEDIA FACTORY ("../api/media")
         })
     }
 
+    // Exposes the Factory methods to the application
     return {
         getAllUsers: getAllUsers,
         getUniqueUser: getUniqueUser,
@@ -264,10 +283,22 @@ MEDIA FACTORY ("../api/media")
     }
 })
 
+/*--------------------------------------------------
+----------------------------------------------------
+
+MAP FACTORY
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Communicates with the Mapbox API to set up the map layers for the explore page
+// Defines media clusters on the map
+// Added image and video thumbnails to the maplayer
 .factory('MapFactory', function() {
     var mediaData = [];
     var marker;
 
+    // Populates the explore map with all media organized in clusters
     function populateMap (dataArray, layer, map){
 
        // Set up Marker Clusters for the Map Data
@@ -281,8 +312,10 @@ MEDIA FACTORY ("../api/media")
                     iconSize: [52, 52]
                 })
             });
+            // If the media is an image, add an image tag to the map
             if(dataArray[i].type === 'image'){
               var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
+            // If the media is a video, add a video tag to the map 
             } else {
               var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
             }
@@ -291,7 +324,8 @@ MEDIA FACTORY ("../api/media")
         }
         map.addLayer(layer);
     }
-
+    
+    // Defines the user marker that shows where the user is on the map
     function userMarker (coords, layer) {
         marker = L.circleMarker( new L.LatLng(coords.latitude, coords.longitude), {
             icon: L.mapbox.marker.icon({'marker-color': '#0080ff', 'marker-size': 'large'})
@@ -299,18 +333,34 @@ MEDIA FACTORY ("../api/media")
         layer.addLayer(marker);
 
     }
-
+    
+    // Updates the user marker location as their geolocation changes
     function updateUserPosition (coords){
         marker.setLatLng(L.latLng(coords.latitude, coords.longitude));
     }
+
+    // Expose the Factory methods to the application
     return {
         populateMap: populateMap,
         userMarker: userMarker,
         updateUserPosition: updateUserPosition
     }
 })
+
+/*--------------------------------------------------
+----------------------------------------------------
+
+SOCKET FACTORY
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Set's up the socket.io connection with the API
+// Allows for real time page updates as media is added to the explore page
 .factory('Socket', function($rootScope, myConfig){
+    // Create the socket connection with the API
     var socket = io.connect(myConfig.socketUrl);
+      // Define the basic socket events that we'll utilize in the application
       return {
         on: function (eventName, callback) {
           socket.on(eventName, function () {
@@ -332,7 +382,19 @@ MEDIA FACTORY ("../api/media")
         }
       };
 })
+
+/*--------------------------------------------------
+----------------------------------------------------
+
+TOKEN FACTORY
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Manages json web tokens provided by the server when a user logs-in
 .factory('TokenFactory', function($window) {
+    
+    // Set the user token in local storage when they log in
     function setToken(data) {
         if(data.token){
             $window.localStorage.setItem('token', data.token);
@@ -341,16 +403,19 @@ MEDIA FACTORY ("../api/media")
             deleteToken();
         }
     }
-
+    
+    // Fetch the user-token from local storage
     function getToken() {
         return $window.localStorage.getItem('token');
     }
-
+    
+    // Delete the user token (when they log out or in the event of an error)
     function deleteToken() {
         $window.localStorage.removeItem('token');
         $window.localStorage.removeItem('user_id');
     }
-
+    
+    // Expose the methods to the application
     return {
         setToken: setToken,
         getToken: getToken,
@@ -358,6 +423,18 @@ MEDIA FACTORY ("../api/media")
     };
 
 })
+
+/*--------------------------------------------------
+----------------------------------------------------
+
+INTERCEPTOR FACTORY 
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+// Defines an HTTP interceptor
+// This factory is called in app.js to add the user_token to every API request
+// Protected API routes require a token for access, otherwise the server sends a 400
 .factory('Interceptor', function(TokenFactory) {
     function request(config){
         var token = TokenFactory.getToken();
@@ -365,8 +442,6 @@ MEDIA FACTORY ("../api/media")
             config.headers = config.headers || {};
             config.headers.Authorization = 'Bearer ' + token;
         }
-        // console.log('#####Interceptor config:', JSON.stringify(config));
-        // console.log('________________________________________________________________');
         return config;
     }
 
