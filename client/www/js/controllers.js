@@ -221,7 +221,7 @@ angular.module('axil.controllers', [])
       $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
       .then(function(data){
         console.log("DATA: ", JSON.stringify(data));
-        $scope.media.url = JSON.parse(data.response).url;
+        // $scope.media.url = JSON.parse(data.response).url;
         $scope.openModal()
         var posOptions = {timeout: 10000, enableHighAccuracy: true};
 
@@ -230,9 +230,9 @@ angular.module('axil.controllers', [])
           $state.go('tab.explore');
           var lat = position.coords.latitude;
           var lon = position.coords.longitude;
-          var mediaFactory = mediaFactory.addMedia(data, 'video', lat, lon, '1', 'ATX', '125');
+          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, '1', 'ATX', '125');
           mediaFactory.then(function(response){
-            console.log('Vide media factory response:', response);
+            console.log('Video media factory response:', response);
             $rootScope.spinner = false;
           })
         })
