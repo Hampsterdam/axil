@@ -93,6 +93,10 @@ angular.module('axil.controllers', [])
       }
     });
 
+    clusters.on('clusterclick', function(a){
+      console.log('cluster ' + a.layer.getAllChildMarkers().length);
+    })
+
     $scope.listView = function() {
       console.log('listView fired');
     }
