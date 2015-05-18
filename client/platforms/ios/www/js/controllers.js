@@ -218,7 +218,7 @@ angular.module('axil.controllers', [])
       console.log("--------------- Video data:", videoData[0].fullPath, '------------------------');
       var options = {};
       // Success! Video data is here
-      $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', videoData[0].fullPath, options)
+      $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
       .then(function(data){
         console.log("DATA: ", JSON.stringify(data));
       })
