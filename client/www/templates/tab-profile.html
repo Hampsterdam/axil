@@ -13,6 +13,10 @@
       <div class="user-media profile-media">
         <ion-list>
           <ion-item ng-repeat="media in userInfo.mediaList">
+            <div class="image-container">
+              <video ng-if="media.type === 'video'" src="{{media.uri | trusted}}" type="video/mov" class="media-modal"  controls>
+              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="media-modal" >
+            </div>
           </ion-item>
         <ion-list>
       </div>

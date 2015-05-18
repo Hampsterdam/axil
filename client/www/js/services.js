@@ -181,6 +181,7 @@ MEDIA FACTORY ("../api/media")
     return {
         addMedia: addMedia,
         getAllMedia: getAllMedia,
+        getMediaByUser: getMediaByUser,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
         unlikeMedia: unlikeMedia,
@@ -200,7 +201,7 @@ USER FACTORY ("../api/users")
 
 // Factory for communication with all paths starting with "../api/users"
 // This is a protected path on the server
-.factory('UserFactory', function($http) {
+.factory('UserFactory', function($http, myConfig) {
     
     // Returns all of the applications users
     function getAllUsers () {
@@ -422,6 +423,10 @@ TOKEN FACTORY
     function getToken() {
         return $window.localStorage.getItem('token');
     }
+
+    function getUserId() {
+        return $window.localStorage.getItem('user_id');
+    }
     
     // Delete the user token (when they log out or in the event of an error)
     function deleteToken() {
@@ -433,6 +438,7 @@ TOKEN FACTORY
     return {
         setToken: setToken,
         getToken: getToken,
+        getUserId: getUserId,
         deleteToken: deleteToken
     };
 
