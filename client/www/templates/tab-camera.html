@@ -1,7 +1,7 @@
 <ion-view view-title="Camera">
 <ion-view class="has-header padding">
 	<button class="button button-block button-positive" ng-click="addImage()">Take a Picture</button>
-	<button class="button button-block button-positive" ng-click="addImage()">Record a Video</button>
+	<button class="button button-block button-positive" ng-click="addVideo()">Record a Video</button>
 </ion-view>
 </ion-view>
 
@@ -11,9 +11,9 @@
       <h1 class="title">Upload your Media</h1>
     </ion-header-bar>
     <ion-content>
-      
+
       <div class="image-container">
-        <p><img class="modal-thumbnail" src="{{img.url}}" width="75" height="auto"></p>
+        <p><img class="modal-thumbnail" src="{{media.thumb}}" width="75" height="auto"></p>
       </div>
 
       <div class="list tags">
@@ -21,7 +21,7 @@
           <span class="input-label">Tags</span>
           <input autocapitalize="off" autocorrect="off" type="text" placeholder="#ATX" ng-model="uploadInfo.tags">
         </label>
-      
+
         <button class="button button-block button-balanced" ng-click="closeModal()">Upload</button>
       </div>
     </ion-content>

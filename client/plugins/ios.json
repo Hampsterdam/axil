@@ -39,6 +39,10 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Capture\"><param name=\"ios-package\" value=\"CDVCapture\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -60,7 +64,7 @@
                     "CoreGraphics.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "AssetsLibrary.framework": [
@@ -72,7 +76,7 @@
                     "MobileCoreServices.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ]
                 }
@@ -109,6 +113,9 @@
             "PACKAGE_NAME": "com.ionicframework.client986197"
         },
         "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.ionicframework.client986197"
+        },
+        "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "com.ionicframework.client986197"
         }
     },

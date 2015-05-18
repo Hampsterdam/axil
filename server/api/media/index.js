@@ -7,7 +7,8 @@ var router = express.Router();
 
 router.get('/', controller.getMedia);
 router.post('/', controller.addMedia);
-router.post('/upload', controller.uploadMedia)
+router.post('/upload', controller.uploadMedia);
+router.post('/upload/video', controller.uploadVideo);
 // router.get('/filter', controller.getMediaByFilter);
 router.get('/:media_id', controller.getUniqueMedia);
 router.put('/:media_id/:tag', controller.updateMedia);
