@@ -25,13 +25,14 @@ var connectDB = function(cb, fixtures){
 				'joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP'   +
 				');';
 
-	var media = 'CREATE TABLE IF NOT EXISTS media (' 		   +
+	var media = 'CREATE TABLE IF NOT EXISTS media (' 		 +
 				'id SERIAL NOT NULL PRIMARY KEY,'         	   +
-				'type VARCHAR(50) NOT NULL,'          		   +
-				'likes INTEGER NOT NULL,'             		   +
+				'type VARCHAR(50) NOT NULL,'          		     +
+				'likes INTEGER NOT NULL,'             		     +
 				'lat DOUBLE PRECISION NOT NULL,'               +
 				'lon DOUBLE PRECISION NOT NULL,'               +
 				'uri TEXT NOT NULL,'                           +
+				'thumb TEXT NOT NULL,'												 +
 				'time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,'    +
 				'user_id INTEGER'                              +
 				');';
