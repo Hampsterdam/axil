@@ -64,6 +64,23 @@ html, body {
     margin:10px;
 }
 
+.explore-modal {
+  height: 50%;
+}
+
+.round-thumbnail {
+  height: 70px !important;
+  width: 70px !important;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0080ff;
+}
+
+.marker-modal-img {
+  height: 100%;
+  width: 350px;
+}
+
 
 
 
