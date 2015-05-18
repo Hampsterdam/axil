@@ -92,6 +92,10 @@ angular.module('axil.controllers', [])
         });
       }
     });
+
+    $scope.listView = function() {
+      console.log('listView fired');
+    }
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;
