@@ -17,14 +17,14 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
     }
   });
 })
-// .config(function($httpProvider){
-//     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-// })
 
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
+  // Load the HTTP interceptor from services.js to modify requests to locked API routes.
+  // The functionality of the interceptor is explained where it is defined.
   $httpProvider.interceptors.push('Interceptor');
+
   $stateProvider
   .state('/login', {
     url: '/login',
