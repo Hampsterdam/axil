@@ -2,7 +2,7 @@ angular.module('axil.controllers', [])
 
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
 
-   $scope.loginInfo = {}; 
+   $scope.loginInfo = {};
    $rootScope.authenticated = false;
    $scope.login = function() {
       AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
@@ -41,7 +41,7 @@ angular.module('axil.controllers', [])
     $scope.signupInfo = {};
     $scope.signinError = false;
     $rootScope.authenticated = false;
-    
+
     $scope.signup = function() {
       console.log("name: ", $scope.signupInfo.firstname + ' ' + $scope.signupInfo.lastname);
       AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
@@ -75,7 +75,7 @@ angular.module('axil.controllers', [])
 
   $ionicPlatform.ready(function() {
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
-    
+
     // Load the Default Map
     L.mapbox.accessToken = your_api_code;
     var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
@@ -101,13 +101,13 @@ angular.module('axil.controllers', [])
       .then(function(position){
          MapFactory.userMarker(position.coords, user);
       }, function(err){
-        
+
       })
 
     var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
     $cordovaGeolocation
       .watchPosition(watchOptions)
-      .then(null, function(err) { 
+      .then(null, function(err) {
         // geolocation down, no worries
       }, function(position){
         // Set a marker at the user's location
@@ -142,7 +142,7 @@ angular.module('axil.controllers', [])
   UserFactory.getUniqueUser()
 })
 
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory) {
 
   //Setting up modal
   $ionicPlatform.ready(function() {
@@ -165,10 +165,10 @@ angular.module('axil.controllers', [])
     $scope.$on('$destroy', function(){
       $scope.modal.remove();
     })
-  
+
     $scope.images = [];
     $scope.img = {};
-    $rootScope.spinner = false;  
+    $rootScope.spinner = false;
     $scope.addImage = function() {
 
       var options = {
@@ -181,7 +181,7 @@ angular.module('axil.controllers', [])
         saveToPhotoAlbum: true,
         correctOrientation: true
       };
-      
+
       //Launch Camera
       $cordovaCamera.getPicture(options).then(function(imageData) {
         $rootScope.spinner = true;
@@ -210,6 +210,15 @@ angular.module('axil.controllers', [])
         console.log(err);
       });
   }
-});
-});
 
+  $scope.addVideo = function(){
+    var options = { limit: 3, duration: 10 };
+
+    $cordovaCapture.captureVideo(options).then(function(videoData) {
+      // Success! Video data is here
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
+  }
+});
+});
