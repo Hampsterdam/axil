@@ -213,7 +213,7 @@ exports.uploadMedia = function(req, res) {
 
 exports.uploadVideo = function(req, res) {
   console.log('upload video called');
-  cloudinary.uploader.upload(req.files.file.path, function result {
+  cloudinary.uploader.upload(req.files.file.path, function (result) {
     console.log('cloudinary video upload result:', result.url);
     res.status(201).json({ url: result.url });
   }, { resource_type: "video" });
