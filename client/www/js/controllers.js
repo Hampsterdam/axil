@@ -1,5 +1,7 @@
 angular.module('axil.controllers', [])
 
+
+
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
 
    $scope.loginInfo = {};
@@ -81,10 +83,55 @@ angular.module('axil.controllers', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, MediaFactory, MapFactory, Socket) {
-
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, Socket) {
   // Wrapper function that listens for when the state is ready
+
   $ionicPlatform.ready(function() {
+    $scope.markerInfo = "";
+    //CLUSTER MODAL
+    var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+    mapListModal.then(function(modal){
+      $scope.listModal = modal;
+    })
+
+    $scope.openListModal = function(){
+      $scope.listModal.show();
+    }
+
+    $scope.closeListModal = function(){
+      $scope.listModal.hide();
+    }
+
+    $scope.$on('$destroy', function(){
+      $scope.listModal.remove();
+    })
+
+    //MARKER MODAL
+    var markerModal = $ionicModal.fromTemplateUrl('marker-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+
+    markerModal.then(function(modal){
+      $scope.markerModal = modal;
+    })
+
+    $scope.openMarkerModal = function(){
+      $scope.markerModal.show();
+    }
+
+    $scope.closeMarkerModal = function(){
+      $scope.markerModal.hide();
+    }
+
+    $scope.$on('$destroy', function(){
+      $scope.markerModal.remove();
+    })
+
+
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
 
     // Load the Default Map
@@ -104,10 +151,21 @@ angular.module('axil.controllers', [])
       }
     });
 
-    //Renders list view for selected marker cluster.
-    $scope.listView = function() {
-      console.log('listView fired');
-    }
+
+    clusters.on('clusterclick', function(a){
+      // $scope.medias = a.layer._markers;
+      // console.log('medias', $scope.medias);
+      // $scope.openListModal();
+    })
+
+    // Center the map on a selected marker
+    clusters.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+      $scope.markerInfo = e.layer.options.icon.options;
+      console.log('marker clicked', $scope.markerInfo);
+      $scope.openMarkerModal();
+    });
+
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
 
@@ -136,6 +194,7 @@ angular.module('axil.controllers', [])
     // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
+        //Get media data from server for listview modal
         // Populate the map with media clusters
         MapFactory.populateMap(data.data, clusters, map);
     });
@@ -145,10 +204,6 @@ angular.module('axil.controllers', [])
       MapFactory.populateMap([data], clusters, map);
     });
 
-    // Center the map on a selected marker
-    clusters.on('click', function(e) {
-      map.panTo(e.layer.getLatLng());
-    });
 
     // Center the map on the user when selected
     user.on('click', function(e) {
