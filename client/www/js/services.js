@@ -93,7 +93,7 @@ MEDIA FACTORY ("../api/media")
     };
 
     // Add media to the database
-    function addMedia (uri, type, lat, lon, user_id, tag, likes) {
+    function addMedia (uri, type, lat, lon, user_id, tag) {
         return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/media',
@@ -103,8 +103,7 @@ MEDIA FACTORY ("../api/media")
                 lat: lat,
                 lon: lon,
                 user_id: user_id,
-                tag: tag,
-                likes: likes
+                tag: tag
             }
         }).then(function(res) {
             return res;
@@ -407,7 +406,6 @@ TOKEN FACTORY
     
     // Set the user token in local storage when they log in
     function setToken(data) {
-        console.log(data);
         if(data.token){
             $window.localStorage.setItem('token', data.token);
             $window.localStorage.setItem('user_id', data.user_id);
@@ -420,6 +418,10 @@ TOKEN FACTORY
     function getToken() {
         return $window.localStorage.getItem('token');
     }
+
+    function getUserId() {
+        return $window.localStorage.getItem('user_id');
+    }
     
     // Delete the user token (when they log out or in the event of an error)
     function deleteToken() {
@@ -431,6 +433,7 @@ TOKEN FACTORY
     return {
         setToken: setToken,
         getToken: getToken,
+        getUserId: getUserId,
         deleteToken: deleteToken
     };
 
