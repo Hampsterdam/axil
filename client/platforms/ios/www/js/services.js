@@ -140,7 +140,7 @@ angular.module('axil.services', [])
     };
 
     return {
-        addMedia: addMedia, 
+        addMedia: addMedia,
         getAllMedia: getAllMedia,
         getUniqueMedia: getUniqueMedia,
         likeMedia: likeMedia,
@@ -182,14 +182,14 @@ angular.module('axil.services', [])
                 email: email
             }
         }).then(function (data){
-            return data; 
+            return data;
         })
     }
 
     function getFollowing(user_id){
         return $http({
             method: 'GET',
-            url: myConfig.serverUrl + '/users/' + user_id + '/following' 
+            url: myConfig.serverUrl + '/users/' + user_id + '/following'
         }).then(function(data){
             return data;
         })
@@ -241,10 +241,10 @@ angular.module('axil.services', [])
     var marker;
 
     function populateMap (dataArray, layer, map){
-       
+
        // Set up Marker Clusters for the Map Data
         for (var i=0; i < dataArray.length; i++) {
-            var img = "<img src='" + dataArray[i].uri + "' />";
+            var img = "<img src='" + dataArray[i].thumb + "' />";
             mediaData.push(dataArray[i]);
             var marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
                 icon: L.divIcon({
@@ -253,7 +253,11 @@ angular.module('axil.services', [])
                     iconSize: [52, 52]
                 })
             });
-            var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
+            if(dataArray[i].type === 'image'){
+              var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
+            } else {
+              var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
+            }
             marker.bindPopup(content);
             layer.addLayer(marker);
         }
@@ -281,7 +285,7 @@ angular.module('axil.services', [])
     var socket = io.connect(myConfig.socketUrl);
       return {
         on: function (eventName, callback) {
-          socket.on(eventName, function () {  
+          socket.on(eventName, function () {
             var args = arguments;
             $rootScope.$apply(function () {
               callback.apply(socket, args);
@@ -342,13 +346,3 @@ angular.module('axil.services', [])
         request: request
     }
 })
-
-
-
-
-
-
-
-
-
-

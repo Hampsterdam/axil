@@ -192,7 +192,7 @@ angular.module('axil.controllers', [])
               //data is the image url returned from clodinary.
               $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
               $scope.openModal();
-              var posOptions = {timeout: 10000, enableHighAccuracy: true};
+              var posOptions = {timeout: 30000, enableHighAccuracy: true};
               //Get current position and save the url along with geo location to the database.
               $cordovaGeolocation.getCurrentPosition(posOptions)
               .then(function(position) {
@@ -223,7 +223,7 @@ angular.module('axil.controllers', [])
         console.log("DATA: ", JSON.stringify(data));
         $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
         $scope.openModal()
-        var posOptions = {timeout: 10000, enableHighAccuracy: true};
+        var posOptions = {timeout: 30000, enableHighAccuracy: true};
 
         $cordovaGeolocation.getCurrentPosition(posOptions)
         .then(function(position){

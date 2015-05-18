@@ -190,9 +190,9 @@ angular.module('axil.controllers', [])
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
               //data is the image url returned from clodinary.
-              $scope.media.thumb = JSON.parse(data.response).url.slice(-3) + 'jpg';
+              $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
               $scope.openModal();
-              var posOptions = {timeout: 10000, enableHighAccuracy: true};
+              var posOptions = {timeout: 30000, enableHighAccuracy: true};
               //Get current position and save the url along with geo location to the database.
               $cordovaGeolocation.getCurrentPosition(posOptions)
               .then(function(position) {
@@ -221,9 +221,9 @@ angular.module('axil.controllers', [])
       $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
       .then(function(data){
         console.log("DATA: ", JSON.stringify(data));
-        $scope.media.thumb = JSON.parse(data.response).url.slice(-3) + 'jpg';
+        $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
         $scope.openModal()
-        var posOptions = {timeout: 10000, enableHighAccuracy: true};
+        var posOptions = {timeout: 30000, enableHighAccuracy: true};
 
         $cordovaGeolocation.getCurrentPosition(posOptions)
         .then(function(position){
