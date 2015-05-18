@@ -21,7 +21,7 @@ angular.module('axil.controllers', [])
         }
       })
     }
-    
+
      // Helper function to keep track of login status
     $scope.isError = function() {
         if ($scope.loginError) {
@@ -36,7 +36,7 @@ angular.module('axil.controllers', [])
       $rootScope.authenticated = false;
       $state.go('/login');
     }
-    
+
     // If the user wants to sign up, redirect to the signup view
     $scope.signupRedirect = function() {
       $state.go('/signup');
@@ -48,7 +48,7 @@ angular.module('axil.controllers', [])
     $scope.signupInfo = {};
     $scope.signinError = false;
     $rootScope.authenticated = false;
-    
+
     // Main Signup Method, uses the AuthFactory to create a new user and log the user in with a new session token.
     $scope.signup = function() {
       AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
@@ -63,7 +63,7 @@ angular.module('axil.controllers', [])
           }
         });
     };
-    
+
     // Auth Helper Function, not yet in use
     $scope.isError = function() {
         if ($scope.signinError) {
@@ -71,7 +71,7 @@ angular.module('axil.controllers', [])
         }
         return false;
     }
-    
+
     // Simple state redirect to login
     $scope.loginRedirect = function() {
       $state.go('/login');
@@ -103,6 +103,11 @@ angular.module('axil.controllers', [])
         });
       }
     });
+
+    //Renders list view for selected marker cluster.
+    $scope.listView = function() {
+      console.log('listView fired');
+    }
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
 
@@ -115,7 +120,7 @@ angular.module('axil.controllers', [])
       }, function(err){
 
       })
-    
+
     // Keep track of the user as they move (while the application is running, no background tracking)
     var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
     $cordovaGeolocation
@@ -127,7 +132,7 @@ angular.module('axil.controllers', [])
          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
          MapFactory.updateUserPosition(position.coords);
       });
-    
+
     // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
@@ -209,7 +214,7 @@ angular.module('axil.controllers', [])
 
     // If the user opts to add an image, this method will be called
     $scope.addImage = function() {
-      
+
       // Set the options for image upload to the server/cloudinary
       var options = {
         quality: 15,
@@ -253,12 +258,12 @@ angular.module('axil.controllers', [])
         console.log(err);
       });
   }
-  
+
   // If the user opts to add a video, this method will be called
   $scope.addVideo = function(){
     // Set the time limit for the video and limit the number of videos per upload (no iOS support)
     var options = { limit: 1, duration: 10 };
-    
+
     // Launch the video-camera with the options that we've defined
     $cordovaCapture.captureVideo(options).then(function(videoData) {
       $rootScope.spinner = true;
