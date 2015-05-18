@@ -6,6 +6,7 @@ var controller = require('./media.controller');
 var router = express.Router();
 
 router.get('/', controller.getMedia);
+router.get('/mediabyuser/:user_id', controller.getMediaByUser);
 router.post('/', controller.addMedia);
 router.post('/upload', controller.uploadMedia);
 router.post('/upload/video', controller.uploadVideo);
