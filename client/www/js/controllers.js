@@ -89,25 +89,25 @@ angular.module('axil.controllers', [])
   $ionicPlatform.ready(function() {
     $scope.markerInfo = "";
     //CLUSTER MODAL
-    var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    })
-    mapListModal.then(function(modal){
-      $scope.listModal = modal;
-    })
+    // var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
+    //   scope: $scope,
+    //   animation: 'slide-in-up'
+    // })
+    // mapListModal.then(function(modal){
+    //   $scope.listModal = modal;
+    // })
 
-    $scope.openListModal = function(){
-      $scope.listModal.show();
-    }
+    // $scope.openListModal = function(){
+    //   $scope.listModal.show();
+    // }
 
-    $scope.closeListModal = function(){
-      $scope.listModal.hide();
-    }
+    // $scope.closeListModal = function(){
+    //   $scope.listModal.hide();
+    // }
 
-    $scope.$on('$destroy', function(){
-      $scope.listModal.remove();
-    })
+    // $scope.$on('$destroy', function(){
+    //   $scope.listModal.remove();
+    // })
 
     //MARKER MODAL
     var markerModal = $ionicModal.fromTemplateUrl('marker-modal.html', {

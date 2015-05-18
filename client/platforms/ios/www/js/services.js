@@ -328,13 +328,13 @@ MAP FACTORY
                 })
             });
             // If the media is an image, add an image tag to the map
-            if(dataArray[i].type === 'image'){
-              var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
-            // If the media is a video, add a video tag to the map 
-            } else {
-              var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
-            }
-            marker.bindPopup(content);
+            // if(dataArray[i].type === 'image'){
+            //   var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
+            // // If the media is a video, add a video tag to the map 
+            // } else {
+            //   var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
+            // }
+            // marker.bindPopup(content);
             layer.addLayer(marker);
         }
         map.addLayer(layer);
