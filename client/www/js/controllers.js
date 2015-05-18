@@ -1,5 +1,7 @@
 angular.module('axil.controllers', [])
 
+
+
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
 
    $scope.loginInfo = {};
@@ -81,10 +83,29 @@ angular.module('axil.controllers', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, MediaFactory, MapFactory, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, Socket) {
 
   // Wrapper function that listens for when the state is ready
   $ionicPlatform.ready(function() {
+
+    $ionicModal.fromTemplateUrl('map-list-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal){
+      $scope.modal = modal;
+    })
+
+    $scope.openModal = function(){
+      $scope.modal.show();
+    }
+
+    $scope.closeModal = function(){
+      $scope.modal.hide();
+    }
+
+    $scope.$on('$destroy', function(){
+      $scope.modal.remove();
+    })
     var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
 
     // Load the Default Map
@@ -106,14 +127,18 @@ angular.module('axil.controllers', [])
 
 
     clusters.on('clusterclick', function(a){
+      $scope.medias = a.layer._markers;
+      console.log('medias', $scope.medias);
+      $scope.openModal();
       console.log('cluster ' + a.layer.getAllChildMarkers().length);
+      console.log('layer info', a.layer);
     })
 
+    // Center the map on a selected marker
+    clusters.on('click', function(e) {
+      map.panTo(e.layer.getLatLng());
+    });
 
-    //Renders list view for selected marker cluster.
-    $scope.listView = function() {
-      console.log('listView fired');
-    }
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
 
@@ -142,6 +167,7 @@ angular.module('axil.controllers', [])
     // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
+        //Get media data from server for listview modal
         // Populate the map with media clusters
         MapFactory.populateMap(data.data, clusters, map);
     });
@@ -151,10 +177,6 @@ angular.module('axil.controllers', [])
       MapFactory.populateMap([data], clusters, map);
     });
 
-    // Center the map on a selected marker
-    clusters.on('click', function(e) {
-      map.panTo(e.layer.getLatLng());
-    });
 
     // Center the map on the user when selected
     user.on('click', function(e) {

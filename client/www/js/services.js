@@ -309,7 +309,10 @@ MAP FACTORY
                 icon: L.divIcon({
                     html: img,
                     className: 'image-icon',
-                    iconSize: [52, 52]
+                    iconSize: [52, 52],
+                    uri: dataArray[i].uri,
+                    thumb: dataArray[i].thumb,
+                    type: dataArray[i].type 
                 })
             });
             // If the media is an image, add an image tag to the map
