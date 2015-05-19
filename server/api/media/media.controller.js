@@ -9,50 +9,44 @@ cloudinary.config({
   api_secret: 'zbfcsUPG9FMH9gYA25UJ2MBIlBU'
 });
 
-exports.getMedia = function(req, res){
-  var filter = req.query
-  if(!Object.keys(filter).length){
-    DB.client.query('SELECT * FROM media', function(err, result) {
-      if (result) {
-        res.status(200).json(result.rows);
-      }
-    });
-  } else {
-    getMediaByRadius(req, res)
-    // var query = 'SELECT * FROM media '
-    // var where = []
-    // for(key in filter) {
-    //   if(!filter.hasOwnProperty(key)) continue
-    //   if(key === 'order' || key === 'orderBy') continue
-    //   where.push(key + ' = ' + filter)
-    // }
-    // query += where.join(' AND ')
-    // if(filter.orderBy) {
-    //   if(!filter.order) res.sendStatus(400)
-    //   query += ' ORDER BY ' + filter.orderBy + (filter.order > 0 ? ' ASC ;': ' DESC;')
-    // }
-
-  }
+exports.getAllMedia = function(req, res){
+  // (id, type, likes, lat, lon, uri, thumb, time, firstname, lastname)
+  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname FROM media JOIN users ON users.id = media.user_id', [], function(err, result) {
+    if (err) {
+        console.log("ERROR: ", err);
+    }
+    if (result) {
+      res.status(200).json(result.rows);
+    } else {
+      res.status(400).json({
+        message: "There is no media in the database at this time"
+      });
+    }
+  });
 }
 
 exports.getUniqueMedia = function(req, res) {
-  DB.client.query('SELECT * FROM media WHERE id = $1', [req.params.media_id], function(err, result) {
+  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, firstname, lastname FROM media JOIN users ON users.id = media.user_id WHERE media.id = $1', [req.params.media_id], function(err, result) {
     if (result && result.rows.length > 0) {
       res.status(200).json(result.rows);
+    } else {
+      res.status(400).json({
+        message: "We don't have a record of the media you requested"
+      });
     }
   });
 }
 
 exports.getMediaByUser = function(req, res) {
-    DB.client.query('SELECT * FROM media WHERE user_id = $1', [req.params.user_id], function(err, result) {
-        if (result && result.rows.length > 0) {
-            res.status(200).json(result.rows);
-        } else {
-            res.status(200).json({
-                message: "This user has not uploaded any media yet"
-            });
-        }
-    });
+  DB.client.query('SELECT * FROM media WHERE user_id = $1', [req.params.user_id], function(err, result) {
+    if (result && result.rows.length > 0) {
+      res.status(200).json(result.rows);
+    } else {
+      res.status(200).json({
+        message: "This user has not uploaded any media yet"
+      });
+    }
+  });
 }
 
 exports.addMedia = function(req, res){
@@ -233,17 +227,13 @@ exports.getMediaByTime = function(req, res) {
 }
 
 exports.uploadMedia = function(req, res) {
-  console.log('upload media called!');
   cloudinary.uploader.upload(req.files.file.path, function(result) {
-    console.log('cloudinary image upload result:', result.url);
     res.status(201).json({ url: result.url });
   });
 }
 
 exports.uploadVideo = function(req, res) {
-  console.log('upload video called');
   cloudinary.uploader.upload(req.files.file.path, function (result) {
-    console.log('cloudinary video upload result:', result.url);
     res.status(201).json({ url: result.url });
   }, { resource_type: "video" });
 }
