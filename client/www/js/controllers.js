@@ -97,7 +97,7 @@ angular.module('axil.controllers', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket, Mapbox) {
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
@@ -171,7 +171,7 @@ angular.module('axil.controllers', [])
     })
 
 
-    var your_api_code = 'pk.eyJ1IjoiY2h1a2t3YWdvbiIsImEiOiJOajZaZTdjIn0.Qz8PSl6vP1aBB20ni7oyGg';
+    var your_api_code = Mapbox.APIKey;
 
     // Load the Default Map
     L.mapbox.accessToken = your_api_code;
@@ -200,9 +200,7 @@ angular.module('axil.controllers', [])
     // Center the map on a selected marker and open modal
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
-      console.log(e);
       $scope.markerInfo = e.layer.mediaData;
-      console.log('marker clicked', $scope.markerInfo);
       $scope.openMarkerModal();
     });
 
@@ -224,7 +222,6 @@ angular.module('axil.controllers', [])
 
     $scope.listView = function(){
       $scope.inBounds = onmove();
-      console.log('listView:', $scope.inBounds);
       $scope.openListModal();
     }
 
