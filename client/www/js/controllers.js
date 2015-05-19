@@ -191,13 +191,6 @@ angular.module('axil.controllers', [])
       }
     });
 
-
-    clusters.on('clusterclick', function(a){
-      // $scope.medias = a;
-      // console.log('medias', $scope.medias);
-      // $scope.openListModal();
-    });
-
     // Center the map on a selected marker and open modal
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
@@ -230,20 +223,6 @@ angular.module('axil.controllers', [])
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
 
-    // Get the user position and move the map to their location;
-
-    // Keep track of the user as they move (while the application is running, no background tracking)
-    // var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
-    // $cordovaGeolocation
-    //   .watchPosition(watchOptions)
-    //   .then(null, function(err) {
-    //     // geolocation down, no worries
-    //   }, function(position){
-    //     // Set a marker at the user's location
-    //      map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-    //      MapFactory.updateUserPosition(position.coords);
-    //   });
-
     // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
@@ -256,7 +235,17 @@ angular.module('axil.controllers', [])
     Socket.on('mediaInsert', function(data) {
       MapFactory.populateMap([data], clusters, map);
     });
+    
+    // Socket Listeners for Media Changes
+    Socket.on("media_changed", function(media_id) {
+      console.log("Media Changed emitted");
+      MapFactory.replaceMarker(media_id, clusters);
+    });
 
+    // Socket Listener for Media Deletion
+    Socket.on("media_removed", function(media_id) {
+      MapFactory.removeMarker(media_id, clusters);
+    });
 
     // Center the map on the user when selected
     user.on('click', function(e) {
@@ -319,7 +308,7 @@ angular.module('axil.controllers', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 // Main Controller for the Add Media Tab ( the camera )
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, TokenFactory) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, TokenFactory, Socket) {
 
   //Setting up the Upload Media Modal that will pop up after the user has taken a video/picture
   $ionicPlatform.ready(function() {
@@ -354,7 +343,6 @@ angular.module('axil.controllers', [])
     // Upload info captured in the upload media modal (tab-camera.html)
     $scope.uploadInfo = {};
     $scope.uploadInfo.tags = "";
-    
 
     // If the user opts to add an image, this method will be called
     $scope.addImage = function() {

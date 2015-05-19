@@ -133,9 +133,6 @@ MEDIA FACTORY ("../api/media")
      
     // Method for a user to "like" media
     function likeMedia (media_id, user_id) {
-        console.log("Media Factory Called");
-        console.log("media_id: ", media_id);
-        console.log("user_id: ", user_id);
         return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/media/' + media_id,
@@ -143,7 +140,6 @@ MEDIA FACTORY ("../api/media")
                 user_id: user_id
             }
         }).then(function(res) {
-            console.log("Server request processed and answered", res);
             return res;
         });
     };
@@ -309,7 +305,7 @@ MAP FACTORY
 // Communicates with the Mapbox API to set up the map layers for the explore page
 // Defines media clusters on the map
 // Added image and video thumbnails to the maplayer
-.factory('MapFactory', function($ionicModal) {
+.factory('MapFactory', function($ionicModal, MediaFactory) {
     var mediaData = [];
     var marker;
 
@@ -319,37 +315,36 @@ MAP FACTORY
 
        // Set up Marker Clusters for the Map Data
         for (var i=0; i < dataArray.length; i++) {
-            var img = "<img src='" + dataArray[i].thumb + "' />";
-            mediaData.push(dataArray[i]);
-            marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
-                icon: L.divIcon({
-                    html: img,
-                    className: 'image-icon',
-                    iconSize: [52, 52]
-                })
-            });
-            marker.mediaData = {
-                uri: dataArray[i].uri,
-                thumb: dataArray[i].thumb,
-                type: dataArray[i].type ,
-                likes: dataArray[i].likes,
-                id: dataArray[i].id,
-                firstname: dataArray[i].firstname,
-                lastname: dataArray[i].lastname  
-            }
-            // If the media is an image, add an image tag to the map
-            // if(dataArray[i].type === 'image'){
-            //   var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
-            // // If the media is a video, add a video tag to the map 
-            // } else {
-            //   var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
-            // }
-            // marker.bindPopup(content);
+            marker = makeMarker(dataArray[i]);
 
             //The cluster layer in this situation
             layer.addLayer(marker);
         }
         map.addLayer(layer);
+    }
+
+    // Method the generates a Map Marker
+    function makeMarker (media) {
+      var marker;
+      var img = "<img src='" + media.thumb + "' />";
+
+      marker = L.marker( new L.LatLng(media.lat, media.lon), {
+          icon: L.divIcon({
+              html: img,
+              className: 'image-icon',
+              iconSize: [52, 52]
+          })
+      });
+      marker.mediaData = {
+          uri: media.uri,
+          thumb: media.thumb,
+          type: media.type ,
+          likes: media.likes,
+          id: media.id,
+          firstname: media.firstname,
+          lastname: media.lastname  
+      }
+      return marker;
     }
     
     // Defines the user marker that shows where the user is on the map
@@ -358,7 +353,6 @@ MAP FACTORY
             icon: L.mapbox.marker.icon({'marker-color': '#0080ff', 'marker-size': 'large'})
         });
         layer.addLayer(marker);
-
     }
     
     // Updates the user marker location as their geolocation changes
@@ -366,11 +360,33 @@ MAP FACTORY
         marker.setLatLng(L.latLng(coords.latitude, coords.longitude));
     }
 
+    // Updates a Specific Marker on the Map Layer when it's changed (liked, addedTag)
+    function replaceMarker (media_id, layer) {
+      console.log("Replace Marker called in Services.js", media_id);
+      // Replace the unique marker with updated marker (new mediaInfo)
+      layer.eachLayer(function(marker) {
+        if (marker.mediaData.id === media_id) {
+          layer.removeLayer(marker);
+          var media = MediaFactory.getUniqueMedia(media_id);
+          var marker = makeMarker(media);
+          layer.addLayer(marker)
+        }
+      });
+    }
+
+    // Remove a Specific Marker from the Map when it's removed from the Database
+    function removeMarker (media_id) {
+        // remove the marker from the map
+    }
+
     // Expose the Factory methods to the application
     return {
         populateMap: populateMap,
         userMarker: userMarker,
-        updateUserPosition: updateUserPosition
+        makeMarker: makeMarker,
+        updateUserPosition: updateUserPosition,
+        removeMarker: removeMarker,
+        replaceMarker: replaceMarker
     }
 })
 
