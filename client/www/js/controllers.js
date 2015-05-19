@@ -158,7 +158,6 @@ angular.module('axil.controllers', [])
 
     //opens the modal from the list view data is provided by the list view and passed as a parameter
     $scope.openMarkerModalFromList = function(media){
-      console.log('openMarkerModal media:', media);
       $scope.markerInfo = media.mediaData;
       $scope.markerModal.show();
       $scope.closeListModal();
@@ -271,7 +270,7 @@ angular.module('axil.controllers', [])
       MediaFactory.likeMedia(media_id, $scope.user_id)
         .then(function(res) {
           console.log("Factory Method Successful");
-          if (res.status === 200) {
+          if (res.status === 201) {
             alert("Media Liked!");
           } else {
             alert("Error");

@@ -143,7 +143,7 @@ MEDIA FACTORY ("../api/media")
                 user_id: user_id
             }
         }).then(function(res) {
-            console.log("Server request processed and answered");
+            console.log("Server request processed and answered", res);
             return res;
         });
     };
@@ -331,7 +331,11 @@ MAP FACTORY
             marker.mediaData = {
                 uri: dataArray[i].uri,
                 thumb: dataArray[i].thumb,
-                type: dataArray[i].type   
+                type: dataArray[i].type ,
+                likes: dataArray[i].likes,
+                id: dataArray[i].id,
+                firstname: dataArray[i].firstname,
+                lastname: dataArray[i].lastname  
             }
             // If the media is an image, add an image tag to the map
             // if(dataArray[i].type === 'image'){
