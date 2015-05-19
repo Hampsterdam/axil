@@ -163,15 +163,15 @@ exports.userLike = function(req, res) {
         if (err) {
           console.log("ERROR:", err);
         } else {
-          DB.client.query("UPDATE media SET likes = likes + 1 WHERE id = $1", [req.params.media_id], function(err, result) {
+          DB.client.query("UPDATE media SET likes = likes + 1 WHERE id = $1 RETURNING likes", [req.params.media_id], function(err, result) {
             if (err) {
-                console.log("ERROR:", err);
+              console.log("ERROR:", err);
             } else {
-                res.status(201).json({
-                    message: "Message liked!"
-                });   
+              res.status(201).json({
+                message: "Message liked!"
+              });   
             }
-          })
+          });
         }
       });  
     }
@@ -179,12 +179,28 @@ exports.userLike = function(req, res) {
 };
 
 exports.userUnlike = function(req, res) {
-  DB.client.query("DELETE FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result) {
+  DB.client.query("SELECT * FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result){
     if (err) {
-      console.log("ERROR:", err);
+      console.log(err);
+    } else if (result.rows.length > 0) {
+      DB.client.query("DELETE FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result) {
+        if (err) {
+          console.log("ERROR:", err);
+        } else {
+            DB.client.query("UPDATE media SET likes = likes - 1 WHERE id = $1", [req.params.media_id], function(err, result) {
+                if (err) {
+                    console.log("ERROR: ", err);
+                } else {
+                    res.status(204).json({
+                        message: "Message unliked :("
+                    });                
+                }
+            })
+        }
+      });  
     } else {
-        res.status(204).json({
-            message: "Message unliked :("
+        res.status(400).json({
+            message: "You haven't liked this media"
         });
     }
   });
