@@ -105,6 +105,7 @@ exports.removeMedia = function(req, res){
         if(err) {
             console.log("ERROR:", err);
         } else {
+            req.socket.emit("media_removed", req.params.media_id);
             res.status(204).json({
                 message: "Media removed from the database",
                 result: result
@@ -123,6 +124,7 @@ exports.updateMedia = function(req, res){
         if(err){
           console.log("ERROR:", err);
         } else {
+          req.socket.emit("media_changed", req.params.media_id);
           res.status(201).json({
             message: "tag successfully added to media"
           });
@@ -137,6 +139,7 @@ exports.updateMedia = function(req, res){
             if(err){
               console.log("ERROR:", err);
             } else {
+              req.socket.emit("media_changed", req.params.media_id);  
               res.status(201).json({
                 message: "tag successfully added to media"
               });
@@ -149,6 +152,7 @@ exports.updateMedia = function(req, res){
 }
 
 exports.userLike = function(req, res) {
+  console.log("User like controller called");
   DB.client.query("SELECT * FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result) {
     if (err) {
         console.log("ERROR:", err);
@@ -165,6 +169,8 @@ exports.userLike = function(req, res) {
             if (err) {
               console.log("ERROR:", err);
             } else {
+              console.log("Socket emitted: ", req.params.media_id);
+              req.socket.emit("media_changed", req.params.media_id);
               res.status(201).json({
                 message: "Message liked!"
               });   
@@ -189,6 +195,7 @@ exports.userUnlike = function(req, res) {
                 if (err) {
                     console.log("ERROR: ", err);
                 } else {
+                    req.socket.emit("media_changed", req.params.media_id);
                     res.status(204).json({
                         message: "Message unliked :("
                     });                
