@@ -1,6 +1,9 @@
 angular.module('axil.controllers', [])
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 LOGIN CONTROLLER                                     //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
 
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
 
@@ -46,6 +49,12 @@ angular.module('axil.controllers', [])
 
 })
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 SIGNUP CONTROLLER                                    //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
+
 .controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window) {
     $scope.signupInfo = {};
     $scope.signinError = false;
@@ -78,8 +87,13 @@ angular.module('axil.controllers', [])
     $scope.loginRedirect = function() {
       $state.go('/login');
     }
-
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 EXPLORE CONTROLLER                                   //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
@@ -87,8 +101,24 @@ angular.module('axil.controllers', [])
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
+
+    $scope.getLocation = function(){
+      var posOptions = { timeout: 30000, enableHighAccuracy: true };
+      $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function(position){
+           MapFactory.userMarker(position.coords, user);
+            map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+            MapFactory.updateUserPosition(position.coords);
+        }, function(err){
+
+        })
+    }
+
+    $scope.getLocation();
+    
     $scope.markerInfo = {};
-    //CLUSTER MODAL
+    //CLUSTER MODAL provides a list of media visible in the map.
     var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -109,7 +139,7 @@ angular.module('axil.controllers', [])
       $scope.listModal.remove();
     })
 
-    //MARKER MODAL
+    //MARKER MODAL detailed view of media
     var markerModal = $ionicModal.fromTemplateUrl('marker-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -119,10 +149,12 @@ angular.module('axil.controllers', [])
       $scope.markerModal = modal;
     })
 
+    //opens the modal from a map marker click data is provided to modal by the marker.
     $scope.openMarkerModal = function(){
       $scope.markerModal.show();
     }
 
+    //opens the modal from the list view data is provided by the list view and passed as a parameter
     $scope.openMarkerModalFromList = function(media){
       console.log('openMarkerModal media:', media);
       $scope.markerInfo = media.mediaData;
@@ -152,7 +184,7 @@ angular.module('axil.controllers', [])
         return L.mapbox.marker.icon({
           // show the number of markers in the cluster on the icon.
           'marker-symbol': cluster.getChildCount(),
-          'marker-color': '#ff8888',
+          'marker-color': '#0080ff',
           'marker-size': 'large'
         });
       }
@@ -165,7 +197,7 @@ angular.module('axil.controllers', [])
       // $scope.openListModal();
     })
 
-    // Center the map on a selected marker
+    // Center the map on a selected marker and open modal
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
       console.log(e);
@@ -200,26 +232,18 @@ angular.module('axil.controllers', [])
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;
-    var posOptions = { timeout: 30000, enableHighAccuracy: true };
-    $cordovaGeolocation
-      .getCurrentPosition(posOptions)
-      .then(function(position){
-         MapFactory.userMarker(position.coords, user);
-      }, function(err){
-
-      })
 
     // Keep track of the user as they move (while the application is running, no background tracking)
-    var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
-    $cordovaGeolocation
-      .watchPosition(watchOptions)
-      .then(null, function(err) {
-        // geolocation down, no worries
-      }, function(position){
-        // Set a marker at the user's location
-         map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-         MapFactory.updateUserPosition(position.coords);
-      });
+    // var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
+    // $cordovaGeolocation
+    //   .watchPosition(watchOptions)
+    //   .then(null, function(err) {
+    //     // geolocation down, no worries
+    //   }, function(position){
+    //     // Set a marker at the user's location
+    //      map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+    //      MapFactory.updateUserPosition(position.coords);
+    //   });
 
     // Fetch the media from the API
     MediaFactory.getAllMedia()
@@ -241,6 +265,12 @@ angular.module('axil.controllers', [])
     });
   });
  })
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 PROFILE CONTROLLER                                   //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
 
 // Main controller for the Profile Page
 // TODO: Fetch the logged in users info to load their profile and list their uploaded media (with associated data)
@@ -265,9 +295,13 @@ angular.module('axil.controllers', [])
     $scope.userInfo.mediaList = data.data;
     console.log($scope.userInfo.mediaList);
   });
-
-
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 ADD MEDIA CONTROLLER                                 //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
 
 // Main Controller for the Add Media Tab ( the camera )
 .controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, TokenFactory) {
