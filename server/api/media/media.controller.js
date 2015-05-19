@@ -157,13 +157,29 @@ exports.updateMedia = function(req, res){
 }
 
 exports.userLike = function(req, res) {
-  DB.client.query("INSERT INTO media_likes (media_id, user_id) VALUES ($1, $2)", [req.params.media_id, req.body.user_id], function(err, result){
+  DB.client.query("SELECT * FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result) {
     if (err) {
-      console.log("ERROR:", err);
+        console.log("ERROR:", err);
+    } else if (result.rows.length > 0) {
+        res.status(400).json({
+            message: "You've already liked this media!"
+        });
     } else {
-      res.status(201).json({
-        message: "Message liked!"
-      });
+      DB.client.query("INSERT INTO media_likes (media_id, user_id) VALUES ($1, $2)", [req.params.media_id, req.body.user_id], function(err, result){
+        if (err) {
+          console.log("ERROR:", err);
+        } else {
+          DB.client.query("UPDATE media SET likes = likes + 1 WHERE id = $1", [req.params.media_id], function(err, result) {
+            if (err) {
+                console.log("ERROR:", err);
+            } else {
+                res.status(201).json({
+                    message: "Message liked!"
+                });   
+            }
+          })
+        }
+      });  
     }
   });
 };
@@ -173,9 +189,9 @@ exports.userUnlike = function(req, res) {
     if (err) {
       console.log("ERROR:", err);
     } else {
-      res.status(204).json({
-        message: "Message unliked :("
-      });
+        res.status(204).json({
+            message: "Message unliked :("
+        });
     }
   });
 };

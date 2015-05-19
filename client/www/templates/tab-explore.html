@@ -37,14 +37,16 @@
         <div ng-if="markerInfo.type === 'image'">
           <img class="marker-modal-img" src="{{markerInfo.uri}}">
         </div>
+        <p>Likes: {{markerInfo.likes}} </p>
+        <p>By: {{markerInfo.firstname}} {{markerInfo.lastname}} </p>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button class="button button-block button-balanced">like</button>
+        <button class="button button-block button-balanced" ng-click="likeMedia(markerInfo.id)">Like</button>
       </div>
       <div class="col">
-        <button class="button button-block button-positive">share</button>
+        <button class="button button-block button-positive">Share</button>
       </div>
     </div>
   </ion-content>

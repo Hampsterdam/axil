@@ -24,7 +24,7 @@ angular.module('axil.controllers', [])
       })
     }
 
-     // Helper function to keep track of login status
+    // Helper function to keep track of login status
     $scope.isError = function() {
         if ($scope.loginError) {
             return true;
@@ -83,7 +83,7 @@ angular.module('axil.controllers', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, Socket) {
+.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket) {
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
@@ -209,6 +209,16 @@ angular.module('axil.controllers', [])
     user.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
     });
+
+    // User Like Media (button in the Media Modal View)
+    $scope.likeMedia = function(media_id) {
+        $scope.user_id = TokenFactory.getUserId();
+        MediaFactory.likeMedia(media_id, $scope.user_id)
+        .then(function(res) {
+            return res.body.message;
+        });
+    }
+1
   });
  })
 
