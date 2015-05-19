@@ -1,6 +1,11 @@
 <ion-view view-title="Explore">
   <ion-content>
-  <div id="nav-feather" icon-off="ion-navigate" icon-on="ion-navigate"></div>
+  <button class="button list-button" ng-click="listView()">
+    <i class="ion-navicon-round"></i>
+  </button>
+  <button class="button nav-button" ng-click="getLocation()">
+    <i class="ion-navigate"></i>
+  </button>
     <div id="map" data-tap-disabled="true"></div>
   </ion-content>
 </ion-view>
@@ -13,9 +18,9 @@
   </ion-header-bar>
   <ion-content>
       <ion-list>
-      	<ion-item ng-repeat="media in medias">
-          <img class="round-thumbnail" src="{{media.options.icon.options.thumb}}">
-          <p>Type: {{ media.options.icon.options.type }}
+      	<ion-item ng-click="openMarkerModalFromList(media)" ng-repeat="media in inBounds">
+          <img class="round-thumbnail" src="{{media.mediaData.thumb}}">
+          <p>Type: {{ media.mediaData.type }}
       	</ion-item>
       </ion-list>
   </ion-content>

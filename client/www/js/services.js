@@ -321,12 +321,14 @@ MAP FACTORY
                 icon: L.divIcon({
                     html: img,
                     className: 'image-icon',
-                    iconSize: [52, 52],
-                    uri: dataArray[i].uri,
-                    thumb: dataArray[i].thumb,
-                    type: dataArray[i].type 
+                    iconSize: [52, 52]
                 })
             });
+            marker.mediaData = {
+                uri: dataArray[i].uri,
+                thumb: dataArray[i].thumb,
+                type: dataArray[i].type   
+            }
             // If the media is an image, add an image tag to the map
             // if(dataArray[i].type === 'image'){
             //   var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
@@ -335,6 +337,8 @@ MAP FACTORY
             //   var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
             // }
             // marker.bindPopup(content);
+
+            //The cluster layer in this situation
             layer.addLayer(marker);
         }
         map.addLayer(layer);
