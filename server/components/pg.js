@@ -31,7 +31,7 @@ var connectDB = function(cb, fixtures){
 				         'uri TEXT NOT NULL,'                                  +
 				         'thumb TEXT NOT NULL,'                                +
 				         'time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,'           +
-                         'likes INTEGER NOT NULL'                              +
+                         'likes INTEGER NOT NULL,'                              +
 				         'user_id INTEGER'                                     +
 				         ');';
 
@@ -91,12 +91,16 @@ var connectDB = function(cb, fixtures){
 			console.log("Created 'tags' table." );
 		});
 
-		DB.client.query(tags_media, function(err, results){
+        DB.client.query(tags_media, function(err, results){
 			if(err) console.log("tags_media ERROR:", err);
 			console.log("Created 'tags_media' table." );
-			// Kind of hacky but it works!!! :(
-			// fixtures.createFixtures();
 		});
+
+        DB.client.query(media_likes, function(err, results){
+            if(err) console.log("tags ERROR:", err);
+            console.log("Created 'media_likes' table." );
+        });
+
 	});
 })();
 
