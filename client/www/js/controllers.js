@@ -7,45 +7,46 @@ angular.module('axil.controllers', [])
 
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory){
 
-   $scope.loginInfo = {};
-   $rootScope.authenticated = false;
+  $scope.loginInfo = {};
+  $rootScope.authenticated = false;
 
-   // Primary Login Method, uses Auth Factory to send login request to the API
-   $scope.login = function() {
-      AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
-      .then(function(response){
-        // The response will contain a json web token if the login was successful
-        if (response.data.token) {
-            TokenFactory.deleteToken();
-            TokenFactory.setToken(response.data);
-            $rootScope.authenticated = true;
-            $state.go('tab.explore')
-        } else {
-            $scope.loginError = true;
-            TokenFactory.deleteToken();
-        }
-      })
-    }
+  // Primary Login Method, uses Auth Factory to send login request to the API
+  $scope.login = function() {
+    AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
+    .then(function(response){
+      // The response will contain a json web token if the login was successful
+      if (response.data.token) {
+        TokenFactory.deleteToken();
+        TokenFactory.setToken(response.data);
+        $rootScope.authenticated = true;
+        $state.go('tab.explore')
+      } else {
+        $scope.loginError = true;
+        TokenFactory.deleteToken();
+      }
+    })
+  }
 
-    // Helper function to keep track of login status
-    $scope.isError = function() {
-        if ($scope.loginError) {
-            return true;
-        }
-        return false;
+  // Helper function to keep track of login status
+  $scope.isError = function() {
+    if ($scope.loginError) {
+      return true;
     }
-    // Simple logout... delete the token on the client side
-    // TODO - delete the server side token as well
-    $scope.logout = function() {
-      TokenFactory.deleteToken();
-      $rootScope.authenticated = false;
-      $state.go('/login');
-    }
+    return false;
+  }
+  
+  // Simple logout... delete the token on the client side
+  // TODO - delete the server side token as well
+  $scope.logout = function() {
+    TokenFactory.deleteToken();
+    $rootScope.authenticated = false;
+    $state.go('/login');
+  }
 
-    // If the user wants to sign up, redirect to the signup view
-    $scope.signupRedirect = function() {
-      $state.go('/signup');
-    }
+  // If the user wants to sign up, redirect to the signup view
+  $scope.signupRedirect = function() {
+    $state.go('/signup');
+  }
 
 })
 
@@ -56,37 +57,38 @@ angular.module('axil.controllers', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 .controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window) {
-    $scope.signupInfo = {};
-    $scope.signinError = false;
-    $rootScope.authenticated = false;
+  $scope.signupInfo = {};
+  $scope.signinError = false;
+  $rootScope.authenticated = false;
 
-    // Main Signup Method, uses the AuthFactory to create a new user and log the user in with a new session token.
-    $scope.signup = function() {
-      AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
-        .then(function(response) {
-          if (response.data.token) {
-              TokenFactory.setToken(response.data);
-              $rootScope.authenticated = true;
-              $state.go("tab.explore");
-          } else {
-              TokenFactory.deleteToken();
-              $scope.signinError = true;
-          }
-        });
-    };
+  // Main Signup Method, uses the AuthFactory to create a new user and log the user in with a new session token.
+  $scope.signup = function() {
+    AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
+    .then(function(response) {
+      if (response.data.token) {
+        TokenFactory.setToken(response.data);
+        $rootScope.authenticated = true;
+        $state.go("tab.explore");
+      } else {
+        TokenFactory.deleteToken();
+        $scope.signinError = true;
+      }
+    });
+  };
 
-    // Auth Helper Function, not yet in use
-    $scope.isError = function() {
-        if ($scope.signinError) {
-            return true;
-        }
-        return false;
+  // Auth Helper Function, not yet in use
+  $scope.isError = function() {
+    if ($scope.signinError) {
+      return true;
     }
+    return false;
+  }
 
-    // Simple state redirect to login
-    $scope.loginRedirect = function() {
-      $state.go('/login');
-    }
+  // Simple state redirect to login
+  $scope.loginRedirect = function() {
+    $state.go('/login');
+  }
+
 })
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -107,52 +109,52 @@ angular.module('axil.controllers', [])
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function(position){
-           MapFactory.userMarker(position.coords, user);
-            map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-            MapFactory.updateUserPosition(position.coords);
+          MapFactory.userMarker(position.coords, user);
+          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+          MapFactory.updateUserPosition(position.coords);
         }, function(err){
-
-        })
-    }
+          console.log(err);
+        });
+    };
 
     $scope.getLocation();
-    
     $scope.markerInfo = {};
+
     //CLUSTER MODAL provides a list of media visible in the map.
     var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    })
+    });
     mapListModal.then(function(modal){
       $scope.listModal = modal;
-    })
+    });
 
     $scope.openListModal = function(){
       $scope.listModal.show();
-    }
+    };
 
     $scope.closeListModal = function(){
       $scope.listModal.hide();
-    }
+    };
 
     $scope.$on('$destroy', function(){
       $scope.listModal.remove();
-    })
+    });
 
     //MARKER MODAL detailed view of media
     var markerModal = $ionicModal.fromTemplateUrl('marker-modal.html', {
       scope: $scope,
       animation: 'slide-in-up'
-    })
+    });
 
     markerModal.then(function(modal){
       $scope.markerModal = modal;
-    })
+    });
 
     //opens the modal from a map marker click data is provided to modal by the marker.
     $scope.openMarkerModal = function(){
       $scope.markerModal.show();
-    }
+    };
 
     //opens the modal from the list view data is provided by the list view and passed as a parameter
     $scope.openMarkerModalFromList = function(media){
@@ -160,15 +162,15 @@ angular.module('axil.controllers', [])
       $scope.markerInfo = media.mediaData;
       $scope.markerModal.show();
       $scope.closeListModal();
-    }
+    };
 
     $scope.closeMarkerModal = function(){
       $scope.markerModal.hide();
-    }
+    };
 
     $scope.$on('$destroy', function(){
       $scope.markerModal.remove();
-    })
+    });
 
 
     var your_api_code = Mapbox.APIKey;
@@ -195,7 +197,7 @@ angular.module('axil.controllers', [])
       // $scope.medias = a;
       // console.log('medias', $scope.medias);
       // $scope.openListModal();
-    })
+    });
 
     // Center the map on a selected marker and open modal
     clusters.on('click', function(e) {
@@ -218,12 +220,12 @@ angular.module('axil.controllers', [])
             }
         });
         return inBounds;
-    }
+    };
 
     $scope.listView = function(){
       $scope.inBounds = onmove();
       $scope.openListModal();
-    }
+    };
 
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
@@ -269,8 +271,8 @@ angular.module('axil.controllers', [])
             return res.body.message;
         });
     }
-1
   });
+
  })
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -321,19 +323,19 @@ angular.module('axil.controllers', [])
       animation: 'slide-in-up'
     }).then(function(modal){
       $scope.modal = modal;
-    })
+    });
 
     $scope.openModal = function(){
       $scope.modal.show();
-    }
+    };
 
     $scope.closeModal = function(){
       $scope.modal.hide();
-    }
+    };
 
     $scope.$on('$destroy', function(){
       $scope.modal.remove();
-    })
+    });
 
     $scope.images = [];
     $scope.media = {};
@@ -393,44 +395,46 @@ angular.module('axil.controllers', [])
       }, function(err) {
         console.log(err);
       });
-  }
+    }
 
   // If the user opts to add a video, this method will be called
-  $scope.addVideo = function(){
-    // Set the time limit for the video and limit the number of videos per upload (no iOS support)
-    var options = { limit: 1, duration: 10 };
+    $scope.addVideo = function(){
+      // Set the time limit for the video and limit the number of videos per upload (no iOS support)
+      var options = { limit: 1, duration: 10 };
 
-    // Launch the video-camera with the options that we've defined
-    $cordovaCapture.captureVideo(options).then(function(videoData) {
-      $rootScope.spinner = true;
-      var options = {};
-      // Success! Video data is here
-      $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
-      .then(function(data){
-        // Set the thumbnail Image
-        $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
-        // Open the upload media modal
-        $scope.openModal();
-        var posOptions = {timeout: 30000, enableHighAccuracy: true};
+      // Launch the video-camera with the options that we've defined
+      $cordovaCapture.captureVideo(options).then(function(videoData) {
+        $rootScope.spinner = true;
+        var options = {};
+        // Success! Video data is here
+        $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload/video', videoData[0].fullPath, options)
+        .then(function(data){
+          // Set the thumbnail Image
+          $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
+          // Open the upload media modal
+          $scope.openModal();
+          var posOptions = {timeout: 30000, enableHighAccuracy: true};
 
-        //Get current position and save the url along with geo location to the database.
-        $cordovaGeolocation.getCurrentPosition(posOptions)
-        .then(function(position){
-          // Redirect to the explore page
-          $state.go('tab.explore');
-          var lat = position.coords.latitude;
-          var lon = position.coords.longitude;
-          // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
-          var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, $scope.userInfo.user_id, 'ATX', 0);
-          mediaFactory.then(function(response){
-            $rootScope.spinner = false;
+          //Get current position and save the url along with geo location to the database.
+          $cordovaGeolocation.getCurrentPosition(posOptions)
+          .then(function(position){
+            // Redirect to the explore page
+            $state.go('tab.explore');
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            // Upload the media with tags to the database, socket connection will populate the map when the media is successfully uploaded
+            var mediaFactory = MediaFactory.addMedia(data, 'video', lat, lon, $scope.userInfo.user_id, 'ATX', 0);
+            mediaFactory.then(function(response){
+              $rootScope.spinner = false;
+            })
           })
         })
-      })
-    }, function(err) {
-      // An error occurred. Show a message to the user
-      console.log('video upload error:', err);
-    });
-  }
-});
+      }, function(err) {
+        // An error occurred. Show a message to the user
+        console.log('video upload error:', err);
+      });
+    }
+
+  });
+
 });
