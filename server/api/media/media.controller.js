@@ -50,10 +50,8 @@ exports.getMediaByUser = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-    console.log('add media called!')
     var url = JSON.parse(req.body.uri.response).url
     var thumb = url.slice(0, -3) + 'jpg';
-    console.log('url:', url, 'thumb:', thumb);
 
     var media_id, tag_id;
   	DB.client.query('INSERT INTO media (type, likes, lat, lon, uri, thumb, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [req.body.type, req.body.likes, req.body.lat, req.body.lon, url, thumb, req.body.user_id], function(err, result) {
