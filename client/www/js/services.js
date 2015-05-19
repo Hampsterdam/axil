@@ -177,6 +177,16 @@ MEDIA FACTORY ("../api/media")
         });
     };
 
+    // Fetch all media by range;
+    function getMediaByRadius (coords) {
+        return $http({
+            method: 'GET',
+            url: myConfig.serverUrl + '/media/range/' + coords.latitude + '/' + coords.longitude
+        }).then(function (data) {
+            return data;
+        }
+    }
+
     // Expose the Media Factory Methods to the rest of the application
     return {
         addMedia: addMedia,
@@ -186,7 +196,8 @@ MEDIA FACTORY ("../api/media")
         likeMedia: likeMedia,
         unlikeMedia: unlikeMedia,
         getMediaByTag: getMediaByTag,
-        getMediaByTime: getMediaByTime
+        getMediaByTime: getMediaByTime,
+        getMediaByRange: getMediaByRange
     }
 
 })

@@ -10,29 +10,11 @@ cloudinary.config({
 });
 
 exports.getMedia = function(req, res){
-  var filter = req.query
-  if(!Object.keys(filter).length){
     DB.client.query('SELECT * FROM media', function(err, result) {
       if (result) {
         res.status(200).json(result.rows);
       }
     });
-  } else {
-    getMediaByRadius(req, res)
-    // var query = 'SELECT * FROM media '
-    // var where = []
-    // for(key in filter) {
-    //   if(!filter.hasOwnProperty(key)) continue
-    //   if(key === 'order' || key === 'orderBy') continue
-    //   where.push(key + ' = ' + filter)
-    // }
-    // query += where.join(' AND ')
-    // if(filter.orderBy) {
-    //   if(!filter.order) res.sendStatus(400)
-    //   query += ' ORDER BY ' + filter.orderBy + (filter.order > 0 ? ' ASC ;': ' DESC;')
-    // }
-
-  }
 }
 
 exports.getUniqueMedia = function(req, res) {
@@ -190,11 +172,11 @@ exports.getMediaByTag = function(req, res) {
   });
 }
 
-function getMediaByRadius (req, res) {
-  var type = req.query.type
-  var lat = parseFloat(req.query.lat)
-  var lon = parseFloat(req.query.lon)
-  DB.client.query("SELECT * FROM media WHERE earth_box(ll_to_earth($1, $2), $3) @> ll_to_earth(media.lat, media.lon)", [lat, lon, req.query.range], function(err, result) {
+exports.getMediaByRadius = function (req, res) {
+  var range = 2000;
+  var lat = parseFloat(req.params.lat);
+  var lon = parseFloat(req.params.lon);
+  DB.client.query("SELECT * FROM media WHERE earth_box(ll_to_earth($1, $2), $3) @> ll_to_earth(media.lat, media.lon)", [lat, lon, range], function(err, result) {
     if (err) {
       console.log("ERROR:", err);
       res.sendStatus(500)

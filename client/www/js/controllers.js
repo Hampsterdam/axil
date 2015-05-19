@@ -174,6 +174,14 @@ angular.module('axil.controllers', [])
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function(position){
+         // Fetch the media from the API
+         MediaFactory.getMediaByRadius()
+           .then(function(data){
+             //Get media data from server for listview modal
+             // Populate the map with media clusters
+             MapFactory.populateMap(position.coords, clusters, map);
+         });
+
          MapFactory.userMarker(position.coords, user);
       }, function(err){
 
@@ -191,13 +199,7 @@ angular.module('axil.controllers', [])
          MapFactory.updateUserPosition(position.coords);
       });
 
-    // Fetch the media from the API
-    MediaFactory.getAllMedia()
-      .then(function(data){
-        //Get media data from server for listview modal
-        // Populate the map with media clusters
-        MapFactory.populateMap(data.data, clusters, map);
-    });
+
 
     // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
