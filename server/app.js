@@ -15,6 +15,7 @@ var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var jwtSecret = 'mysecret';
 
+// CORS Middleware Allowing Cross-Origin Request from the Mobile Application
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With,Authorization');
@@ -22,11 +23,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(function(req, res, next){
-	next();
-})
-
-// Protect /api routes with JWT
+// Protect .../api routes with JWT
 app.use(bodyParser.json());
 app.use('/api', expressJwt({secret: jwtSecret }).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/:user_id','/api/media/upload', '/api/media/upload/video']}));
 
