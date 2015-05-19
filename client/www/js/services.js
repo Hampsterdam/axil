@@ -361,17 +361,20 @@ MAP FACTORY
     }
 
     // Updates a Specific Marker on the Map Layer when it's changed (liked, addedTag)
-    function replaceMarker (media_id, layer) {
-      console.log("Replace Marker called in Services.js", media_id);
+    function replaceMarker (media_id, layer, map) {
+      media_id = parseInt(media_id);
       // Replace the unique marker with updated marker (new mediaInfo)
       layer.eachLayer(function(marker) {
         if (marker.mediaData.id === media_id) {
           layer.removeLayer(marker);
-          var media = MediaFactory.getUniqueMedia(media_id);
-          var marker = makeMarker(media);
-          layer.addLayer(marker)
+          MediaFactory.getUniqueMedia(media_id)
+          .then(function(media) {
+            var marker = makeMarker(media.data[0]);
+            layer.addLayer(marker)
+          })
         }
       });
+      map.addLayer(layer);
     }
 
     // Remove a Specific Marker from the Map when it's removed from the Database

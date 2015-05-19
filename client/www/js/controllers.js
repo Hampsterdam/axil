@@ -238,8 +238,7 @@ angular.module('axil.controllers', [])
     
     // Socket Listeners for Media Changes
     Socket.on("media_changed", function(media_id) {
-      console.log("Media Changed emitted");
-      MapFactory.replaceMarker(media_id, clusters);
+      MapFactory.replaceMarker(media_id, clusters, map);
     });
 
     // Socket Listener for Media Deletion
