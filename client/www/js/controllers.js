@@ -87,27 +87,27 @@ angular.module('axil.controllers', [])
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
-    $scope.markerInfo = "";
+    $scope.markerInfo = {};
     //CLUSTER MODAL
-    // var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
-    //   scope: $scope,
-    //   animation: 'slide-in-up'
-    // })
-    // mapListModal.then(function(modal){
-    //   $scope.listModal = modal;
-    // })
+    var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    })
+    mapListModal.then(function(modal){
+      $scope.listModal = modal;
+    })
 
-    // $scope.openListModal = function(){
-    //   $scope.listModal.show();
-    // }
+    $scope.openListModal = function(){
+      $scope.listModal.show();
+    }
 
-    // $scope.closeListModal = function(){
-    //   $scope.listModal.hide();
-    // }
+    $scope.closeListModal = function(){
+      $scope.listModal.hide();
+    }
 
-    // $scope.$on('$destroy', function(){
-    //   $scope.listModal.remove();
-    // })
+    $scope.$on('$destroy', function(){
+      $scope.listModal.remove();
+    })
 
     //MARKER MODAL
     var markerModal = $ionicModal.fromTemplateUrl('marker-modal.html', {
@@ -121,6 +121,13 @@ angular.module('axil.controllers', [])
 
     $scope.openMarkerModal = function(){
       $scope.markerModal.show();
+    }
+
+    $scope.openMarkerModalFromList = function(media){
+      console.log('openMarkerModal media:', media);
+      $scope.markerInfo = media.mediaData;
+      $scope.markerModal.show();
+      $scope.closeListModal();
     }
 
     $scope.closeMarkerModal = function(){
@@ -153,7 +160,7 @@ angular.module('axil.controllers', [])
 
 
     clusters.on('clusterclick', function(a){
-      // $scope.medias = a.layer._markers;
+      // $scope.medias = a;
       // console.log('medias', $scope.medias);
       // $scope.openListModal();
     })
@@ -161,10 +168,33 @@ angular.module('axil.controllers', [])
     // Center the map on a selected marker
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
-      $scope.markerInfo = e.layer.options.icon.options;
+      console.log(e);
+      $scope.markerInfo = e.layer.mediaData;
       console.log('marker clicked', $scope.markerInfo);
       $scope.openMarkerModal();
     });
+
+    map.on('move', onmove);
+
+    function onmove() {
+      var inBounds = []
+        // Get the map bounds - the top-left and bottom-right locations.
+        var bounds = map.getBounds();
+        clusters.eachLayer(function(marker) {
+            // For each marker, consider whether it is currently visible by comparing
+            // with the current map bounds.
+            if (bounds.contains(marker.getLatLng())) {
+                inBounds.push(marker);
+            }
+        });
+        return inBounds;
+    }
+
+    $scope.listView = function(){
+      $scope.inBounds = onmove();
+      console.log('listView:', $scope.inBounds);
+      $scope.openListModal();
+    }
 
     // Add the user marker to the map
     var user = new L.mapbox.featureLayer().addTo(map);
