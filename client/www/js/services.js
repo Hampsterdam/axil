@@ -133,6 +133,9 @@ MEDIA FACTORY ("../api/media")
      
     // Method for a user to "like" media
     function likeMedia (media_id, user_id) {
+        console.log("Media Factory Called");
+        console.log("media_id: ", media_id);
+        console.log("user_id: ", user_id);
         return $http({
             method: 'POST',
             url: myConfig.serverUrl + '/media/' + media_id,
@@ -140,6 +143,7 @@ MEDIA FACTORY ("../api/media")
                 user_id: user_id
             }
         }).then(function(res) {
+            console.log("Server request processed and answered");
             return res;
         });
     };
