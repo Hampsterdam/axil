@@ -101,6 +101,22 @@ angular.module('axil.controllers', [])
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
+
+    $scope.getLocation = function(){
+      var posOptions = { timeout: 30000, enableHighAccuracy: true };
+      $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function(position){
+           MapFactory.userMarker(position.coords, user);
+            map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+            MapFactory.updateUserPosition(position.coords);
+        }, function(err){
+
+        })
+    }
+
+    $scope.getLocation();
+    
     $scope.markerInfo = {};
     //CLUSTER MODAL provides a list of media visible in the map.
     var mapListModal = $ionicModal.fromTemplateUrl('map-list-modal.html', {
@@ -216,26 +232,18 @@ angular.module('axil.controllers', [])
     var user = new L.mapbox.featureLayer().addTo(map);
 
     // Get the user position and move the map to their location;
-    var posOptions = { timeout: 30000, enableHighAccuracy: true };
-    $cordovaGeolocation
-      .getCurrentPosition(posOptions)
-      .then(function(position){
-         MapFactory.userMarker(position.coords, user);
-      }, function(err){
-
-      })
 
     // Keep track of the user as they move (while the application is running, no background tracking)
-    var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
-    $cordovaGeolocation
-      .watchPosition(watchOptions)
-      .then(null, function(err) {
-        // geolocation down, no worries
-      }, function(position){
-        // Set a marker at the user's location
-         map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-         MapFactory.updateUserPosition(position.coords);
-      });
+    // var watchOptions = { maximumAge: 3000, timeout: 30000, enableHighAccuracy: false };
+    // $cordovaGeolocation
+    //   .watchPosition(watchOptions)
+    //   .then(null, function(err) {
+    //     // geolocation down, no worries
+    //   }, function(position){
+    //     // Set a marker at the user's location
+    //      map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+    //      MapFactory.updateUserPosition(position.coords);
+    //   });
 
     // Fetch the media from the API
     MediaFactory.getAllMedia()
