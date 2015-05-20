@@ -61,7 +61,7 @@ exports.addMedia = function(req, res){
 
         // Join the User table with the Media table where the user_id and media_id are equal to the user_id and media_id of the inserted data
         media_id = result.rows[0].id;
-        DB.client.query("SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname FROM media JOIN users ON users.id = $1 AND media.id = $2"), [req.body.user_id, media_id], function(err, result) {
+        DB.client.query("SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname FROM media JOIN users ON users.id = $1 AND media.id = $2", [req.body.user_id, media_id], function(err, result) {
           if (err) {
             console.log("ERROR: ", err);
           } else {
