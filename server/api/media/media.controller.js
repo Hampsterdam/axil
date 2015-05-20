@@ -11,7 +11,7 @@ cloudinary.config({
 
 exports.getAllMedia = function(req, res){
   // (id, type, likes, lat, lon, uri, thumb, time, firstname, lastname)
-  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname FROM media JOIN users ON users.id = media.user_id', [], function(err, result) {
+  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname, email FROM media JOIN users ON users.id = media.user_id', [], function(err, result) {
     if (err) {
         console.log("ERROR: ", err);
     }
@@ -26,7 +26,7 @@ exports.getAllMedia = function(req, res){
 }
 
 exports.getUniqueMedia = function(req, res) {
-  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, firstname, lastname FROM media JOIN users ON users.id = media.user_id WHERE media.id = $1', [req.params.media_id], function(err, result) {
+  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, firstname, lastname, email FROM media JOIN users ON users.id = media.user_id WHERE media.id = $1', [req.params.media_id], function(err, result) {
     if (result && result.rows.length > 0) {
       res.status(200).json(result.rows);
     } else {
