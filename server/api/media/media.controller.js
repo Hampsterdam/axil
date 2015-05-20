@@ -160,12 +160,11 @@ exports.updateMedia = function(req, res){
 }
 
 exports.userLike = function(req, res) {
-  console.log("User like controller called");
   DB.client.query("SELECT * FROM media_likes WHERE media_id = $1 AND user_id = $2", [req.params.media_id, req.body.user_id], function(err, result) {
     if (err) {
         console.log("ERROR:", err);
     } else if (result.rows.length > 0) {
-        res.status(400).json({
+        res.status(200).json({
             message: "You've already liked this media!"
         });
     } else {
@@ -177,7 +176,6 @@ exports.userLike = function(req, res) {
             if (err) {
               console.log("ERROR:", err);
             } else {
-              console.log("Socket emitted: ", req.params.media_id);
               req.socket.emit("media_changed", req.params.media_id);
               res.status(201).json({
                 message: "Message liked!"
