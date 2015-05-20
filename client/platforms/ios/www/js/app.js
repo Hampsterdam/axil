@@ -18,30 +18,36 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 })
 
+// Filter to allow us to load videos from the cloud storage
+// This is to comply with the AngularJS Security Policy
+.filter('trusted', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+})
+
 // State Provider Config, associates tabs with Views (www/templates/..) and Controllers (controllers.js)
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+  // Load the HTTP interceptor from services.js to modify requests to locked API routes.
+  // The functionality of the interceptor is explained where it is defined.
+  $httpProvider.interceptors.push('Interceptor');
 
   $stateProvider
-
-  .state('signup', {
-      url: '/',
-      templateUrl: 'templates/signup.html',
-      controller: 'SignupCtrl'
+  .state('/login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+  .state('/signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'SignupCtrl'
   })
   .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
-  })
-
-  .state('tab.login', {
-    url: '/login',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-login.html',
-        controller: 'LoginCtrl'
-      }
-    }
   })
   .state('tab.explore', {
     url: '/explore',
@@ -72,7 +78,6 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
   });
 
   // Redirect to Login otherwise
-  $urlRouterProvider.otherwise('/tab/login');
-
+  $urlRouterProvider.otherwise('/login');
 });
 
