@@ -56,11 +56,10 @@
           <div ng-if="markerInfo.type === 'image'">
             <img class="center marker-modal-img" src="{{markerInfo.uri}}">
           </div>
-        </div>
-          <h3>Likes: {{markerInfo.likes}} </h3>
-          <h3>By: {{markerInfo.firstname}} {{markerInfo.lastname}} </h3>
-        </div>
+          <p>Likes: {{markerInfo.likes}} </p>
+          <p>By: {{markerInfo.firstname}} {{markerInfo.lastname}} </p>
       </div>
+
       <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item" href="#" ng-click="likeMedia(markerInfo.id)">
           <i class="icon ion-thumbsup"></i>
