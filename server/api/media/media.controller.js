@@ -11,7 +11,7 @@ cloudinary.config({
 
 exports.getAllMedia = function(req, res){
   // (id, type, likes, lat, lon, uri, thumb, time, firstname, lastname)
-  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname, email FROM media JOIN users ON users.id = media.user_id', [], function(err, result) {
+  DB.client.query('SELECT media.id, type, likes, lat, lon, uri, thumb, time, user_id, firstname, lastname, email FROM media JOIN users ON users.id = media.user_id ORDER BY time DESC', [], function(err, result) {
     if (err) {
         console.log("ERROR: ", err);
     }
