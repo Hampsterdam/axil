@@ -113,6 +113,15 @@ html, body {
     text-align: center;
 }
 
+.gravatar {
+  height: 150px !important;
+  width: 150px !important;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0080ff;
+  margin: 0 auto;
+}
+
 
 
 

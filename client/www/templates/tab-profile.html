@@ -7,14 +7,21 @@
       </div>
        <div class="user-media profile-media">
         <ion-list>
-          <ion-item class="item item-icon-left">
-            <i class="icon ion-person-stalker"></i>
-            <h2>{{userInfo.firstname}} {{userInfo.lastname}}</h2>
-          </ion-item>
-          <ion-item class="item item-icon-left">
-            <i class="icon ion-email"></i>
-            <h3>{{userInfo.email}}</h3>
-          </ion-item>
+          <div class= "list card">
+            <div class="item item avatar">
+              <div class="text-center">
+                <img class="gravatar" src="{{userInfo.gravatar}}">
+              </div>
+              <ion-item>
+                <i class="icon ion-person-stalker"></i>
+                <p>{{userInfo.firstname}} {{userInfo.lastname}}</p>
+              </ion-item>
+              <ion-item>
+                <i class="icon ion-email"></i>
+                <p>{{ userInfo.email }}</p>
+              </ion-item>
+            </div>
+          </div>
           <ion-item ng-repeat="media in userInfo.mediaList" class="item item-thumbnail-left">
               <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}">
               <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" controls>
