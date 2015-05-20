@@ -23,9 +23,11 @@
             </div>
           </div>
           <ion-item ng-repeat="media in userInfo.mediaList" class="item item-thumbnail-left">
-              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}">
-              <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" controls>
+          <div class="list card">
+                  <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="">
+                  <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" controls class="">
             <ion-option-button class="button-assertive">Delete</ion-option-button>
+          </div>
           </ion-item>
         <ion-list>
       </div>
