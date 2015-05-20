@@ -286,6 +286,7 @@ angular.module('axil.controllers', [])
   UserFactory.getUniqueUser($scope.userInfo.user_id)
   .then(function(data) {
     var user = data.data[0];
+    console.log('user:', user);
     // Assign the profile information to scope variables
     $scope.userInfo.firstname = user.firstname;
     $scope.userInfo.lastname = user.lastname;

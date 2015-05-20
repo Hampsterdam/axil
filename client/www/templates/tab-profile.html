@@ -2,27 +2,26 @@
   <ion-content>
     <div class="profile-container">
       <div class="profile-picture">
+    </div>
+      <div>
       </div>
-
-      <div class="profile-info">
-        <h2>{{userInfo.firstname}} {{userInfo.lastname}}</h2>
-        <h3>{{userInfo.email}}</h3>
-      </div>
-
-      
-      <div class="user-media profile-media">
+       <div class="user-media profile-media">
         <ion-list>
-          <ion-item ng-repeat="media in userInfo.mediaList">
-            <div class="image-container">
-              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="media-modal" >
-              <video ng-if="media.type === 'video'" src="{{media.uri | trusted}}" type="video/mov" class="media-modal"  controls>
-            </div>
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-person-stalker"></i>
+            <h2>{{userInfo.firstname}} {{userInfo.lastname}}</h2>
+          </ion-item>
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-email"></i>
+            <h3>{{userInfo.email}}</h3>
+          </ion-item>
+          <ion-item ng-repeat="media in userInfo.mediaList" class="item-remove-animate">
+              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="round-thumbnail" >
+              <video ng-if="media.type === 'video'" src="{{media.uri | trusted}}" type="video/mov" class="round-thumbnail"  controls>
+            <ion-option-button class="button-assertive">Delete</ion-option-button>
           </ion-item>
         <ion-list>
       </div>
-
-
-
     </div>
   </ion-content>
 </ion-view>

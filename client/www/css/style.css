@@ -76,6 +76,13 @@ html, body {
   border-color: #0080ff;
 }
 
+.square-thumbnail {
+  height: 100% !important;
+  width: 250px !important;
+  border: solid;
+  border-color: #0080ff;
+}
+
 .marker-modal-img {
   height: 100%;
   width: 350px;
@@ -105,6 +112,7 @@ html, body {
     margin: auto;
     text-align: center;
 }
+
 
 
 
