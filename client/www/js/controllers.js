@@ -195,7 +195,6 @@ angular.module('axil.controllers', [])
     clusters.on('click', function(e) {
       map.panTo(e.layer.getLatLng());
       $scope.markerInfo = e.layer.mediaData;
-      console.log("Scope marker info: ", $scope.markerInfo);
       $scope.openMarkerModal();
     });
 
@@ -253,11 +252,9 @@ angular.module('axil.controllers', [])
 
     // User Like Media (button in the Media Modal View)
     $scope.likeMedia = function(media_id) {
-      console.log("Like Media Called");
       $scope.user_id = TokenFactory.getUserId();
       MediaFactory.likeMedia(media_id, $scope.user_id)
         .then(function(res) {
-          console.log("Factory Method Successful");
           if (res.status === 201) {
             alert("Media Liked!");
           } else {
