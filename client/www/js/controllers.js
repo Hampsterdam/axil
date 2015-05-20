@@ -258,10 +258,10 @@ angular.module('axil.controllers', [])
         .then(function(res) {
           if (res.status === 201) {
             $scope.markerInfo.likes ++;
-          } else if (res.status === 400) {
-            alert("Error");
+          } else if (res.status === 200) {
+            alert("You've already liked that media!");
           } else {
-            console.log("What the hell");
+            console.log("There was an issue with the Axil Servers");
           }
         });
     }

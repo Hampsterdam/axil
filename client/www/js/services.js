@@ -452,7 +452,6 @@ TOKEN FACTORY
     // Set the user token in local storage when they log in
     function setToken(data) {
         if(data.token){
-            console.log("Data: ", data);
             $window.localStorage.setItem('token', data.token);
             $window.localStorage.setItem('user_id', data.user_id);
             $rootScope.userInfo.id = data.user_id;
