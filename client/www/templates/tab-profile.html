@@ -15,9 +15,9 @@
             <i class="icon ion-email"></i>
             <h3>{{userInfo.email}}</h3>
           </ion-item>
-          <ion-item ng-repeat="media in userInfo.mediaList" class="item-remove-animate">
-              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="round-thumbnail" >
-              <video ng-if="media.type === 'video'" src="{{media.uri | trusted}}" type="video/mov" class="round-thumbnail"  controls>
+          <ion-item ng-repeat="media in userInfo.mediaList" class="item item-thumbnail-left">
+              <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}">
+              <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" controls>
             <ion-option-button class="button-assertive">Delete</ion-option-button>
           </ion-item>
         <ion-list>
