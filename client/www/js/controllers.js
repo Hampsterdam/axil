@@ -109,8 +109,8 @@ angular.module('axil.controllers', [])
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function(position){
-          MapFactory.userMarker(position.coords, user);
-          map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+          MapFactory.userMarker(position.coords, $scope.user);
+          $scope.map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
           MapFactory.updateUserPosition(position.coords);
         }, function(err){
           console.log(err);
@@ -176,8 +176,8 @@ angular.module('axil.controllers', [])
 
     // Load the Default Map
     L.mapbox.accessToken = your_api_code;
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
-    var clusters = new L.MarkerClusterGroup({
+    $scope.map = L.mapbox.map('map', 'mapbox.streets').setView([30.2698848, -97.7444182], 16);
+    $scope.clusters = new L.MarkerClusterGroup({
       // The iconCreateFunction takes the cluster as an argument and returns
       // an icon that represents it. We use L.mapbox.marker.icon in this
       // example, but you could also use L.icon or L.divIcon.
@@ -192,19 +192,19 @@ angular.module('axil.controllers', [])
     });
 
     // Center the map on a selected marker and open modal
-    clusters.on('click', function(e) {
-      map.panTo(e.layer.getLatLng());
+    $scope.clusters.on('click', function(e) {
+      $scope.map.panTo(e.layer.getLatLng());
       $scope.markerInfo = e.layer.mediaData;
       $scope.openMarkerModal();
     });
 
-    map.on('move', onmove);
+    $scope.map.on('move', onmove);
 
     function onmove() {
       var inBounds = []
         // Get the map bounds - the top-left and bottom-right locations.
-        var bounds = map.getBounds();
-        clusters.eachLayer(function(marker) {
+        var bounds = $scope.map.getBounds();
+        $scope.clusters.eachLayer(function(marker) {
             // For each marker, consider whether it is currently visible by comparing
             // with the current map bounds.
             if (bounds.contains(marker.getLatLng())) {
@@ -220,34 +220,34 @@ angular.module('axil.controllers', [])
     };
 
     // Add the user marker to the map
-    var user = new L.mapbox.featureLayer().addTo(map);
+    $scope.user = new L.mapbox.featureLayer().addTo($scope.map);
 
     // Fetch the media from the API
     MediaFactory.getAllMedia()
       .then(function(data){
         //Get media data from server for listview modal
         // Populate the map with media clusters
-        MapFactory.populateMap(data.data, clusters, map);
+        MapFactory.populateMap(data.data, $scope.clusters, $scope.map);
     });
 
     // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
-      MapFactory.populateMap([data], clusters, map);
+      MapFactory.populateMap([data], $scope.clusters, $scope.map);
     });
     
     // Socket Listeners for Media Changes
     Socket.on("media_changed", function(media_id) {
-      MapFactory.replaceMarker(media_id, clusters, map);
+      MapFactory.replaceMarker(media_id, $scope.clusters, $scope.map);
     });
 
     // Socket Listener for Media Deletion
     Socket.on("media_removed", function(media_id) {
-      MapFactory.removeMarker(media_id, clusters);
+      MapFactory.removeMarker(media_id, $scope.clusters);
     });
 
     // Center the map on the user when selected
-    user.on('click', function(e) {
-      map.panTo(e.layer.getLatLng());
+    $scope.user.on('click', function(e) {
+      $scope.map.panTo(e.layer.getLatLng());
     });
 
     // User Like Media (button in the Media Modal View)
