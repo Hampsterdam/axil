@@ -9,6 +9,7 @@ angular.module('axil.controllers', [])
 
   $scope.loginInfo = {};
   $rootScope.authenticated = false;
+  $rootScope.userInfo = {};
 
   // Primary Login Method, uses Auth Factory to send login request to the API
   $scope.login = function() {
@@ -99,7 +100,7 @@ angular.module('axil.controllers', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket, Mapbox) {
+.controller('ExploreCtrl', function($scope, $rootScope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket, Mapbox) {
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
@@ -256,9 +257,11 @@ angular.module('axil.controllers', [])
       MediaFactory.likeMedia(media_id, $scope.user_id)
         .then(function(res) {
           if (res.status === 201) {
-            alert("Media Liked!");
-          } else {
+            $scope.markerInfo.likes ++;
+          } else if (res.status === 400) {
             alert("Error");
+          } else {
+            console.log("What the hell");
           }
         });
     }

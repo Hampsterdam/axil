@@ -447,13 +447,15 @@ TOKEN FACTORY
 --------------------------------------------------*/
 
 // Manages json web tokens provided by the server when a user logs-in
-.factory('TokenFactory', function($window) {
+.factory('TokenFactory', function($window, $rootScope) {
     
     // Set the user token in local storage when they log in
     function setToken(data) {
         if(data.token){
+            console.log("Data: ", data);
             $window.localStorage.setItem('token', data.token);
             $window.localStorage.setItem('user_id', data.user_id);
+            $rootScope.userInfo.id = data.user_id;
         } else {
             deleteToken();
         }
