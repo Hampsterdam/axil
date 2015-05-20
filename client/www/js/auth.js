@@ -6,11 +6,23 @@ angular.module('axil.authctrl', [])
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory) {
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory, $cordovaTouchID) {
 
   $scope.loginInfo = {};
   $rootScope.authenticated = false;
   $rootScope.userInfo = {};
+
+  // $cordovaTouchID.checkSupport().then(function() {
+  //    // success, TouchID supported
+  //  }, function (error) {
+  //    alert(error); // TouchID not supported
+  //  });
+
+  //  $cordovaTouchID.authenticate("Howdy").then(function() {
+  //    // success
+  //  }, function () {
+  //    // error
+  //  });
 
   // Primary Login Method, uses Auth Factory to send login request to the API
   $scope.login = function() {
@@ -58,7 +70,7 @@ angular.module('axil.authctrl', [])
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-.controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window) {
+.controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window, $cordovaTouchID) {
   $scope.signupInfo = {};
   $scope.signinError = false;
   $rootScope.authenticated = false;
