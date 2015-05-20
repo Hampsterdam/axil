@@ -219,6 +219,7 @@ USER FACTORY ("../api/users")
             method: 'GET',
             url: myConfig.serverUrl + '/users/' + user_id
         }).then(function (data){
+            console.log(data);
             return data;
         })
     }

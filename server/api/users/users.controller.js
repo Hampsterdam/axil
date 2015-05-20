@@ -3,7 +3,7 @@
 var DB = require('../../components/pg.js');
 
 exports.getUsers = function(req, res) {
-	DB.client.query('SELECT (firstname, lastname, email, joined) FROM users', function(err, result){
+	DB.client.query('SELECT firstname, lastname, email, joined FROM users', function(err, result){
     if (result && result.rows.length > 0) {
       res.status(200).json(result.rows);
     }
@@ -11,9 +11,9 @@ exports.getUsers = function(req, res) {
 };
 
 exports.getUniqueUser = function(req, res) {
-  DB.client.query("SELECT (firstname, lastname, email, joined) FROM users WHERE id = $1", [req.params.user_id], function(err, result) {
+  DB.client.query("SELECT firstname, lastname, email, joined FROM users WHERE id = $1", [req.params.user_id], function(err, result) {
     if (result && result.rows.length > 0) {
-      res.status(200).json(result.rows);
+      res.status(200).json(result.rows[0]);
     } else {
       res.status(404).json({
         message: "The user_id you requested does not exist in our database"
@@ -23,7 +23,7 @@ exports.getUniqueUser = function(req, res) {
 }
 
 exports.getFollowing = function(req,res){
-  DB.client.query("SELECT (firstname, lastname, email, joined) FROM friends JOIN users ON users.id = friends.friend_id WHERE user_id = $1", [req.params.user_id], function(err, result){
+  DB.client.query("SELECT firstname, lastname, email, joined FROM friends JOIN users ON users.id = friends.friend_id WHERE user_id = $1", [req.params.user_id], function(err, result){
     if (err) {
       console.log("ERROR:", err);
     } else {
@@ -33,7 +33,7 @@ exports.getFollowing = function(req,res){
 };
 
 exports.getFollowers = function(req, res) {
-  DB.client.query("SELECT (firstname, lastname, email, joined) FROM friends JOIN users ON users.id = friends.user_id WHERE friend_id = $1", [req.params.user_id], function(err, result) {
+  DB.client.query("SELECT firstname, lastname, email, joined FROM friends JOIN users ON users.id = friends.user_id WHERE friend_id = $1", [req.params.user_id], function(err, result) {
     if (err) {
       console.log("ERROR:", err);
     } else {
