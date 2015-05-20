@@ -369,12 +369,20 @@ MAP FACTORY
           layer.removeLayer(marker);
           MediaFactory.getUniqueMedia(media_id)
           .then(function(media) {
+            map.removeLayer(layer);
             var marker = makeMarker(media.data[0]);
-            layer.addLayer(marker)
-          })
+            layer.addLayer(marker);
+            map.addLayer(layer);
+          });
         }
       });
-      map.addLayer(layer);
+    }
+
+    function addMarkerToMap (mediaData, layer, map) {
+        var marker = makeMarker(mediaData);
+        map.removeLayer(layer);
+        layer.addLayer(marker);
+        map.addLayer(layer);
     }
 
     // Remove a Specific Marker from the Map when it's removed from the Database
@@ -389,6 +397,7 @@ MAP FACTORY
         makeMarker: makeMarker,
         updateUserPosition: updateUserPosition,
         removeMarker: removeMarker,
+        addMarkerToMap: addMarkerToMap,
         replaceMarker: replaceMarker
     }
 })

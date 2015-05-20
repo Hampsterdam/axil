@@ -232,7 +232,7 @@ angular.module('axil.controllers', [])
 
     // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
-      MapFactory.populateMap([data], $scope.clusters, $scope.map);
+      MapFactory.addMarkerToMap(data, $scope.clusters, $scope.map);
     });
     
     // Socket Listeners for Media Changes
@@ -293,7 +293,6 @@ angular.module('axil.controllers', [])
   MediaFactory.getMediaByUser($scope.userInfo.user_id)
   .then(function(data) {
     $scope.userInfo.mediaList = data.data;
-    console.log($scope.userInfo.mediaList);
   });
 })
 
