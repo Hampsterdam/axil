@@ -50,7 +50,6 @@ exports.getMediaByUser = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
-    console.log(req.body);
     var url = JSON.parse(req.body.uri.response).url
     var thumb = url.slice(0, -3) + 'jpg';
 
@@ -66,6 +65,7 @@ exports.addMedia = function(req, res){
           if (err) {
             console.log("ERROR: ", err);
           } else {
+            console.log('result.rows[0]:', result.rows[0]);
             req.socket.emit("mediaInsert", result.rows[0]);
           }
         });

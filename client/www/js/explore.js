@@ -141,6 +141,7 @@ angular.module('axil.explorectrl', [])
 
     // Socket connection listening for new media on the database
     Socket.on('mediaInsert', function(data) {
+      console.log("mediaInsert!")
       MapFactory.addMarkerToMap(data, $scope.clusters, $scope.map);
     });
     
