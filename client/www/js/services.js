@@ -42,10 +42,24 @@ AUTH FACTORY ("../api/auth")
         });
     };
     
+    // Logout of the application and end the session
+    function logout () {
+        return $http({
+            method: 'POST',
+            url: myConfig.serverUrl + '/auth/logout',
+            data: {
+
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+    
     // Expose the Auth methods to the rest of the application
     return {
         login: login,
-        signup: signup
+        signup: signup,
+        logout: logout
     };
 
 })
