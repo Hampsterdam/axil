@@ -6,29 +6,30 @@ angular.module('axil.authctrl', [])
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-.controller("LoginCtrl", function($scope, $ionicPlatform, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory) {
+
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
+
 
   $ionicPlatform.ready(function() {
     $scope.loginInfo = {};
     $rootScope.authenticated = false;
     $rootScope.userInfo = {};
 
-    // Primary Login Method, uses Auth Factory to send login request to the API
-    $scope.login = function() {
-      AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
-      .then(function(response){
-        // The response will contain a json web token if the login was successful
-        if (response.data.token) {
-          TokenFactory.deleteToken();
-          TokenFactory.setToken(response.data);
-          $rootScope.authenticated = true;
-          $state.go('tab.explore')
-        } else {
-          $scope.loginError = true;
-          TokenFactory.deleteToken();
-        }
-      })
-    }
+
+  // Primary Login Method, uses Auth Factory to send login request to the API
+  $scope.login = function() {
+    $rootScope.gravatar = Helpers.get_gravatar($scope.loginInfo.email, 100);
+    AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
+    .then(function(response){
+      // The response will contain a json web token if the login was successful
+      if (response.data.token) {
+        TokenFactory.deleteToken();
+        TokenFactory.setToken(response.data);
+        $rootScope.authenticated = true;
+        $state.go('tab.explore')
+      } else {
+        $scope.loginError = true;
+        TokenFactory.deleteToken();
 
     // Helper function to keep track of login status
     $scope.isError = function() {

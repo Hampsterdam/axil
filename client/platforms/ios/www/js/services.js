@@ -305,7 +305,7 @@ MAP FACTORY
 // Communicates with the Mapbox API to set up the map layers for the explore page
 // Defines media clusters on the map
 // Added image and video thumbnails to the maplayer
-.factory('MapFactory', function($ionicModal, MediaFactory, Helpers) {
+.factory('MapFactory', function($ionicModal, $rootScope, MediaFactory, Helpers) {
     var mediaData = [];
     var marker;
 
@@ -335,6 +335,7 @@ MAP FACTORY
               iconSize: [52, 52]
           })
       });
+
       marker.mediaData = {
           uri: media.uri,
           thumb: media.thumb,
@@ -343,7 +344,7 @@ MAP FACTORY
           id: media.id,
           firstname: media.firstname,
           lastname: media.lastname,
-          email: Helpers.get_gravatar(media.email, 200)  
+          email: $rootScope.gravatar 
       }
       return marker;
     }
@@ -415,7 +416,7 @@ SOCKET FACTORY
 // Allows for real time page updates as media is added to the explore page
 .factory('Socket', function($rootScope, myConfig){
     // Create the socket connection with the API
-    var socket = io.connect(myConfig.socketUrl);
+    var socket = io.connect("https://phoenixapi.herokuapp.com:443");
       // Define the basic socket events that we'll utilize in the application
       return {
         on: function (eventName, callback) {
@@ -494,9 +495,11 @@ HELPERS FACTORY
 --------------------------------------------------*/
 
 .factory('Helpers', function(){
-    function get_gravatar(email, size) {        
+
+    function get_gravatar(email, size, cb) {        
         var size = size || 80;
-        return 'http://www.gravatar.com/avatar/' + MD5(email) + '.jpg?s=' + size;
+         var hash = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
+         return hash;
     }
 
     return {
