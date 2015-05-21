@@ -8,13 +8,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-touchid/www/touchid.js",
-        "id": "cordova-plugin-touchid.TouchID",
-        "clobbers": [
-            "touchid"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
         "id": "cordova-plugin-geolocation.Coordinates",
         "clobbers": [
@@ -285,19 +278,26 @@ module.exports = [
         "clobbers": [
             "device"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-touchid/www/touchid.js",
+        "id": "cordova-plugin-touchid.TouchID",
+        "clobbers": [
+            "touchid"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.ionic.keyboard": "1.0.4",
-    "cordova-plugin-touchid": "0.3.0",
     "cordova-plugin-geolocation": "1.0.0",
     "cordova-plugin-camera": "1.1.0",
     "cordova-plugin-file": "2.0.0",
     "cordova-plugin-file-transfer": "1.1.0",
     "cordova-plugin-media-capture": "1.0.0",
-    "cordova-plugin-device": "1.0.0"
+    "cordova-plugin-device": "1.0.0",
+    "cordova-plugin-touchid": "0.3.0"
 }
 // BOTTOM OF METADATA
 });
