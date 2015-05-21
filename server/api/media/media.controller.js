@@ -65,7 +65,6 @@ exports.addMedia = function(req, res){
           if (err) {
             console.log("ERROR: ", err);
           } else {
-            console.log('result.rows[0]:', result.rows[0]);
             req.socket.emit("mediaInsert", result.rows[0]);
           }
         });
