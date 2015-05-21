@@ -13,23 +13,21 @@
                 <img class="gravatar" src="{{userInfo.gravatar}}">
               </div>
               <ion-item>
-                <i class="icon ion-person-stalker"></i>
-                <p>{{userInfo.firstname}} {{userInfo.lastname}}</p>
+                <i class="ion-person"></i> {{ userInfo.firstname }} {{ userInfo.lastname }}
               </ion-item>
               <ion-item>
-                <i class="icon ion-email"></i>
-                <p>{{ userInfo.email }}</p>
+                <i class="ion-email"></i> {{ userInfo.email }}
+              </ion-item>
+              <ion-item ng-repeat="media in userInfo.mediaList" class="item item-thumbnail-left">
+                    <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="">
+                    <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" class="">
+                    <p>Likes: {{ media.likes }}</p>
+                    <p>Created at: {{ media.time }}</p>
+                <ion-option-button class="button-assertive">Delete</ion-option-button>
               </ion-item>
             </div>
           </div>
-          <ion-item ng-repeat="media in userInfo.mediaList" class="item item-thumbnail-left">
-          <div class="list card">
-                  <img ng-if="media.type === 'image'" src="{{media.uri | trusted}}" class="">
-                  <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" controls class="">
-            <ion-option-button class="button-assertive">Delete</ion-option-button>
-          </div>
-          </ion-item>
-        <ion-list>
+        </ion-list>
       </div>
     </div>
   </ion-content>

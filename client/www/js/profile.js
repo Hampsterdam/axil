@@ -22,7 +22,7 @@ angular.module('axil.profctrl', [])
     $scope.userInfo.firstname = user.firstname;
     $scope.userInfo.lastname = user.lastname;
     $scope.userInfo.email = user.email;
-    $scope.userInfo.gravatar = Helpers.get_gravatar(user.email, 50);
+    $scope.userInfo.gravatar = Helpers.get_gravatar(user.email, 200);
   });
 
   // Get the user's media from the database and store it in MediaList

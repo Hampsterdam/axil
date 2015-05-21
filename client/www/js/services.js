@@ -343,7 +343,7 @@ MAP FACTORY
           id: media.id,
           firstname: media.firstname,
           lastname: media.lastname,
-          email: Helpers.get_gravatar(media.email, 50)  
+          email: Helpers.get_gravatar(media.email, 200)  
       }
       return marker;
     }

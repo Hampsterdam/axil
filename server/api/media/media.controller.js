@@ -50,6 +50,7 @@ exports.getMediaByUser = function(req, res) {
 }
 
 exports.addMedia = function(req, res){
+    console.log(req.body);
     var url = JSON.parse(req.body.uri.response).url
     var thumb = url.slice(0, -3) + 'jpg';
 
