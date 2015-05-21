@@ -349,7 +349,8 @@ MAP FACTORY
               iconSize: [52, 52]
           })
       });
-
+      
+      var gravatar = Helpers.get_gravatar(media.email, 50);
       marker.mediaData = {
           uri: media.uri,
           thumb: media.thumb,
@@ -358,7 +359,7 @@ MAP FACTORY
           id: media.id,
           firstname: media.firstname,
           lastname: media.lastname,
-          email: $rootScope.gravatar 
+          email: gravatar 
       }
       return marker;
     }
@@ -510,7 +511,7 @@ HELPERS FACTORY
 
 .factory('Helpers', function(){
 
-    function get_gravatar(email, size, cb) {        
+    function get_gravatar(email, size) {        
         var size = size || 80;
          var hash = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
          return hash;
