@@ -6,23 +6,15 @@ angular.module('axil.authctrl', [])
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 
+
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
 
-  $scope.loginInfo = {};
-  $rootScope.authenticated = false;
-  $rootScope.userInfo = {};
 
-  // $cordovaTouchID.checkSupport().then(function() {
-  //    // success, TouchID supported
-  //  }, function (error) {
-  //    alert(error); // TouchID not supported
-  //  });
+  $ionicPlatform.ready(function() {
+    $scope.loginInfo = {};
+    $rootScope.authenticated = false;
+    $rootScope.userInfo = {};
 
-  //  $cordovaTouchID.authenticate("Howdy").then(function() {
-  //    // success
-  //  }, function () {
-  //    // error
-  //  });
 
   // Primary Login Method, uses Auth Factory to send login request to the API
   $scope.login = function() {
@@ -38,30 +30,29 @@ angular.module('axil.authctrl', [])
       } else {
         $scope.loginError = true;
         TokenFactory.deleteToken();
+
+    // Helper function to keep track of login status
+    $scope.isError = function() {
+      if ($scope.loginError) {
+        return true;
       }
-    })
-  }
-
-  // Helper function to keep track of login status
-  $scope.isError = function() {
-    if ($scope.loginError) {
-      return true;
+      return false;
     }
-    return false;
-  }
-  
-  // Simple logout... delete the token on the client side
-  // TODO - delete the server side token as well
-  $scope.logout = function() {
-    TokenFactory.deleteToken();
-    $rootScope.authenticated = false;
-    $state.go('/login');
-  }
+    
+    // Simple logout... delete the token on the client side
+    // TODO - delete the server side token as well
+    $scope.logout = function() {
+      TokenFactory.deleteToken();
+      $rootScope.authenticated = false;
+      $state.go('/login');
+    }
 
-  // If the user wants to sign up, redirect to the signup view
-  $scope.signupRedirect = function() {
-    $state.go('/signup');
-  }
+    // If the user wants to sign up, redirect to the signup view
+    $scope.signupRedirect = function() {
+      $state.go('/signup');
+    }
+    
+  })
 
 })
 
