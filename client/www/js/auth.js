@@ -7,7 +7,7 @@ angular.module('axil.authctrl', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
 
 
   $ionicPlatform.ready(function() {
@@ -30,7 +30,9 @@ angular.module('axil.authctrl', [])
       } else {
         $scope.loginError = true;
         TokenFactory.deleteToken();
-
+      }
+    })
+  }
     // Helper function to keep track of login status
     $scope.isError = function() {
       if ($scope.loginError) {
