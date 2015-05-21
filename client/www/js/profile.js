@@ -28,7 +28,6 @@ angular.module('axil.profctrl', [])
   // Get the user's media from the database and store it in MediaList
   MediaFactory.getMediaByUser($scope.userInfo.user_id)
   .then(function(data) {
-    console.log("user media data:", data);
     $scope.userInfo.mediaList = data.data;
   });
 });
