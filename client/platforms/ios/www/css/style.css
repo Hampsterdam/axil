@@ -76,6 +76,13 @@ html, body {
   border-color: #0080ff;
 }
 
+.square-thumbnail {
+  height: 100% !important;
+  width: 250px !important;
+  border: solid;
+  border-color: #0080ff;
+}
+
 .marker-modal-img {
   height: 100%;
   width: 350px;
@@ -101,6 +108,41 @@ html, body {
   background-color: rgba(255,255,255,0.6);
 }
 
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.gravatar {
+  height: 150px !important;
+  width: 150px !important;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0080ff;
+  margin: 0 auto;
+}
+
+.logo {
+    height: 300px;
+    width: 100%;
+    z-index: 100;
+}
+
+.camera-icon {
+  height: 400px;
+  width: 400px; 
+}
+
+.upload-container {
+  height: 60%;
+  position: relative;
+}
+
+.camera-icon-row {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+}
 
 
 

@@ -76,6 +76,13 @@ html, body {
   border-color: #0080ff;
 }
 
+.square-thumbnail {
+  height: 100% !important;
+  width: 250px !important;
+  border: solid;
+  border-color: #0080ff;
+}
+
 .marker-modal-img {
   height: 100%;
   width: 350px;
@@ -83,7 +90,7 @@ html, body {
 
 .list-button {
   position: absolute;
-  bottom: 40px;
+  bottom: 100px;
   left: 10px;
   z-index: 100;
   height: 50px;
@@ -93,7 +100,7 @@ html, body {
 
 .nav-button {
   position: absolute;
-  bottom: 40px;
+  bottom: 100px;
   right: 10px;
   z-index: 100;
   height: 50px;
@@ -105,6 +112,47 @@ html, body {
     margin: auto;
     text-align: center;
 }
+
+.gravatar {
+  height: 150px !important;
+  width: 150px !important;
+  border-radius: 50%;
+  border: solid;
+  border-color: #0080ff;
+  margin: 0 auto;
+}
+
+.logo {
+    height: 300px;
+    width: 100%;
+    z-index: 100;
+}
+
+.upload-media-icon {
+  height: 400px;
+  width: 400px; 
+}
+
+.general-container {
+  height: 60%;
+  width: 100%;
+  position: relative;
+}
+
+.camera-icon-row {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+}
+
+.login-center {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 150px;
+    padding: 10px;
+}
+
 
 
 

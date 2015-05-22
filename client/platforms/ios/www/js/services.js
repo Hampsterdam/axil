@@ -42,10 +42,24 @@ AUTH FACTORY ("../api/auth")
         });
     };
     
+    // Logout of the application and end the session
+    function logout () {
+        return $http({
+            method: 'POST',
+            url: myConfig.serverUrl + '/auth/logout',
+            data: {
+
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+    
     // Expose the Auth methods to the rest of the application
     return {
         login: login,
-        signup: signup
+        signup: signup,
+        logout: logout
     };
 
 })
@@ -305,7 +319,7 @@ MAP FACTORY
 // Communicates with the Mapbox API to set up the map layers for the explore page
 // Defines media clusters on the map
 // Added image and video thumbnails to the maplayer
-.factory('MapFactory', function($ionicModal) {
+.factory('MapFactory', function($ionicModal, $rootScope, MediaFactory, Helpers) {
     var mediaData = [];
     var marker;
 
@@ -315,33 +329,39 @@ MAP FACTORY
 
        // Set up Marker Clusters for the Map Data
         for (var i=0; i < dataArray.length; i++) {
-            var img = "<img src='" + dataArray[i].thumb + "' />";
-            mediaData.push(dataArray[i]);
-            marker = L.marker( new L.LatLng(dataArray[i].lat, dataArray[i].lon), {
-                icon: L.divIcon({
-                    html: img,
-                    className: 'image-icon',
-                    iconSize: [52, 52]
-                })
-            });
-            marker.mediaData = {
-                uri: dataArray[i].uri,
-                thumb: dataArray[i].thumb,
-                type: dataArray[i].type   
-            }
-            // If the media is an image, add an image tag to the map
-            // if(dataArray[i].type === 'image'){
-            //   var content = '<div><img class="map_image" src="'+ dataArray[i].uri+'"><\/img><\/div>';
-            // // If the media is a video, add a video tag to the map 
-            // } else {
-            //   var content = '<div><video class="map_image" controls autoplay src="' + dataArray[i].uri + '"></video></div>'
-            // }
-            // marker.bindPopup(content);
+            marker = makeMarker(dataArray[i]);
 
             //The cluster layer in this situation
             layer.addLayer(marker);
         }
         map.addLayer(layer);
+    }
+
+    // Method the generates a Map Marker
+    function makeMarker (media) {
+      var marker;
+      var img = "<img src='" + media.thumb + "' />";
+
+      marker = L.marker( new L.LatLng(media.lat, media.lon), {
+          icon: L.divIcon({
+              html: img,
+              className: 'image-icon',
+              iconSize: [52, 52]
+          })
+      });
+      
+      var gravatar = Helpers.get_gravatar(media.email, 50);
+      marker.mediaData = {
+          uri: media.uri,
+          thumb: media.thumb,
+          type: media.type ,
+          likes: media.likes,
+          id: media.id,
+          firstname: media.firstname,
+          lastname: media.lastname,
+          email: gravatar 
+      }
+      return marker;
     }
     
     // Defines the user marker that shows where the user is on the map
@@ -350,7 +370,6 @@ MAP FACTORY
             icon: L.mapbox.marker.icon({'marker-color': '#0080ff', 'marker-size': 'large'})
         });
         layer.addLayer(marker);
-
     }
     
     // Updates the user marker location as their geolocation changes
@@ -358,11 +377,45 @@ MAP FACTORY
         marker.setLatLng(L.latLng(coords.latitude, coords.longitude));
     }
 
+    // Updates a Specific Marker on the Map Layer when it's changed (liked, addedTag)
+    function replaceMarker (media_id, layer, map) {
+      media_id = parseInt(media_id);
+      // Replace the unique marker with updated marker (new mediaInfo)
+      layer.eachLayer(function(marker) {
+        if (marker.mediaData.id === media_id) {
+          layer.removeLayer(marker);
+          MediaFactory.getUniqueMedia(media_id)
+          .then(function(media) {
+            map.removeLayer(layer);
+            var marker = makeMarker(media.data[0]);
+            layer.addLayer(marker);
+            map.addLayer(layer);
+          });
+        }
+      });
+    }
+
+    function addMarkerToMap (mediaData, layer, map) {
+        var marker = makeMarker(mediaData);
+        map.removeLayer(layer);
+        layer.addLayer(marker);
+        map.addLayer(layer);
+    }
+
+    // Remove a Specific Marker from the Map when it's removed from the Database
+    function removeMarker (media_id) {
+        // remove the marker from the map
+    }
+
     // Expose the Factory methods to the application
     return {
         populateMap: populateMap,
         userMarker: userMarker,
-        updateUserPosition: updateUserPosition
+        makeMarker: makeMarker,
+        updateUserPosition: updateUserPosition,
+        removeMarker: removeMarker,
+        addMarkerToMap: addMarkerToMap,
+        replaceMarker: replaceMarker
     }
 })
 
@@ -378,7 +431,7 @@ SOCKET FACTORY
 // Allows for real time page updates as media is added to the explore page
 .factory('Socket', function($rootScope, myConfig){
     // Create the socket connection with the API
-    var socket = io.connect(myConfig.socketUrl);
+    var socket = io.connect("https://phoenixapi.herokuapp.com:443");
       // Define the basic socket events that we'll utilize in the application
       return {
         on: function (eventName, callback) {
@@ -411,13 +464,14 @@ TOKEN FACTORY
 --------------------------------------------------*/
 
 // Manages json web tokens provided by the server when a user logs-in
-.factory('TokenFactory', function($window) {
+.factory('TokenFactory', function($window, $rootScope) {
     
     // Set the user token in local storage when they log in
     function setToken(data) {
         if(data.token){
             $window.localStorage.setItem('token', data.token);
             $window.localStorage.setItem('user_id', data.user_id);
+            $rootScope.userInfo.id = data.user_id;
         } else {
             deleteToken();
         }
@@ -445,7 +499,27 @@ TOKEN FACTORY
         getUserId: getUserId,
         deleteToken: deleteToken
     };
+})
 
+/*--------------------------------------------------
+----------------------------------------------------
+
+HELPERS FACTORY 
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+.factory('Helpers', function(){
+
+    function get_gravatar(email, size) {        
+        var size = size || 80;
+         var hash = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
+         return hash;
+    }
+
+    return {
+        get_gravatar: get_gravatar
+    }
 })
 
 /*--------------------------------------------------

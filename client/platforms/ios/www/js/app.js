@@ -1,4 +1,4 @@
-angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.constants', 'ngCordova'])
+angular.module('axil', ['ionic', 'axil.authctrl', 'axil.profctrl', 'axil.uploadctrl', 'axil.explorectrl', 'axil.services', 'axil.constants', 'ngCordova'])
 
 // Set up socket.io connection with the server
 .run(function($ionicPlatform, Socket) {
@@ -38,6 +38,11 @@ angular.module('axil', ['ionic', 'axil.controllers', 'axil.services', 'axil.cons
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+  .state('/landing', {
+    url: '/landing',
+    templateUrl: 'templates/landing.html',
+    controller: 'LandingCtrl'
   })
   .state('/signup', {
     url: '/signup',

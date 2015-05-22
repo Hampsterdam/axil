@@ -1,20 +1,22 @@
 <ion-view view-title="Login">
   <ion-content class="padding">
-    <div class="list">
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Email</span>
-        <input autocapitalize="off" autocorrect="off" type="email" placeholder="john@phoenix.com" ng-model="loginInfo.email">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Password</span>
-        <input autocapitalize="off"  autocorrect="off" type="password" placeholder="********" ng-model="loginInfo.password">
-      </label>
-      <button class="button button-block button-positive" ng-click="login()">
-        Login
-      </button>
-      <button class="button button-block button-positive" ng-click="signupRedirect()">
-        New to Axil? Sign up!
-      </button>
+    <div class="general-container">
+
+      <div class="list login-center">
+        <label class="item item-input">
+          <input autocapitalize="off" autocorrect="off" type="email" placeholder="Email" ng-model="loginInfo.email">
+        </label>
+        <label class="item item-input">
+          <input autocapitalize="off"  autocorrect="off" type="password" placeholder="Password" ng-model="loginInfo.password">
+        </label>
+        <button class="button button-block button-positive" ng-click="login()">
+          Login
+        </button>
+        <button class="button button-block button-positive" ng-click="signupRedirect()">
+          New to Axil? Sign up!
+        </button>
+      </div>
+
     </div>
   </ion-content>
 </ion-view>

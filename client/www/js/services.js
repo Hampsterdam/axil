@@ -42,10 +42,24 @@ AUTH FACTORY ("../api/auth")
         });
     };
     
+    // Logout of the application and end the session
+    function logout () {
+        return $http({
+            method: 'POST',
+            url: myConfig.serverUrl + '/auth/logout',
+            data: {
+
+            }
+        }).then(function(response) {
+            return response;
+        });
+    };
+    
     // Expose the Auth methods to the rest of the application
     return {
         login: login,
-        signup: signup
+        signup: signup,
+        logout: logout
     };
 
 })
@@ -305,7 +319,7 @@ MAP FACTORY
 // Communicates with the Mapbox API to set up the map layers for the explore page
 // Defines media clusters on the map
 // Added image and video thumbnails to the maplayer
-.factory('MapFactory', function($ionicModal, MediaFactory) {
+.factory('MapFactory', function($ionicModal, $rootScope, MediaFactory, Helpers) {
     var mediaData = [];
     var marker;
 
@@ -335,6 +349,8 @@ MAP FACTORY
               iconSize: [52, 52]
           })
       });
+      
+      var gravatar = Helpers.get_gravatar(media.email, 50);
       marker.mediaData = {
           uri: media.uri,
           thumb: media.thumb,
@@ -342,7 +358,8 @@ MAP FACTORY
           likes: media.likes,
           id: media.id,
           firstname: media.firstname,
-          lastname: media.lastname  
+          lastname: media.lastname,
+          email: gravatar 
       }
       return marker;
     }
@@ -414,7 +431,7 @@ SOCKET FACTORY
 // Allows for real time page updates as media is added to the explore page
 .factory('Socket', function($rootScope, myConfig){
     // Create the socket connection with the API
-    var socket = io.connect(myConfig.socketUrl);
+    var socket = io.connect("https://phoenixapi.herokuapp.com:443");
       // Define the basic socket events that we'll utilize in the application
       return {
         on: function (eventName, callback) {
@@ -482,7 +499,27 @@ TOKEN FACTORY
         getUserId: getUserId,
         deleteToken: deleteToken
     };
+})
 
+/*--------------------------------------------------
+----------------------------------------------------
+
+HELPERS FACTORY 
+
+----------------------------------------------------
+--------------------------------------------------*/
+
+.factory('Helpers', function(){
+
+    function get_gravatar(email, size) {        
+        var size = size || 80;
+         var hash = 'http://www.gravatar.com/avatar/' + md5(email) + '.jpg?s=' + size;
+         return hash;
+    }
+
+    return {
+        get_gravatar: get_gravatar
+    }
 })
 
 /*--------------------------------------------------
