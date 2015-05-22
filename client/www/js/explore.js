@@ -8,7 +8,7 @@ angular.module('axil.explorectrl', [])
 
 // Controller for the Explore Page
 // Functions: Load the Explore map, retrieve media data from the API, cluster data by location and filter by time (TODO)
-.controller('ExploreCtrl', function($scope, $rootScope, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket, Mapbox) {
+.controller('ExploreCtrl', function($scope, $rootScope, $cordovaGeolocation, $cordovaSocialSharing, $ionicPlatform, $ionicModal, MediaFactory, MapFactory, TokenFactory, Socket, Mapbox) {
   // Wrapper function that listens for when the state is ready
 
   $ionicPlatform.ready(function() {
@@ -172,7 +172,21 @@ angular.module('axil.explorectrl', [])
             console.log("There was an issue with the Axil Servers");
           }
         });
+    };
+
+    $scope.mediaShare = function(uri) {
+      console.log("inside media share", uri);
+      var message = "Check out this media I found on Axil!";
+      var subject = "" + $scope.user + " via Axil Mobile";
+      $cordovaSocialSharing
+      .share(message, subject, null, uri)
+      .then(function(result) {
+        console.log("Success");
+      }, function(err) {
+        console.log("Error: ", err);
+      });
     }
+
   });
 
  });
