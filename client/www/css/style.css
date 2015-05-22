@@ -128,13 +128,14 @@ html, body {
     z-index: 100;
 }
 
-.camera-icon {
+.upload-media-icon {
   height: 400px;
   width: 400px; 
 }
 
-.upload-container {
+.general-container {
   height: 60%;
+  width: 100%;
   position: relative;
 }
 
@@ -142,6 +143,14 @@ html, body {
   margin: 0;
   position: absolute;
   top: 50%;
+}
+
+.login-center {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 150px;
+    padding: 10px;
 }
 
 
