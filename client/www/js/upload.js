@@ -7,7 +7,7 @@ angular.module('axil.uploadctrl', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 // Main Controller for the Add Media Tab ( the camera )
-.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, MediaFactory, TokenFactory, Socket) {
+.controller('AddMediaCtrl', function($rootScope, $scope, $cordovaCamera, $cordovaCapture, $cordovaFile, $state, $cordovaFileTransfer, $cordovaGeolocation, $ionicPlatform, $ionicModal, $ionicLoading, MediaFactory, TokenFactory, Socket) {
 
   //Setting up the Upload Media Modal that will pop up after the user has taken a video/picture
   $ionicPlatform.ready(function() {
@@ -62,11 +62,15 @@ angular.module('axil.uploadctrl', [])
       $cordovaCamera.getPicture(options).then(function(imageData) {
         $rootScope.spinner = true;
         var options = {}
+        //show loading template
+        $ionicLoading.show({ template: "Sending..." });
         //Upload request to phoenix api, then to cloudinary.
         $cordovaFileTransfer.upload('http://phoenixapi.herokuapp.com/api/media/upload', imageData, options)
           .then(function(data){
               //data is the image url returned from clodinary. Set the image thumbail
               $scope.media.thumb = JSON.parse(data.response).url.slice(0, -3) + 'jpg';
+              //hide loading message
+              $ionicLoading.hide();
               // Open the uplaod media modal
               $scope.openModal();
               var posOptions = {timeout: 30000, enableHighAccuracy: true};

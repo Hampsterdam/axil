@@ -2,7 +2,7 @@ angular.module('axil.authctrl', [])
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                      //
-//                                 LOGIN CONTROLLER                                     //
+//                                 LANDING CONTROLLER                                   //
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 .controller("LandingCtrl", function($scope) {
@@ -17,7 +17,7 @@ angular.module('axil.authctrl', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $ionicLoading, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
 
 
   $ionicPlatform.ready(function() {
@@ -28,6 +28,7 @@ angular.module('axil.authctrl', [])
 
   // Primary Login Method, uses Auth Factory to send login request to the API
   $scope.login = function() {
+    $ionicLoading.show({ template: 'Logging you in...' });
     $rootScope.gravatar = Helpers.get_gravatar($scope.loginInfo.email, 100);
     AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
     .then(function(response){
@@ -36,6 +37,7 @@ angular.module('axil.authctrl', [])
         TokenFactory.deleteToken();
         TokenFactory.setToken(response.data);
         $rootScope.authenticated = true;
+        $ionicLoading.hide();
         $state.go('tab.explore')
       } else {
         $scope.loginError = true;
@@ -74,19 +76,25 @@ angular.module('axil.authctrl', [])
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-.controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $window, $cordovaTouchID) {
+.controller("SignupCtrl", function($scope, $rootScope, $state, AuthFactory, TokenFactory, $ionicLoading, $window, $cordovaTouchID, $timeout) {
   $scope.signupInfo = {};
   $scope.signinError = false;
   $rootScope.authenticated = false;
 
   // Main Signup Method, uses the AuthFactory to create a new user and log the user in with a new session token.
   $scope.signup = function() {
+    $ionicLoading.show({ template: 'Signing you up...' });
     AuthFactory.signup($scope.signupInfo.firstname, $scope.signupInfo.lastname, $scope.signupInfo.email, $scope.signupInfo.password)
     .then(function(response) {
       if (response.data.token) {
         TokenFactory.setToken(response.data);
         $rootScope.authenticated = true;
-        $state.go("tab.explore");
+        $ionicLoading.hide();
+        $ionicLoading.show({ template: 'Welcome to Axil' });
+        $timeout(function(){
+          $ionicLoading.hide();
+          $state.go("tab.explore");
+        },1500);
       } else {
         TokenFactory.deleteToken();
         $scope.signinError = true;
