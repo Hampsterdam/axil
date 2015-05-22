@@ -128,6 +128,23 @@ html, body {
     z-index: 100;
 }
 
+.camera-icon {
+  height: 400px;
+  width: 400px; 
+}
+
+.upload-container {
+  height: 60%;
+  position: relative;
+}
+
+.camera-icon-row {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+}
+
+
 
 
 

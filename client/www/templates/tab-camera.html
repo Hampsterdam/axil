@@ -1,8 +1,20 @@
 <ion-view view-title="Camera">
-<ion-view class="has-header padding">
-	<button class="button button-block button-positive" ng-click="addImage()">Take a Picture</button>
-	<button class="button button-block button-positive" ng-click="addVideo()">Record a Video</button>
-</ion-view>
+  <ion-view class="has-header padding">
+  <div class="upload-container">
+    <div class="row camera-icon-row">
+      <div class="col">
+  	   <button class="button button-block button-positive" ng-click="addImage()">
+       <i class="ion-android-camera camera-icon"></i><br>
+       Photo</button> 
+      </div>
+      <div class="col">
+  	   <button class="button button-block button-positive" ng-click="addVideo()">
+       <i class="ion-ios-videocam camera-icon"></i><br>
+       Video</button> 
+      </div>
+    </div>
+  </div>
+  </ion-view>
 </ion-view>
 
  <script id="upload-media-modal.html" type="text/ng-template">
