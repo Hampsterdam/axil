@@ -5,6 +5,16 @@ angular.module('axil.authctrl', [])
 //                                 LOGIN CONTROLLER                                     //
 //                                                                                      //
 /////////////////////////////////////////////////////////////////////////////////////////
+.controller("LandingCtrl", function($scope) {
+    
+})
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                      //
+//                                 LOGIN CONTROLLER                                     //
+//                                                                                      //
+/////////////////////////////////////////////////////////////////////////////////////////
 
 
 .controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {

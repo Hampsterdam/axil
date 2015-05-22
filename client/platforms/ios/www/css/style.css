@@ -122,6 +122,11 @@ html, body {
   margin: 0 auto;
 }
 
+.logo {
+    height: 300px;
+    width: 100%;
+    z-index: 100;
+}
 
 
 
