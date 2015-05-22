@@ -285,6 +285,13 @@ module.exports = [
         "clobbers": [
             "touchid"
         ]
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
+        "id": "nl.x-services.plugins.socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -297,7 +304,8 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.1.0",
     "cordova-plugin-media-capture": "1.0.0",
     "cordova-plugin-device": "1.0.0",
-    "cordova-plugin-touchid": "0.3.0"
+    "cordova-plugin-touchid": "0.3.0",
+    "nl.x-services.plugins.socialsharing": "4.3.18"
 }
 // BOTTOM OF METADATA
 });

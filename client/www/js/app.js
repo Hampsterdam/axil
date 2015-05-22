@@ -34,15 +34,15 @@ angular.module('axil', ['ionic', 'axil.authctrl', 'axil.profctrl', 'axil.uploadc
   $httpProvider.interceptors.push('Interceptor');
 
   $stateProvider
-  .state('/landing', {
-    url: '/landing',
-    templateUrl: 'templates/landing.html',
-    controller: 'LandingCtrl'
-  })
   .state('/login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
+  })
+  .state('/landing', {
+    url: '/landing',
+    templateUrl: 'templates/landing.html',
+    controller: 'LandingCtrl'
   })
   .state('/signup', {
     url: '/signup',
@@ -83,6 +83,6 @@ angular.module('axil', ['ionic', 'axil.authctrl', 'axil.profctrl', 'axil.uploadc
   });
 
   // Redirect to Login otherwise
-  $urlRouterProvider.otherwise('/landing');
+  $urlRouterProvider.otherwise('/login');
 });
 
