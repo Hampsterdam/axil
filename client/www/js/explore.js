@@ -94,7 +94,7 @@ angular.module('axil.explorectrl', [])
         return L.mapbox.marker.icon({
           // show the number of markers in the cluster on the icon.
           'marker-symbol': cluster.getChildCount(),
-          'marker-color': '#0080ff',
+          'marker-color': '#DB504A',
           'marker-size': 'large'
         });
       }
