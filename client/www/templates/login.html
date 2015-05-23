@@ -1,4 +1,7 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login" class="gradient-background">
+  <div class="bar bar-loading bar-assertive" ng-if="loginError">
+    Wrong username or password.
+  </div>
   <ion-content class="padding">
     <div class="general-container">
 
@@ -9,10 +12,10 @@
         <label class="item item-input">
           <input autocapitalize="off"  autocorrect="off" type="password" placeholder="Password" ng-model="loginInfo.password">
         </label>
-        <button class="button button-block button-positive" ng-click="login()">
+        <button class="button button-block button-light" ng-click="login()">
           Login
         </button>
-        <button class="button button-block button-positive" ng-click="signupRedirect()">
+        <button class="button button-block button-light" ng-click="signupRedirect()">
           New to Axil? Sign up!
         </button>
       </div>

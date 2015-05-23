@@ -24,10 +24,12 @@ angular.module('axil.authctrl', [])
     $scope.loginInfo = {};
     $rootScope.authenticated = false;
     $rootScope.userInfo = {};
+    $scope.loginError = false;
 
 
   // Primary Login Method, uses Auth Factory to send login request to the API
   $scope.login = function() {
+    $scope.loginError = false;
     $ionicLoading.show({ template: 'Logging you in...' });
     $rootScope.gravatar = Helpers.get_gravatar($scope.loginInfo.email, 100);
     AuthFactory.login($scope.loginInfo.email, $scope.loginInfo.password)
@@ -40,9 +42,13 @@ angular.module('axil.authctrl', [])
         $ionicLoading.hide();
         $state.go('tab.explore')
       } else {
-        $scope.loginError = true;
         TokenFactory.deleteToken();
       }
+    })
+    .catch(function(){
+      $ionicLoading.hide();
+      $scope.loginError = true;
+
     })
   }
     // Helper function to keep track of login status

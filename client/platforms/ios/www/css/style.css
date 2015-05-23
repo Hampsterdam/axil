@@ -128,13 +128,14 @@ html, body {
     z-index: 100;
 }
 
-.camera-icon {
+.upload-media-icon {
   height: 400px;
   width: 400px; 
 }
 
-.upload-container {
+.general-container {
   height: 60%;
+  width: 100%;
   position: relative;
 }
 
@@ -142,6 +143,69 @@ html, body {
   margin: 0;
   position: absolute;
   top: 50%;
+}
+
+.login-center {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 150px;
+    padding: 10px;
+}
+
+/* -------error bar css -------------------- */
+.bar.bar-loading {
+  display: block;
+  height: 24px;
+  
+  /* starts right below a normal header */
+  top: 64px;
+  
+  /* make the text centered vertically and horizontally */
+  text-align: center;
+  padding: 0;
+  line-height: 24px;
+
+  /* transition 'sliding down' (check below)*/
+  -webkit-transition: 200ms all;
+}
+
+
+/* 
+ * make the content's top changes animate.
+ * might not always look good, but looks
+ * good when our loader is added & removed
+ */
+.has-header {
+  -webkit-transition: 200ms top;
+}
+.has-header.has-loading {
+  /* 44px (header) + 24px */
+  top: 68px;
+}
+
+/* make loading bar slide up/down */
+.bar-loading.ng-enter,
+.bar-loading.ng-leave.ng-leave-active {
+  height: 0;
+  border-width: 0px;
+}
+.bar-loading.ng-enter.ng-enter-active,
+.bar-loading.ng-leave {
+  height: 24px;
+  border-width: 1px;
+}
+
+/* Gradient background */
+.gradient-background {
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(0,128,255,1)));
+  background: -webkit-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
+  background: -o-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
+  background: linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0080ff', GradientType=1 );  
 }
 
 
