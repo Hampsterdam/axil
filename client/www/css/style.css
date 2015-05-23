@@ -153,6 +153,7 @@ html, body {
     padding: 10px;
 }
 
+<<<<<<< HEAD
 /* -------error bar css -------------------- */
 .bar.bar-loading {
   display: block;
@@ -206,6 +207,9 @@ html, body {
   background: -ms-linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
   background: linear-gradient(45deg, rgba(73,155,234,1) 0%, rgba(0,128,255,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0080ff', GradientType=1 );  
+}
+.form-input-styles {
+    font-size: 40px;
 }
 
 
