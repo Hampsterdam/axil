@@ -208,12 +208,12 @@ html, body {
 
 /* Gradient background */
 .gradient-background {
- background: rgb(19, 196, 163);
- background: -moz-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
- background: -webkit-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
- background: -o-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
- background: -ms-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
- background: linear-gradient(202deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);ogid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0080ff', GradientType=1 );  
+  background: rgb(221, 97, 74);
+  background: -moz-linear-gradient(98deg, rgb(221, 97, 74) 30%, rgb(255, 156, 106) 70%);
+  background: -webkit-linear-gradient(98deg, rgb(221, 97, 74) 30%, rgb(255, 156, 106) 70%);
+  background: -o-linear-gradient(98deg, rgb(221, 97, 74) 30%, rgb(255, 156, 106) 70%);
+  background: -ms-linear-gradient(98deg, rgb(221, 97, 74) 30%, rgb(255, 156, 106) 70%);
+  background: linear-gradient(188deg, rgb(221, 97, 74) 30%, rgb(255, 156, 106) 70%);  
 }
 .form-input-styles {
     font-size: 40px;
