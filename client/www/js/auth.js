@@ -14,6 +14,7 @@ angular.module('axil.authctrl', [])
     $rootScope.authenticated = false;
     $rootScope.userInfo = {};
     $scope.loginError = false;
+    $scope.emailError = false;
     
     // RFC822 Email Validation with Regex
     function isEmail(email){
