@@ -1,12 +1,14 @@
 <ion-view view-title="Explore">
   <ion-content>
-  <button class="button list-button" ng-click="listView()">
-    <i class="ion-navicon-round icon-red"></i>
-  </button>
-  <button class="button nav-button" ng-click="getLocation(false)">
-    <i class="ion-navigate icon-red"></i>
-  </button>
-    <div id="map" data-tap-disabled="true"></div>
+    <div class="explore-container">
+      <button class="button list-button" ng-click="listView()">
+        <i class="ion-navicon-round icon-red"></i>
+      </button>
+      <button class="button nav-button" ng-click="getLocation(false)">
+        <i class="ion-navigate icon-red"></i>
+      </button>
+        <div id="map" data-tap-disabled="true"></div>
+    </div>
   </ion-content>
 </ion-view>
 

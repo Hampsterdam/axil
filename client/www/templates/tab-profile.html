@@ -23,7 +23,7 @@
                     <img ng-if="media.type === 'video'" src="{{media.thumb | trusted}}" type="video/mov" class="">
                     <p>Likes: {{ media.likes }}</p>
                     <p>Created at: {{ media.time }}</p>
-                <ion-option-button class="button red">Delete</ion-option-button>
+                <ion-option-button class="button red" ng-click="deleteMedia(media.id)">Delete</ion-option-button>
               </ion-item>
             </div>
           </div>

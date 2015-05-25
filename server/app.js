@@ -20,12 +20,13 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With,Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'DELETE');
     next();
 });
 
 // Protect .../api routes with JWT
 app.use(bodyParser.json());
-// app.use('/api', expressJwt({secret: jwtSecret }).unless({ path: ['/api/auth/login', '/api/auth/signup', '/api/media', '/api/media/:user_id','/api/media/upload', '/api/media/upload/video']}));
+app.use('/api', expressJwt({secret: jwtSecret }).unless({ path: ['/api/auth/login', '/api/auth/signup']}));
 
 // Setup and Initialize socket.io
 var io = require('socket.io')(server);
