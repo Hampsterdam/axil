@@ -46,19 +46,11 @@ angular.module('axil.authctrl', [])
         })   
       } else {
         $ionicLoading.hide();
-        $scope.loginError = true;
+        $scope.emailError = true;
         $timeout(function() {
-          $scope.loginError = false;
+          $scope.emailError = false;
         }, 1200)
       }
-    }
-
-    // Helper function to keep track of login status
-    $scope.isError = function() {
-      if ($scope.loginError) {
-        return true;
-      }
-      return false;
     }
     
     // Simple logout... delete the token on the client side
@@ -134,14 +126,6 @@ angular.module('axil.authctrl', [])
       }, 1200);
     }
   };
-
-  // Auth Helper Function, not yet in use
-  $scope.isError = function() {
-    if ($scope.signupError) {
-      return true;
-    }
-    return false;
-  }
 
   // Simple state redirect to login
   $scope.loginRedirect = function() {
