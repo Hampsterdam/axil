@@ -18,6 +18,7 @@ html, body {
 }
 
 #logo {
+  display: block;
   max-height: 250px;
   position: relative;
   max-width: 100%;
