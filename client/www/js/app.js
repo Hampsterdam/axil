@@ -39,11 +39,6 @@ angular.module('axil', ['ionic', 'axil.authctrl', 'axil.profctrl', 'axil.uploadc
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
-  .state('/landing', {
-    url: '/landing',
-    templateUrl: 'templates/landing.html',
-    controller: 'LandingCtrl'
-  })
   .state('/signup', {
     url: '/signup',
     templateUrl: 'templates/signup.html',
