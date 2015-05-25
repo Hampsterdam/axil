@@ -25,6 +25,10 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
+/*
+.logout {
+  width: 50px;
+}*/
 
 .spinner svg {
   width: 20px;
