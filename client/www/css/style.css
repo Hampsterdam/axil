@@ -42,6 +42,7 @@ html, body {
   height: 52px !important;
   width: 52px !important;
   border-radius: 50%;
+  border-width: 5px;
   border: solid;
   border-color: #DB504A;
 }
