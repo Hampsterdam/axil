@@ -404,8 +404,14 @@ MAP FACTORY
     }
 
     // Remove a Specific Marker from the Map when it's removed from the Database
-    function removeMarker (media_id) {
-        // remove the marker from the map
+    function removeMarker (media_id, layer) {
+      
+      // remove the marker from the clusters layer
+      layer.eachLayer(function(marker) {
+        if (marker.mediaData.id === media_id) {
+          layer.removeLayer(marker);
+        }
+      });
     }
 
     // Expose the Factory methods to the application
