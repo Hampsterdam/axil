@@ -30,6 +30,15 @@ angular.module('axil.profctrl', [])
   .then(function(data) {
     $scope.userInfo.mediaList = data.data;
   });
+
+  $scope.deleteMedia = function(media_id) {
+    MediaFactory.deleteUniqueMedia(media_id);
+    MediaFactory.getMediaByUser($scope.userInfo.user_id)
+    .then(function(data) {
+        $scope.userInfo.mediaList = data.data;
+    });
+  }
+  
 });
 
 

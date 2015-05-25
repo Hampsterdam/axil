@@ -5,9 +5,10 @@ html, body {
 }
 
 #map {
-    height: 700px;
-     /*Change 100% to 400px and the map will display    */
-    width: 100%;
+  position: relative;
+  height: 700px;
+  /*Change 100% to 400px and the map will display    */
+  width: 100%;
 }
 
 #logo-container {
@@ -111,11 +112,16 @@ html, body {
   width: 350px;
 }
 
+.explore-container {
+  width: 100%;
+  position: relative;
+}
+
 .list-button {
   position: absolute;
+  z-index: 1;
   bottom: 100px;
-  left: 10px;
-  z-index: 100;
+  left: 5%;
   height: 60px;
   width: 60px;
   border-radius: 50%;
@@ -124,9 +130,9 @@ html, body {
 
 .nav-button {
   position: absolute;
+  z-index: 1;
   bottom: 100px;
-  right: 10px;
-  z-index: 100;
+  right: 5%;
   height: 60px;
   width: 60px;
   border-radius: 50%;
@@ -258,7 +264,6 @@ html, body {
 .icon-red {
   color: #DB504A;
 }
-
 
 
 

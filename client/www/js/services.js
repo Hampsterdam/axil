@@ -200,7 +200,8 @@ MEDIA FACTORY ("../api/media")
         likeMedia: likeMedia,
         unlikeMedia: unlikeMedia,
         getMediaByTag: getMediaByTag,
-        getMediaByTime: getMediaByTime
+        getMediaByTime: getMediaByTime,
+        deleteUniqueMedia: deleteUniqueMedia
     }
 
 })
