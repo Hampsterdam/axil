@@ -232,6 +232,15 @@ html, body {
     font-size: 40px;
 }
 
+.red {
+  background-color: #DB504A;
+  color: white;
+}
+
+.icon-red {
+  color: #DB504A;
+}
+
 
 
 
