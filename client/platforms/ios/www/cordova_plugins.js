@@ -292,20 +292,6 @@ module.exports = [
         "clobbers": [
             "window.plugins.socialsharing"
         ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.console/www/console-via-logger.js",
-        "id": "org.apache.cordova.console.console",
-        "clobbers": [
-            "console"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.console/www/logger.js",
-        "id": "org.apache.cordova.console.logger",
-        "clobbers": [
-            "cordova.logger"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -319,8 +305,7 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "1.0.0",
     "cordova-plugin-media-capture": "1.0.0",
     "cordova-plugin-touchid": "0.3.0",
-    "nl.x-services.plugins.socialsharing": "4.3.18",
-    "org.apache.cordova.console": "0.2.13"
+    "nl.x-services.plugins.socialsharing": "4.3.18"
 }
 // BOTTOM OF METADATA
 });
