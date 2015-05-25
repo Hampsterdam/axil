@@ -200,7 +200,8 @@ MEDIA FACTORY ("../api/media")
         likeMedia: likeMedia,
         unlikeMedia: unlikeMedia,
         getMediaByTag: getMediaByTag,
-        getMediaByTime: getMediaByTime
+        getMediaByTime: getMediaByTime,
+        deleteUniqueMedia: deleteUniqueMedia
     }
 
 })
@@ -403,8 +404,16 @@ MAP FACTORY
     }
 
     // Remove a Specific Marker from the Map when it's removed from the Database
-    function removeMarker (media_id) {
-        // remove the marker from the map
+    function removeMarker (media_id, layer, map) {
+      
+      // remove the marker from the clusters layer
+      layer.eachLayer(function(marker) {
+        if (marker.mediaData.id === media_id) {
+          map.removeLayer(layer);
+          layer.removeLayer(marker);
+          map.addLayer(layer);
+        }
+      });
     }
 
     // Expose the Factory methods to the application

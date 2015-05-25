@@ -153,6 +153,7 @@ angular.module('axil.explorectrl', [])
 
     // Socket Listener for Media Deletion
     Socket.on("media_removed", function(media_id) {
+      console.log("media_id", media_id);
       MapFactory.removeMarker(media_id, $scope.clusters, $scope.map);
     });
 
