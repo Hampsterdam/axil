@@ -7,7 +7,7 @@ angular.module('axil.authctrl', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $ionicLoading, $window, $ionicPopup, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $ionicLoading, $window, $ionicPopup, AuthFactory, TokenFactory, $cordovaTouchID, $timeout, Helpers) {
 
   $ionicPlatform.ready(function() {
     $scope.loginInfo = {};
@@ -46,6 +46,9 @@ angular.module('axil.authctrl', [])
       } else {
         $ionicLoading.hide();
         $scope.loginError = true;
+        $timeout(function() {
+          $scope.loginError = false;
+        }, 1200)
       }
     }
 
@@ -124,6 +127,9 @@ angular.module('axil.authctrl', [])
       $ionicLoading.hide();
       TokenFactory.deleteToken();
       $scope.signupError = true;
+      $timeout(function() {
+        $scope.signupError = false;
+      }, 1200);
     }
   };
 
