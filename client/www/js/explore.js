@@ -13,12 +13,14 @@ angular.module('axil.explorectrl', [])
 
   $ionicPlatform.ready(function() {
 
-    $scope.getLocation = function(){
+    $scope.getLocation = function(initial){
       var posOptions = { timeout: 30000, enableHighAccuracy: true };
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function(position){
-          MapFactory.userMarker(position.coords, $scope.user);
+          if(initial){
+            MapFactory.userMarker(position.coords, $scope.user);  
+          }
           $scope.map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
           MapFactory.updateUserPosition(position.coords);
         }, function(err){
@@ -26,7 +28,7 @@ angular.module('axil.explorectrl', [])
         });
     };
 
-    $scope.getLocation();
+    $scope.getLocation(true);
     $scope.markerInfo = {};
 
     //CLUSTER MODAL provides a list of media visible in the map.

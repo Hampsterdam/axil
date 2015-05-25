@@ -7,8 +7,7 @@ angular.module('axil.authctrl', [])
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $ionicLoading, $window, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
-
+.controller("LoginCtrl", function($scope, $state, $rootScope, $ionicModal, $ionicPlatform, $ionicLoading, $window, $ionicPopup, AuthFactory, TokenFactory, $cordovaTouchID, Helpers) {
 
   $ionicPlatform.ready(function() {
     $scope.loginInfo = {};
@@ -52,9 +51,18 @@ angular.module('axil.authctrl', [])
     // Simple logout... delete the token on the client side
     // TODO - delete the server side token as well
     $scope.logout = function() {
-      TokenFactory.deleteToken();
-      $rootScope.authenticated = false;
-      $state.go('/login');
+      $ionicPopup.confirm({
+        title: "Logout",
+        template: "Are you sure?"
+      }).then(function(res) {
+       if(res) {
+         TokenFactory.deleteToken();
+         $rootScope.authenticated = false;
+         $state.go('/login');
+       } else {
+        console.log('You are not sure');
+       }
+     })
     }
 
     // If the user wants to sign up, redirect to the signup view
