@@ -32,10 +32,14 @@ angular.module('axil.profctrl', [])
   });
 
   $scope.deleteMedia = function(media_id) {
-    MediaFactory.deleteUniqueMedia(media_id);
-    MediaFactory.getMediaByUser($scope.userInfo.user_id)
-    .then(function(data) {
+    MediaFactory.deleteUniqueMedia(media_id).then(function() {
+      $scope.userInfo.mediaList = [];
+
+      MediaFactory.getMediaByUser($scope.userInfo.user_id)
+      .then(function(data) {
         $scope.userInfo.mediaList = data.data;
+      });
+      
     });
   }
   
