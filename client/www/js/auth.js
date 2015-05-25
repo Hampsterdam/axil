@@ -43,13 +43,16 @@ angular.module('axil.authctrl', [])
         .catch(function(){
           $ionicLoading.hide();
           $scope.loginError = true;
+          $timeout(function() {
+            $scope.loginError = false;
+          }, 1200);
         })   
       } else {
         $ionicLoading.hide();
         $scope.emailError = true;
         $timeout(function() {
           $scope.emailError = false;
-        }, 1200)
+        }, 1200);
       }
     }
     
@@ -111,10 +114,13 @@ angular.module('axil.authctrl', [])
           $timeout(function(){
             $ionicLoading.hide();
             $state.go("tab.explore");
-          },1500);
+          }, 1200);
         } else {
           TokenFactory.deleteToken();
           $scope.signupError = true;
+          $timeout(function() {
+            $scope.signupError = false
+          }, 1200);
         }
       });
     } else {
