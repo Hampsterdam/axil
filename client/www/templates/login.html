@@ -1,7 +1,13 @@
 <ion-view view-title="Welcome to Axil" class="gradient-background">
+  
   <div class="bar bar-loading red" ng-if="loginError">
-    Wrong username or password.
+    Wrong username or password
   </div>
+
+  <div class="bar bar-loading red" ng-if="emailError">
+    Please enter a valid email
+  </div>
+
   <ion-content class="padding">
     <div class="general-container">
       

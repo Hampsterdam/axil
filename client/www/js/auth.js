@@ -96,6 +96,7 @@ angular.module('axil.authctrl', [])
   $scope.signupInfo = {};
   $scope.signupError = false;
   $rootScope.authenticated = false;
+  $scope.emailError = false;
 
   // RFC822 Email Validation with Regex
   function isEmail(email){
@@ -126,9 +127,9 @@ angular.module('axil.authctrl', [])
     } else {
       $ionicLoading.hide();
       TokenFactory.deleteToken();
-      $scope.signupError = true;
+      $scope.emailError = true;
       $timeout(function() {
-        $scope.signupError = false;
+        $scope.emailError = false;
       }, 1200);
     }
   };
