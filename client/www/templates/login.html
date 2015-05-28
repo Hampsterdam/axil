@@ -1,7 +1,22 @@
-<ion-view view-title="Login">
+<ion-view view-title="Welcome to Axil" class="gradient-background">
+  
+  <div class="bar bar-loading red" ng-if="loginError">
+    Wrong username or password
+  </div>
+
+  <div class="bar bar-loading red" ng-if="emailError">
+    Please enter a valid email
+  </div>
+
   <ion-content class="padding">
     <div class="general-container">
+      
+      <!-- Axil Branding -->
+      <div id="logo-container">
+        <img id="logo" src="img/logo.png">  
+      </div>
 
+      <!-- Axil branding -->
       <div class="list login-center">
         <label class="item item-input">
           <input autocapitalize="off" autocorrect="off" type="email" placeholder="Email" ng-model="loginInfo.email">
@@ -9,10 +24,10 @@
         <label class="item item-input">
           <input autocapitalize="off"  autocorrect="off" type="password" placeholder="Password" ng-model="loginInfo.password">
         </label>
-        <button class="button button-block button-positive" ng-click="login()">
+        <button class="button button-block button-stable" ng-click="login()">
           Login
         </button>
-        <button class="button button-block button-positive" ng-click="signupRedirect()">
+        <button class="button button-block button-stable" ng-click="signupRedirect()">
           New to Axil? Sign up!
         </button>
       </div>

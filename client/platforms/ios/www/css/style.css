@@ -5,9 +5,32 @@ html, body {
 }
 
 #map {
-    height: 700px;
-     /*Change 100% to 400px and the map will display    */
-    width: 100%;
+  position: relative;
+  height: 700px;
+  /*Change 100% to 400px and the map will display    */
+  width: 100%;
+}
+
+#logo-container {
+  max-width: 900;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#logo {
+  display: block;
+  max-height: 250px;
+  position: relative;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logout {
+  font-size: 20px;
+  padding: 5px;
+  margin: auto;
 }
 
 .spinner svg {
@@ -34,8 +57,9 @@ html, body {
   height: 52px !important;
   width: 52px !important;
   border-radius: 50%;
+  border-width: 5px;
   border: solid;
-  border-color: #0080ff;
+  border-color: #DB504A;
 }
 
 .media-modal{
@@ -73,14 +97,14 @@ html, body {
   width: 70px !important;
   border-radius: 50%;
   border: solid;
-  border-color: #0080ff;
+  border-color: #13C4A3;
 }
 
 .square-thumbnail {
   height: 100% !important;
   width: 250px !important;
   border: solid;
-  border-color: #0080ff;
+  border-color: #13C4A3;
 }
 
 .marker-modal-img {
@@ -88,23 +112,30 @@ html, body {
   width: 350px;
 }
 
+.explore-container {
+  width: 100%;
+  position: relative;
+}
+
 .list-button {
   position: absolute;
+  z-index: 1;
   bottom: 100px;
-  left: 10px;
-  z-index: 100;
-  height: 50px;
-  width: 50px;
+  left: 5%;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
   background-color: rgba(255,255,255,0.6);
 }
 
 .nav-button {
   position: absolute;
+  z-index: 1;
   bottom: 100px;
-  right: 10px;
-  z-index: 100;
-  height: 50px;
-  width: 50px;
+  right: 5%;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
   background-color: rgba(255,255,255,0.6);
 }
 
@@ -118,7 +149,7 @@ html, body {
   width: 150px !important;
   border-radius: 50%;
   border: solid;
-  border-color: #0080ff;
+  border-color: #13C4A3;
   margin: 0 auto;
 }
 
@@ -128,13 +159,18 @@ html, body {
     z-index: 100;
 }
 
-.camera-icon {
-  height: 400px;
-  width: 400px; 
+.upload-media-icon {
+  font-size: 50px;
+  margin: auto;
 }
 
-.upload-container {
+.upload-button {
+  height: 110px;
+}
+
+.general-container {
   height: 60%;
+  width: 100%;
   position: relative;
 }
 
@@ -144,6 +180,90 @@ html, body {
   top: 50%;
 }
 
+.login-center {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 250px;
+    padding: 10px;
+}
+
+/* -------error bar css -------------------- */
+.bar.bar-loading {
+  display: block;
+  height: 24px;
+  
+  /* starts right below a normal header */
+  top: 64px;
+  
+  /* make the text centered vertically and horizontally */
+  text-align: center;
+  padding: 0;
+  line-height: 24px;
+
+  /* transition 'sliding down' (check below)*/
+  -webkit-transition: 200ms all;
+}
+
+
+/* 
+ * make the content's top changes animate.
+ * might not always look good, but looks
+ * good when our loader is added & removed
+ */
+.has-header {
+  -webkit-transition: 200ms top;
+}
+.has-header.has-loading {
+  /* 44px (header) + 24px */
+  top: 68px;
+}
+
+/* make loading bar slide up/down */
+.bar-loading.ng-enter,
+.bar-loading.ng-leave.ng-leave-active {
+  height: 0;
+  border-width: 0px;
+}
+.bar-loading.ng-enter.ng-enter-active,
+.bar-loading.ng-leave {
+  height: 24px;
+  border-width: 1px;
+}
+
+/* Gradient background */
+.gradient-background {
+ background: rgb(19, 196, 163);
+ background: -moz-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
+ background: -webkit-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
+ background: -o-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
+ background: -ms-linear-gradient(112deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);
+ background: linear-gradient(202deg, rgb(19, 196, 163) 30%, rgb(95, 185, 222) 100%);ogid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0080ff', GradientType=1 );  
+}
+
+.camera-gradient {
+  background: #13c4a3; /* Old browsers */
+  background: -moz-linear-gradient(top,  #13c4a3 0%, #68b1d6 51%, #13c4a3 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#13c4a3), color-stop(51%,#68b1d6), color-stop(100%,#13c4a3)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #13c4a3 0%,#68b1d6 51%,#13c4a3 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #13c4a3 0%,#68b1d6 51%,#13c4a3 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #13c4a3 0%,#68b1d6 51%,#13c4a3 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #13c4a3 0%,#68b1d6 51%,#13c4a3 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#13c4a3', endColorstr='#13c4a3',GradientType=0 ); /* IE6-9 */
+}
+
+.form-input-styles {
+    font-size: 40px;
+}
+
+.red {
+  background-color: #DB504A;
+  color: white;
+}
+
+.icon-red {
+  color: #DB504A;
+}
 
 
 

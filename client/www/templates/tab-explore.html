@@ -1,19 +1,21 @@
 <ion-view view-title="Explore">
   <ion-content>
-  <button class="button list-button" ng-click="listView()">
-    <i class="ion-navicon-round"></i>
-  </button>
-  <button class="button nav-button" ng-click="getLocation()">
-    <i class="ion-navigate"></i>
-  </button>
-    <div id="map" data-tap-disabled="true"></div>
+    <div class="explore-container">
+      <button class="button list-button" ng-click="listView()">
+        <i class="ion-navicon-round icon-red"></i>
+      </button>
+      <button class="button nav-button" ng-click="getLocation(false)">
+        <i class="ion-navigate icon-red"></i>
+      </button>
+        <div id="map" data-tap-disabled="true"></div>
+    </div>
   </ion-content>
 </ion-view>
 
 <script id='map-list-modal.html' type="text/ng-template">
   <div class="modal explore-modal">
   <ion-header-bar class="bar-positive">
-    <h1 class="title">Media List</h1>
+    <h1 class="title">Media Near You</h1>
     <button class="button" ng-click="closeListModal()">close</button>
   </ion-header-bar>
   <ion-content>
@@ -29,7 +31,7 @@
               <img src="{{media.mediaData.thumb}}">
             </div>
 
-            <a class="item item-icon-left assertive" href="#">
+            <a class="item item-icon-left positive" href="#">
               <i class="icon ion-arrow-resize"></i>
               View
             </a>
@@ -43,8 +45,8 @@
 <script id='marker-modal.html' type="text/ng-template">
   <div class="modal explore-modal">
   <ion-header-bar class="bar-positive">
-    <h1 class="title">Marker Modal</h1>
-    <button class="button" ng-click="closeMarkerModal()">close</button>
+    <h1 class="title">In Focus</h1>
+    <button class="button" ng-click="closeMarkerModal()">Explore</button>
   </ion-header-bar>
   <ion-content>
     <div class="card">

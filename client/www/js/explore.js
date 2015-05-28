@@ -13,12 +13,14 @@ angular.module('axil.explorectrl', [])
 
   $ionicPlatform.ready(function() {
 
-    $scope.getLocation = function(){
+    $scope.getLocation = function(initial){
       var posOptions = { timeout: 30000, enableHighAccuracy: true };
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function(position){
-          MapFactory.userMarker(position.coords, $scope.user);
+          if(initial){
+            MapFactory.userMarker(position.coords, $scope.user);  
+          }
           $scope.map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
           MapFactory.updateUserPosition(position.coords);
         }, function(err){
@@ -26,7 +28,7 @@ angular.module('axil.explorectrl', [])
         });
     };
 
-    $scope.getLocation();
+    $scope.getLocation(true);
     $scope.markerInfo = {};
 
     //CLUSTER MODAL provides a list of media visible in the map.
@@ -94,7 +96,7 @@ angular.module('axil.explorectrl', [])
         return L.mapbox.marker.icon({
           // show the number of markers in the cluster on the icon.
           'marker-symbol': cluster.getChildCount(),
-          'marker-color': '#0080ff',
+          'marker-color': '#DB504A',
           'marker-size': 'large'
         });
       }
@@ -151,7 +153,8 @@ angular.module('axil.explorectrl', [])
 
     // Socket Listener for Media Deletion
     Socket.on("media_removed", function(media_id) {
-      MapFactory.removeMarker(media_id, $scope.clusters);
+      console.log("media_id", media_id);
+      MapFactory.removeMarker(media_id, $scope.clusters, $scope.map);
     });
 
     // Center the map on the user when selected

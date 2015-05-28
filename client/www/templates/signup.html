@@ -1,5 +1,10 @@
 <ion-view view-title="Signup">
   <ion-content class="padding">
+
+  <div class="bar bar-loading red" ng-if="signupError">
+    Please enter a valid email
+  </div>
+
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Firstname</span>
